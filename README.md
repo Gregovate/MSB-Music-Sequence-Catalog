@@ -23,4 +23,41 @@ This project replaces fragmented spreadsheets and scattered folders with one uni
 ---
 
 ## Repository Structure
+MSB-Music-Sequence-Catalog/
+│
+├── README.md
+│
+├── docs/
+│   ├── overview.md
+│   ├── data_model.md
+│   ├── data_sources.md
+│   ├── path_conventions.md
+│   ├── sequence_types.md
+│   ├── ingestion_plan.md
+│   ├── ui_design.md
+│   └── roles_and_access.md
+│
+├── db/
+│   ├── migrations/
+│   │   └── placeholder.txt
+│   ├── seed/
+│   │   └── placeholder.txt
+│   └── README.md
+│
+├── backend/
+│   ├── api/
+│   │   └── placeholder.txt
+│   ├── parsers/
+│   │   └── placeholder.txt
+│   ├── models/
+│   │   └── placeholder.txt
+│   └── config/
+│       └── placeholder.txt
+│
+└── tools/
+    ├── import_audio_csv.py
+    ├── import_rgbplus_sequences.py
+    ├── import_lss_history.py
+    └── utilities/
+        └── placeholder.txt
 
