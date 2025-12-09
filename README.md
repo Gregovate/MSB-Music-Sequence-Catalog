@@ -23,6 +23,7 @@ This project replaces fragmented spreadsheets and scattered folders with one uni
 ---
 
 ## Repository Structure
+```
 MSB-Music-Sequence-Catalog/
 │
 ├── README.md
@@ -60,4 +61,4 @@ MSB-Music-Sequence-Catalog/
     ├── import_lss_history.py
     └── utilities/
         └── placeholder.txt
-
+```
