@@ -253,6 +253,19 @@ An operator-uploaded **read-only** copy of `MSB_SongHistory_AllShows_plus2025.xl
 
 **Do not replace these historical catalog identities or import existing workbook rows uncritically as authoritative audio identities.** The workbook does not prove present-day file existence, physical duplicate status, normalized/raw lineage, or complete sequence coverage. It may contain provisional matching and intentionally carried-forward records. Inspect the audio-specific source workbooks and CSV next; establish current filesystem evidence independently. No source folder creation/renaming or sync target is approved.
 
+### Uploaded 2025 audio-source catalogs: read-only audit (2026-10-27)
+
+The operator supplied copies of `Audio Library.xlsx`, `MSB_Music_Normalized_v2.xlsx`, and `normalized_mp3s_2025.csv`. The second workbook is **not** `MSB_Music_Normalized_History_v2.xlsx`; that distinct historical workbook remains unexamined.
+
+- `Audio Library.xlsx`: `AudioLibrary` has **51 data rows and 50 distinct filename values** (case-insensitive, ignoring a terminal `.mp3` extension). `2025 Light Of Christmas [feat. TobyMac] Normalized -1db.mp3` appears **twice as identical catalog rows**. The workbook has no verified physical file hashes.
+- `MSB_Music_Normalized_v2.xlsx`: five tabs—`AudioLibrary` (36 data rows), `SongYearMatrix` (36), `Sequences_SongsMaster` (60), `Raw_Original_2023Sheet` (45), and `Playlist_Import_Template` (header only). Treat these as earlier/staged catalog lists; do not infer complete audio file coverage.
+- `normalized_mp3s_2025.csv`: **37 distinct filename occurrences**, all pointing at `G:\Shared drives\Seasonal Files\2025\LOR\Audio`, totaling **139,418,055 bytes (~132.96 MiB)** based on recorded file sizes. Each name contains a `Normalized -1db` variant; they have not been opened or inspected.
+- Exact filename crosswalk after lowercasing and dropping an optional trailing `.mp3` extension: **30/37 CSV names** appear in `Audio Library.xlsx`; **24/37** appear in the 36-row `MSB_Music_Normalized_v2.xlsx` AudioLibrary. Mismatches show catalog/snapshot or naming variance, **not verified absent physical files**.
+- The CSV lists `2025  Light Of Christmas [feat. TobyMac] Normalized -1db.mp3` (two spaces) and `2025 Light Of Christmas [feat. TobyMac] Normalized -1db.mp3` (one space), **each 3,594,765 recorded bytes** and with different modified timestamps. Candidate exact duplication requires hashes; identical sizes do not establish byte equality.
+- Original/ripped MP3s elsewhere, multiple raw/normalized versions, canonical audio content, file availability, and actual LOR audio dependency completeness have not yet been examined.
+
+**Next read-only action:** Produce a per-root metadata-only MP3 count and size report for `LOR_Source_Files` audio collections, the annual `LOR\Audio` directories, and local `C:\LOR\Audio`; use this inventory to scope subsequent physical file/path reconciliation. Do not recursively hash cloud files yet. Do not choose a sync tool workflow, move files, consolidate, or create a canonical folder before operator-reviewed reconciliation.
+
 ## Immediate next step
 
 Do **not** write a copier first.
