@@ -341,11 +341,29 @@ These labels are the conceptual folder contract, not a command to create/move fi
 
 **Next step remains read-only** physical audio inventory and `.loredit` reference inspection. No file copying, catalog database provisioning, normalization rewrite, media path remapping, or sync job configuration yet.
 
+### 2026 migration priority and accepted production facts (operator checkpoint, 2026-10-27)
+
+**Work on the new Show PC has already advanced:** the operator has copied the previous year's **Final musical editable sequences and background sequences** onto the new Show PC. **No music/audio library has intentionally been transferred yet.** Earlier metadata found one existing MP3 under `C:\LOR\Audio`; that does not override the operator's confirmation that the show's music has not been migrated. Do not run another bulk sequence copy, select a synchronization destination, or pre-populate `C:\LOR\Audio` without a reviewed dependency/copy manifest.
+
+**Revised near-term priority:** unblock the 2026 conversion of **2025 Final musical sequences** by identifying exactly which audio each copied editable sequence references, reconciling that against the historical audio occurrence inventory, and eliminating redundant *candidates* from the proposed 2026 selection. Do **not** make the full 2014–2026 audio deduplication project a prerequisite to beginning work on 2025 Final dependencies. A smaller confirmed 2026 audio-selection manifest is the first practical deliverable; wider archive cleanup follows.
+
+**Authoritative use and programmer attribution (operator rules):**
+
+- Every sequence placed in a given year's `Final` folder **was used in that year's show**. Treat the correct year's Final folder as authoritative show-use evidence in this workflow, retaining original filepath and archive-snapshot provenance; do not reduce it to merely "candidate official" when the folder is verified as Final.
+- Programmer names embedded in sequence filenames (e.g., `Adam`, `Greg`) are **attribution labels**, not song identity, audio version, or production year. Store contributor identity separately; preserve filenames and exact source revision.
+- On rare occasions the **same song has two independent sequences by different programmers**. Keep both sequence identities/revisions, relationships, and any actual Final show use. Do not merge them just because the title or referenced normalized MP3 matches.
+- A year-prefixed filename is an older tracking convention, not the canonical song identity. The actual year-of-use is derived from Final folder membership plus later supporting history when needed.
+- Musical sequences remain season/preview-specific despite shared audio. Background sequences may be reused unchanged or refreshed; no audio migration is needed to establish their presence on the PC.
+
+**Near-term read-only acceptance flow:** (1) inspect one actual copied 2025 `.loredit` to validate how LOR stores the audio path; (2) extract all 2025 Final musical sequence-to-audio references without editing files; (3) match those exact references to the existing 2,073-entry metadata CSV, the additional unindexed 177 MP3s in 2021, and existing source workbooks; (4) group candidate filenames by preserved original name, optional historical year prefix, programmer/sequence identity, length and later targeted SHA-256 comparisons; (5) produce a **small reviewed 2026 audio copy manifest** with exactly one approved show-use rendition per actual audio edit, plus exceptions and unresolved items. The ongoing full-history catalog and archive deduplication remain separate follow-on tasks. A manifest is not authorization to copy.
+
+**Database decision pending:** The operator already has working authentication in the MSB production application stack and is considering reuse for a future catalog, but does not have a separate catalog schema in the existing production PostgreSQL database and does not want to pollute it. The repository's **current** prohibition on installing catalog tables/functions in MSB Production Database stays in force until there is an explicit, documented architecture/ownership decision. Compare later: separate catalog database using existing identity/SSO, versus deliberately isolated database schema and roles with clear migration/backup/operational boundaries. Reusing login/authentication need not mean mixing data tables. **No database engine, hosting, schema, integration, or Production change is approved or required for this immediate file-level reconciliation.**
+
 ## Immediate next step
 
 Do **not** write a copier first.
 
-The next step is read-only discovery of the annual LOR folder layouts and the actual sequence file formats present, followed by inspection of how those sequence formats record their audio/media references.
+Annual LOR folder layout discovery and the initial 2,073-file audio occurrence inventory are completed. The immediate next step is **read-only inspection of a copied 2025 Final `.loredit` source** to locate its embedded audio reference fields, followed by a targeted 2025 Final sequence-to-audio dependency inventory and duplicate candidate review. Do not copy any music onto the Show PC until the resulting 2026 media manifest is reviewed.
 
 The first engineering deliverable should be a read-only inventory/report that can answer:
 
