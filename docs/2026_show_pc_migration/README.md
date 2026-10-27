@@ -14,6 +14,12 @@ Migrate the useful Light-O-Rama sequence and media set to the new Show PC withou
 
 This workstream also resumes the unfinished MSB Music & Sequence Catalog so the migration can be driven by actual sequence/media dependencies instead of manual bulk copying.
 
+## Database ownership boundary
+
+If this catalog uses a database, that database is **independent of the MSB Production Database system**. Do not add Music/Sequence Catalog tables, schemas, functions, migrations, or application dependencies to the MSB Production Database PostgreSQL environment.
+
+The catalog repository owns its own data model and, if/when a database backend is selected, its own database lifecycle, migrations, backup/restore procedure, and runtime configuration. The storage engine and host are **not yet decided** by this workstream; do not infer PostgreSQL, MariaDB, Synology, or any other backend from older scaffold text.
+
 ## Hard constraints
 
 1. The Show PC production Light-O-Rama root remains exactly:
@@ -150,4 +156,4 @@ Only after that report is accepted should a copy operation be designed.
 
 PC operating-system setup, Windows/Chrome/Python/Git installation, NIC/audio hardware configuration, and general appliance setup stay in the existing Show-PC setup workstream.
 
-This repository/workstream owns the **music, sequence, history, dependency, and media migration** problem.
+This repository/workstream owns the **music, sequence, history, dependency, and media migration** problem, including any future independent catalog database. It does not become a subsystem of `MSB-Production-Database-Project` merely because both are MSB projects.
