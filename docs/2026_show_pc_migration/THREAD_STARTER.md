@@ -46,6 +46,12 @@ The uploaded `MSB_Audio_Metadata_20261027_142222.csv` contains 2,073 occurrences
 
 **Exact next discovery:** extend metadata CSV for 2021's 177 files, then inspect `.loredit` embedded audio references and compare to canonical song/source worksheets, keeping both original names and year-of-use facts. No sequence collapse across seasons merely because the audio is the same.
 
+**2026 editorial/animation workflow and broadcast-audio model (operator-confirmed 2026-10-27):** Music originals may be retained as purchased/ripped artist/album sources. An approved normalized show audio rendition should be kept separately and referenced by different years' editable sequences; a shortened song (e.g., *Christmas Canon*) is a legitimately different audio edit, so “one original plus one normalized” is the default *per edit*, not an absolute two-file song limit. Prior year-prefixed song and sequence filenames are historical conventions, not song identities or verified show-use facts. The catalog must record actual show years from independently confirmed usage evidence.
+
+For each new year, carry preceding year's **final musical** sequence sources into `<YEAR>/Musical/Scratch`, revise against the new year's preview, and promote completed work into `<YEAR>/Musical/Final`; these relative folders are the operator's intended workflow and the actual filesystem anchor has not yet been established. Previous final sources remain historical, and `.loredit` sources must not be collapsed across incompatible yearly previews. Background animations often reuse prior-year content, but four or more 2026 animations will be refreshed; the old Open/Close sign is now a **full matrix** and requires a new revision/preview mapping rather than overwriting its past source.
+
+Audio volume target decision is **open**: 0 dBFS peak would reduce headroom and does not deliver equal perceived FM broadcast volume. Before changing existing `normalized-1db` MP3s, compare measured LUFS, true peaks, waveform dynamics, timing and listening/level in the local FM broadcast chain. Do not batch re-encode or overwrite originals. See proposed, database-independent model at `docs/data_model.md`, and full controlled discussion in the migration README. No production file, archive, sync, or database mutation authorized.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
