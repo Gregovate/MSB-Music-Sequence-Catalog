@@ -64,6 +64,28 @@ Requirements:
 - The exact synchronization tool and direction/conflict rules still need to be selected and documented.
 - Annual archive folders and the local runtime are different roles: the archive preserves history; `C:\LOR` is the operational working copy.
 
+## Programmer-PC path contract and proposed shared audio distribution location
+
+The operator confirms that Light-O-Rama sequences embed media file paths and all MSB programmers intentionally maintain the **identical local \`C:\LOR\` hierarchy** for compatibility. The G: Google Shared Drive mount is a **transfer/synchronization location**, not a playable runtime dependency, and should not be embedded in production sequence audio references.
+
+Proposed non-year-specific Google Shared Drive distribution/source folder (operator suggestion; not yet created or selected as an approved production sync target):
+
+\`\`\`text
+G:\Shared drives\Seasonal Files\LOR-Audio
+\`\`\`
+
+Every programmer's workstation and the Show PC must have the **same exact local audio path**, with the required show-use files available offline. Two candidate local paths are under consideration:
+
+- **Preferred low-risk option:** \`C:\LOR\Audio\` on all computers. This is the already documented local runtime path and Light-O-Rama's standard media search location; it can be synchronized directly from the single non-annual Google Drive audio library without recopying audio into each year's archive.
+- **Operator-proposed alternative:** \`C:\LOR-Audio\` on all computers. This may support external audio references but requires actual LOR version/path-behavior testing, updates to any existing sequence references, and successful playback on the Show PC before acceptance.
+
+**Do not change the accepted local audio runtime path merely to avoid annual cloud synchronization; the cloud folder can be centralized independently of the local directory.** Both options preserve the required \`C:\LOR\` sequences/runtime root. No final external-audio path decision has been made.
+
+LOR's published File Locations help recommends storing audio in the LOR Audio subfolder to allow transferred sequences to resolve their media without prompting. The Sequencer's Media File command can change a sequence's referenced media path, but some versions prompt to copy external files back into the normal Audio folder. Before any relocation, inspect the actual references in representative \`.loredit\` sequences, and validate opening, editing, generated playback, and offline show playback against the candidate path on the installed version(s).
+
+Synchronization is a **controlled separately-reviewed action**, not a blind bidirectional mirror. Determine source/authoritative-edit location, file direction, conflict and overwrite policy, raw-versus-normalized MP3 handling, and verification before enabling any sync. Archive copies and Show PC contents are not to be modified during discovery.
+
+
 ## Canonical audio library — not annual duplicates
 
 Audio is **shared across show years**. For the known MSB audio workflow, the relevant distinction is between an **original/raw MP3** and a **normalized MP3** derived from that original, rather than a separate per-year song recording.
