@@ -365,11 +365,26 @@ The exact MP3 basename exists at five G: occurrence locations in the earlier met
 
 **Database decision pending:** The operator already has working authentication in the MSB production application stack and is considering reuse for a future catalog, but does not have a separate catalog schema in the existing production PostgreSQL database and does not want to pollute it. The repository's **current** prohibition on installing catalog tables/functions in MSB Production Database stays in force until there is an explicit, documented architecture/ownership decision. Compare later: separate catalog database using existing identity/SSO, versus deliberately isolated database schema and roles with clear migration/backup/operational boundaries. Reusing login/authentication need not mean mixing data tables. **No database engine, hosting, schema, integration, or Production change is approved or required for this immediate file-level reconciliation.**
 
+### 2025 Final read-only audio dependency scan (2026-10-27)
+
+Uploaded scan report: MSB_2025_Final_Audio_20261027_152125.csv, produced from the already copied local 2025 Final folder.
+
+- 114 .loredit records parsed without root-reading error: 27 have nonblank musicFilename; 87 do not.
+- The 87 no-primary-MP3 records comprise 49 backgrounds, 37 stage-testing sequences, and one musical test (snowflake test santas station). Do not treat these as 87 missing songs.
+- The 27 audio-bearing records comprise 25 files under Musical Sequences, one at Final root, and one operational Show cue. They reference 24 distinct MP3 basenames.
+- All 24 basenames have exact matches in the uploaded 2,073-row audio metadata CSV, and all 24 have an occurrence in the 2025 archive's LOR/Audio. One 2025-archive occurrence per exact name totals 84,827,578 bytes (80.90 MiB). This is a candidate selection, NOT a verified copy manifest.
+- Across scanned historical roots the 24 requested names have 88 physical file occurrences (unhashed). Another 177 MP3s under the alternate 2021 location have not yet been included in that metadata report.
+- CRITICAL: same sequence basename "2025 Greg Christmas Canon-TransSiberian Orchestra.loredit" appears at Final root with Christmas Canon MP3, but in Final/Musical Sequences references 2015 Trans-Siberian Orchestra - Wizards in Winter.mp3. Preserve both; operator review required to determine correct intent.
+- Four requested MP3 names appear with two recorded sizes each: First Snow-TransSiberian Orchestra-SN.mp3; Christmas Sarajevo 12-24-TransSiberian Orchestra-SN.mp3; Queen Of The Winter Night-TransSiberian Orchestra-SN.mp3; Wizards In Winter-TransSiberian Orchestra-SN.mp3. In each, the older 2020 archive has a different size than the later 2023–2025 files. Size is not proof of audio identity.
+- The review workbook MSB_2025_Final_Audio_Dependency_Review_20261027.xlsx (not installed in the repo or copied to G:) contains five sheets: Summary, 2025 Sequence Scan, Required MP3 Review, Matching Audio Locations, and Review Exceptions.
+
+Next: confirm the Christmas Canon source/version and the 2025 show-audio source choice; perform only targeted read-only content hashes after considering Google Drive streaming; decide the common local audio path; accept a limited 2026 transfer manifest BEFORE copying music. Do not copy the whole 2025 Audio collection or change LOR XML/media references now.
+
 ## Immediate next step
 
 Do **not** write a copier first.
 
-Annual LOR folder layout discovery and the initial 2,073-file audio occurrence inventory are completed. A representative already copied 2025 `.loredit` source was parsed read-only and its root-level `musicFilename` / preview reference fields documented in [`loredit_audio_reference_investigation.md`](loredit_audio_reference_investigation.md). **Next:** run a first-pass read-only audio-header scan of the already copied 2025 Final `.loredit` files, match the exact requested MP3 names against the physical occurrence inventory, and review duplicates/exceptions before any music copy. Do not copy any music onto the Show PC until the resulting 2026 media manifest is reviewed.
+Annual LOR folder layout discovery and the initial 2,073-file audio occurrence inventory are completed. The first-pass root-level XML inventory of all 114 files and the 24-name audio reconciliation are complete. Next: resolve conflicting Christmas Canon source files, verify four MP3 same-name/different-size families, review the 2025-archive 80.90 MiB candidate subset, and approve the local audio path and selective manifest before any file transfer. This does not yet validate complete external-media dependencies. Do not copy any music onto the Show PC until the resulting 2026 media manifest is reviewed.
 
 The first engineering deliverable should be a read-only inventory/report that can answer:
 
