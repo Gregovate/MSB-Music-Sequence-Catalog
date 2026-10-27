@@ -25,6 +25,9 @@ Audio must use a **single canonical library**, separate from annual year folders
 
 Modern `.loredit` files are the **editable source sequences** and must remain **year-specific**: annual preview configurations change and are incompatible. Do not deduplicate or substitute 2024/2025/2026 editable sequences simply because they use the same audio. Legacy `.lms`/`.las` need separate historical parsing. Generated/non-editable `.lss` files are excluded from the initial editable-sequence and audio-dependency inventory (verify exact format separately if future playlist/playback history requires it). Archive snapshot year and represented show year are different catalog dimensions.
 
+MSB programmers maintain the same `C:\LOR` local directory structure on their own PCs because sequence media references are stored as file paths. The Google Drive G: mount is a transfer/synchronization source only; production sequences must not point at G:.
+
+**Proposed nonannual Google Drive audio folder:** `G:\Shared drives\Seasonal Files\LOR-Audio` (operator suggestion, not created or finalized). **Local audio path decision remains open:** retaining `C:\LOR\Audio` on every PC is the lower-risk option and already avoids annual audio duplication when paired with the shared G: folder; `C:\LOR-Audio` is an alternate common local path requiring LOR sequence-reference and offline playback testing before approval. Do not change existing sequence media paths or configure synchronization during the read-only discovery phase.
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
