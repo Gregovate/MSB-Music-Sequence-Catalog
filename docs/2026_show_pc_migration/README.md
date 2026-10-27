@@ -229,6 +229,22 @@ offline validation
 2026 show build
 ```
 
+## Audio-first source discovery and consolidation checkpoint (2026-10-27)
+
+**The operator has not approved or created a canonical audio synchronization folder.** FreeFileSync Business has been purchased for initial evaluation only; this does not authorize synchronization. There are scattered ripped/original MP3s and normalized MP3s using `normalized-1db` in their filenames (case/punctuation may vary). A missing normalization marker is **not** proof that a file is original.
+
+**Existing inventory source to inspect before building another catalog:** On 2025-12-08, the operator identified `G:\Shared drives\Seasonal Files\LOR_Source_Files\MSB_SongHistory_AllShows_plus2025.xlsx` as a musical/sequence inventory. Its described sheets are `MasterSongs` (canonical song identity, classifications, show years) and `AlternateSources` (other versions/duplicates). This is historical evidence of an inventory outside the Git repository; present existence, completeness, file contents, and any tooling that created the surrounding `LOR_Source_Files` folder have **not** been verified. Treat the entire folder as existing source material, not a disposable generated output.
+
+**Order of work (investigation now; cleanup only after manifest approval):**
+
+1. Read-only inspect `LOR_Source_Files`, existing workbook, annual LOR Audio trees, candidate audio elsewhere under Seasonal Files, and local `C:\LOR\Audio` for current files. Capture exact root/path and file metadata; start with metadata before content hashing to avoid unnecessary Google Drive downloads.
+2. Produce one path-preserving inventory of all discovered original/ripped/unknown/`normalized-1db` MP3 occurrences. Count per-root files and bytes. Keep audio identity separate from physical occurrences and from the year-specific `.loredit` sequences.
+3. In a later controlled read-only content pass, determine exact duplicates with SHA-256; distinguish genuine duplicate files from raw/normalized derivatives and different mixes/edits. Match sequence audio references before choosing keep/copy/delete actions. Do not infer audio identity from filename alone.
+4. Present reviewable proposed canonical library and exception/retention manifest, including current dependencies, raw source preservation, conflicts, duplicate candidates, and any estimated storage savings.
+5. Only after explicit operator acceptance, create the canonical Google Drive library, perform controlled consolidation, and configure/test FreeFileSync synchronization. No automatic deletion, overwrites, or bidirectional conflicts before a documented policy and offline LOR validation.
+
+**Current safety state:** No approved G: audio sync folder, no configured sync job, no archive/file relocation, no deletion. The proposed `G:\Shared drives\Seasonal Files\LOR-Audio` remains **TBD**, not the verified location of the existing inventory. A common local LOR audio path is required on every programmer PC; choosing `C:\LOR-Audio` versus current `C:\LOR\Audio` remains deferred until actual embedded-reference and offline playback tests.
+
 ## Immediate next step
 
 Do **not** write a copier first.
