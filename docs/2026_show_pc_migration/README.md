@@ -245,6 +245,14 @@ offline validation
 
 **Current safety state:** No approved G: audio sync folder, no configured sync job, no archive/file relocation, no deletion. The proposed `G:\Shared drives\Seasonal Files\LOR-Audio` remains **TBD**, not the verified location of the existing inventory. A common local LOR audio path is required on every programmer PC; choosing `C:\LOR-Audio` versus current `C:\LOR\Audio` remains deferred until actual embedded-reference and offline playback tests.
 
+### Existing music inventory evidence (verified 2026-10-27)
+
+Operator-reported immediate contents of `G:\Shared drives\Seasonal Files\LOR_Source_Files` include these **preexisting** data files: `Audio Library.xlsx`, `MSB_Music_Normalized.xlsx`, `MSB_Music_Normalized_v2.xlsx`, `MSB_Music_Normalized_History.xlsx`, `MSB_Music_Normalized_History_v2.xlsx`, `MSB_Musical_Songs_Inventory.xlsx`, `Musical Sequences.xlsx`, `play Lists by Song.xlsx`, `normalized_mp3s_2025.csv`, and `MSB_SongHistory_AllShows_plus2025.xlsx`. Subdirectories include `Audio`, `Normalized Audio Albums`, `PurchasedMusic`, `Purchased LOR RGB Plus`, `Playlist History`, `Images`, and `Prop Testing`.
+
+An operator-uploaded **read-only** copy of `MSB_SongHistory_AllShows_plus2025.xlsx` was inspected. Its eight worksheets include `MasterSongs` (81 nonblank records), `AlternateSongSources` (10), `RawSequenceHistory` (1,631 rows, **sequence/show references rather than unique source files**), `SongByYearMatrix`, and purchased RGBPlus reconciliation lists. Raw history references include 1,583 `.loredit` and 48 `.lms` filenames, and years 2018, 2019, 2021-2025. `MasterSongs` has `Source`, `HasAudioLibEntry`, `HasPurchasedRGBPlus`, and prior canonical identifiers. Several purchase reconciliation rows contain actual `G:` locations under `LOR_Source_Files\Purchased LOR RGB Plus`.
+
+**Do not replace these historical catalog identities or import existing workbook rows uncritically as authoritative audio identities.** The workbook does not prove present-day file existence, physical duplicate status, normalized/raw lineage, or complete sequence coverage. It may contain provisional matching and intentionally carried-forward records. Inspect the audio-specific source workbooks and CSV next; establish current filesystem evidence independently. No source folder creation/renaming or sync target is approved.
+
 ## Immediate next step
 
 Do **not** write a copier first.
