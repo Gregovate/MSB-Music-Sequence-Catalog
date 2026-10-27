@@ -66,48 +66,45 @@ Requirements:
 
 ## Canonical audio library — not annual duplicates
 
-Audio is **not** year-specific unless the actual audio content is different.
+Audio is **shared across show years**. For the known MSB audio workflow, the relevant distinction is between an **original/raw MP3** and a **normalized MP3** derived from that original, rather than a separate per-year song recording.
 
-Do not create separate copies of the same song/audio file inside every annual `Seasonal Files\<YEAR>\LOR` tree merely because multiple yearly sequences use it.
-
-The intended model is:
+Catalog an underlying audio recording once, with explicitly related file variants:
 
 ```text
-one canonical audio asset
-        ↑
-        ├── 2024 sequence
-        ├── 2025 sequence
-        └── 2026 sequence
+one recording / audio identity
+    ├── original (raw) MP3 — preserved source
+    └── normalized MP3 — show-use version
+          ├── 2024 editable sequence
+          ├── 2025 editable sequence
+          └── 2026 editable sequence
 ```
 
-Each sequence should reference the same canonical audio file when the underlying audio is truly identical.
+The raw original and normalized derivative are not byte-identical and should not be incorrectly classified as independent unrelated songs, nor treated as exact duplicates merely because titles match. Record the relationship between the two files; do not use filenames or SHA-256 alone to associate raw and normalized variants. Use hashes to establish **byte-identical file occurrences** across archive locations.
 
-Only create a distinct audio asset when the file is materially different, for example:
+A normalized version may be reused by multiple years' sequences when it is the same actual show audio. Do not normalize again simply because a new season's previews require a new editable sequence. If inspection finds genuinely different recordings, edits, timing/duration, or distinct normalization passes, retain those variants and their relationships rather than collapsing them automatically.
 
-- different edit/cut;
-- different duration;
-- different mix/master;
-- different normalization/leveling;
-- different intro/outro;
-- different file content despite a similar title.
+Do not preserve redundant copies of a recording in each annual `Seasonal Files\<YEAR>\LOR` tree merely because different years' sequences reference it. Historical copies remain read-only during discovery and are not authorized for deletion or consolidation yet.
 
-On the Show PC, the canonical local runtime location remains:
+On the Show PC, the canonical local runtime audio location remains:
 
 ```text
 C:\LOR\Audio
 ```
 
-The Google Drive side should likewise have a **single canonical audio-library location separate from the annual year folders**. The exact Google Drive path for that canonical audio library still needs to be confirmed before implementation; do not invent it.
+The Google Drive side requires a **single canonical audio library separate from annual year folders**. Its exact location and how original/raw source MP3s are stored or synchronized are still TBD and must not be invented. The Show PC must have the local normalized audio files required by the selected sequences before operation; local playback never requires Google Drive.
 
-The catalog should track relationships between:
+The catalog must distinguish audio recording identity, raw/normalized file variant, physical archive file occurrence, and each sequence's exact original audio reference.
 
-```text
-audio asset
-  -> one or more sequence versions
-  -> one or more show years
-```
+## Year-specific editable sequences and generated artifacts
 
-rather than treating each year's audio copy as a new audio identity.
+Operator-confirmed sequence workflow:
+
+- A `.loredit` file is the **editable sequence source** for modern Light-O-Rama work.
+- Editable sequences are **show-year specific** because their previews change from year to year and the preview configurations are incompatible. Do **not** deduplicate or substitute different years' editable sequences based only on a common song/audio file.
+- Older `.lms` musical sequences (and legacy `.las` animation sequences) are historical source formats that require separate format-aware handling.
+- `.lss` is **not** an authoritative editable sequence for this initial catalog/migration inventory. The operator reports it is generated as part of the current LOR playback/update workflow. Exclude it from source-sequence counts and audio-dependency parsing for now; verify actual file structure before making assumptions about any later playback or playlist-history use.
+- The season represented by a sequence and the archive snapshot containing it are **different attributes**: a later archive may carry forward, add, or revise an earlier season's files.
+- `Final` folders are candidate official seasonal sets; verify them against source files and operator/show evidence before declaring authority.
 
 ## Confirmed source layout
 
