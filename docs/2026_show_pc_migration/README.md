@@ -40,6 +40,75 @@ The catalog repository owns its own data model and, if/when a database backend i
 
 6. Preserve exact media filenames expected by the selected Light-O-Rama sequence files.
 
+## Ongoing Google Drive ↔ Show PC synchronization contract
+
+This is not a one-time migration only. The Show PC needs an **ongoing synchronization workflow** between the Google Drive source/archive and the local Show PC so the show can always run from local storage while the maintained files remain protected in Google Drive.
+
+The operating model is:
+
+```text
+Google Drive maintained files
+        ⇅
+controlled synchronization
+        ⇅
+C:\LOR local working/runtime files
+        ↓
+Light-O-Rama runs only from local storage
+```
+
+Requirements:
+
+- The running show must never depend on an Internet connection or streamed Google Drive file access.
+- Files required by Light-O-Rama must exist locally under `C:\LOR` before show operation.
+- Synchronization must be explicit and reviewable; a sync job must not silently delete or overwrite files without a defined conflict policy.
+- The exact synchronization tool and direction/conflict rules still need to be selected and documented.
+- Annual archive folders and the local runtime are different roles: the archive preserves history; `C:\LOR` is the operational working copy.
+
+## Canonical audio library — not annual duplicates
+
+Audio is **not** year-specific unless the actual audio content is different.
+
+Do not create separate copies of the same song/audio file inside every annual `Seasonal Files\<YEAR>\LOR` tree merely because multiple yearly sequences use it.
+
+The intended model is:
+
+```text
+one canonical audio asset
+        ↑
+        ├── 2024 sequence
+        ├── 2025 sequence
+        └── 2026 sequence
+```
+
+Each sequence should reference the same canonical audio file when the underlying audio is truly identical.
+
+Only create a distinct audio asset when the file is materially different, for example:
+
+- different edit/cut;
+- different duration;
+- different mix/master;
+- different normalization/leveling;
+- different intro/outro;
+- different file content despite a similar title.
+
+On the Show PC, the canonical local runtime location remains:
+
+```text
+C:\LOR\Audio
+```
+
+The Google Drive side should likewise have a **single canonical audio-library location separate from the annual year folders**. The exact Google Drive path for that canonical audio library still needs to be confirmed before implementation; do not invent it.
+
+The catalog should track relationships between:
+
+```text
+audio asset
+  -> one or more sequence versions
+  -> one or more show years
+```
+
+rather than treating each year's audio copy as a new audio identity.
+
 ## Confirmed source layout
 
 The annual Seasonal Files archive contains year folders. Greg confirmed yearly LOR folder structures beginning with 2014:
@@ -111,11 +180,13 @@ However, at the start of this workstream:
 The intended workflow is:
 
 ```text
-annual historical LOR archives
+annual historical LOR sequence archives
         |
         | read-only inventory
         v
 sequence / audio / show-history catalog
+        |
+        +----> canonical audio identity / deduplication
         |
 selected 2025/2026 working sequences
         |
@@ -125,10 +196,13 @@ resolved media dependency manifest
 operator review
         |
         v
-copy required media only
-        |
-        v
+canonical Google Drive audio library
+        ⇅
+controlled synchronization
+        ⇅
 C:\LOR\Audio
+        |
+        +----> C:\LOR\Sequences
         |
 offline validation
         |
@@ -146,9 +220,12 @@ The first engineering deliverable should be a read-only inventory/report that ca
 
 - which sequence files exist by year;
 - which media file each sequence references;
+- which audio references point to the same underlying audio asset;
 - where candidate source media exists in the archive;
-- duplicates/missing media;
-- which files would be required for a selected migration set.
+- duplicate audio files versus truly different edits/versions;
+- missing media;
+- which canonical audio files would be required for a selected migration set;
+- which sequence and audio files must be synchronized to the local Show PC.
 
 Only after that report is accepted should a copy operation be designed.
 
