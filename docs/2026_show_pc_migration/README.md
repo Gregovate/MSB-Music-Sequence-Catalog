@@ -402,6 +402,25 @@ Two **new documents** separate engineering choices from operator action: [2026 s
 
 **Order:** first obtain explicit acceptance of a limited, exact-name 2025 audio transfer manifest, then obtain the installed 2026 master-preview/mapping identifiers and perform a **single non-destructive pilot** on a working copy; refine the operator procedure based on observed results. Preserve historical Final files and the 2025 original MP3 names. Broader audio cleanup and database architecture remain deferred.
 
+### LOR preview / Production Database authority correction (2026-10-27)
+
+**Supersedes all historical conversion directions about 'delete archived Props,' independently changing Display or network assignments, and reusing old 2023 match/map/grid procedures.** The 2026 conversion cannot create a new Preview lifecycle. The current Preview authoring and database identity/assignment process is wholly owned by `Gregovate/MSB-Production-Database-Project`, not this music catalog.
+
+**Current authoritative operator/source references in that repository:**
+
+- [Preview Import Workflow](https://github.com/Gregovate/MSB-Production-Database-Project/blob/main/Docs/01_LOR_System/01_Preview_Authoring/Preview_Import_Workflow.md): use the latest completed LOR2DB reconciliation report to locate the approved preview; import a copy without overriding the approved master.
+- [Building a Preview](https://github.com/Gregovate/MSB-Production-Database-Project/blob/main/Docs/01_LOR_System/01_Preview_Authoring/B_Building_Preview_Howto.md) and [Master Musical Preview](https://github.com/Gregovate/MSB-Production-Database-Project/blob/main/Docs/01_LOR_System/01_Preview_Authoring/E_Master_Musical_Preview_Howto.md): preview design and versioned annual Master Musical Preview.
+- [Prop and Display Naming Conventions](https://github.com/Gregovate/MSB-Production-Database-Project/blob/main/Docs/01_LOR_System/01_Preview_Authoring/A_Naming_Conventions.md) and [LOR XML to MSB terminology](https://github.com/Gregovate/MSB-Production-Database-Project/blob/main/Docs/01_LOR_System/02_Data_Extraction/LOR_XML_to_MSB_Terminology_Contract.md): controlled Display Name (`PropClass.Comment`), Channel Name (`PropClass.Name`), identity and network/channel grid meaning.
+- [LOR System Overview](https://github.com/Gregovate/MSB-Production-Database-Project/blob/main/Docs/00_Project_Overview/00_LOR_System_Overview.md): Office PC is currently the designated master; V7 and LOR2DB reconciliation govern promotion into permanent production identities.
+
+**The `Comment` field is not freeform annotation**; it is the controlled physical Display Name linkage used by the LOR-to-Production reconciliation. A permanent production Display is identified by `display_id`, separately from LOR Prop/Preview IDs. LOR is the source for the approved show programming/wiring configuration (Scenes, Displays/Channels, networks, controller/UID/channel assignments), whereas the Production Database owns permanent physical Display identity and operational records. Neither this music catalog nor sequence-conversion scripts may reinterpret or write those relationships.
+
+Therefore, the **Music & Sequence Catalog** only defines audio identity and version provenance, sequence year/programmer/revision, selected approved preview ID/name/revision as an external reference, musical effect/timing validation, and Scratch-to-Final history. Approved preview creation/editing, Preview Merger, source parser, LOR2DB import/reconciliation, and controlled Display/network changes remain governed **exclusively in the Production Database repository**. A preview/channel integrity problem should be reported through that existing process; there is **no blanket archived-Prop deletion or automatic network migration step in musical conversion**.
+
+Note: the Production Preview Authoring procedure separately governs a moved Display's vacated LOR channel (replace the old object with a correct SPARE). That specific authoring operation is **not** authority to delete 'archived Props' from a converted sequence.
+
+The [2026 conversion engineering proposal](2026_sequence_conversion_engineering.md) and [operator workflow DRAFT](2026_conversion_operator_workflow_DRAFT.md) now defer to those living source documents. They must not become an independent Preview operations runbook; any completed pilot must use the approved Preview and must not update Production or the LOR master as a side effect.
+
 ## Immediate next step
 
 Do **not** write a copier first.
