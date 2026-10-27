@@ -28,6 +28,12 @@ Modern `.loredit` files are the **editable source sequences** and must remain **
 MSB programmers maintain the same `C:\LOR` local directory structure on their own PCs because sequence media references are stored as file paths. The Google Drive G: mount is a transfer/synchronization source only; production sequences must not point at G:.
 
 **Proposed nonannual Google Drive audio folder:** `G:\Shared drives\Seasonal Files\LOR-Audio` (operator suggestion, not created or finalized). **Local audio path decision remains open:** retaining `C:\LOR\Audio` on every PC is the lower-risk option and already avoids annual audio duplication when paired with the shared G: folder; `C:\LOR-Audio` is an alternate common local path requiring LOR sequence-reference and offline playback testing before approval. Do not change existing sequence media paths or configure synchronization during the read-only discovery phase.
+**Updated immediate priority, 2026-10-27:** Inventory/reconcile **existing audio** before establishing any synchronization folder. The operator has purchased one FreeFileSync Business license for evaluation but has **not** approved an audio sync root. MP3s are scattered, including ripped/original material and normalized files marked `normalized-1db` in the filename. Do not treat names alone as proof of file identity or normalization.
+
+A prior inventory was reported in a December 8, 2025 message at `G:\Shared drives\Seasonal Files\LOR_Source_Files\MSB_SongHistory_AllShows_plus2025.xlsx`. The reported workbook sheets are `MasterSongs` and `AlternateSources`, but the current file and its completeness must be checked. Do not assume the `LOR_Source_Files` folder was made by a catalog tool or may be replaced.
+
+**Next read-only action:** Inspect `LOR_Source_Files`, locate previous audio/song inventories, then enumerate `.mp3` occurrences (paths, names, sizes, timestamps, candidate normalized labels) across known yearly LOR locations and local `C:\LOR\Audio`, without copying, moving, deleting, renaming, normalizing, or hashing cloud placeholders. Only after mapping sequence references and reviewing proposed canonical/duplicate/variant decisions should any cleanup or FreeFileSync configuration proceed.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
