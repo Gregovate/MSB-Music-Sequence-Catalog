@@ -76,6 +76,12 @@ Keep the two different Canon sequence files **separate**, preserve their respect
 
 **Next read-only step:** prepare a 24-row no-copy transfer preview with each 2025 source path, matching exact reference, recorded size, intended common local destination, duplicate target names and any overwrite/existence warnings. The production Show PC currently has no intentionally transferred music. Prefer standard `C:\LOR\Audio` for compatibility unless another common path is explicitly approved and validated; no file copy or sync without explicit approval and the repository runbook gate. Broader historical audio cleanup/database/SSO design remain separate pending work.
 
+**2026 SEQUENCE CONVERSION DESIGN CHECKPOINT — 2026-10-27:** The uploaded historical file `Converting 2023 Sequences to 2024.md` was reviewed. It combines old purchased RGB Plus import, old previous-Final/preview-remap/grid/stage cleanup, and historical background animation schedules. Operator confirms 2026 has an entirely new Master Musical Preview; neither the precise preview ID nor the 2026 match/grid versions are yet verified. Do NOT reuse 2023 preview names, Aux B/C settings, stage instructions, 'ignore warnings', archived-prop deletion, 128-kbps re-export, or G: editing paths as current steps.
+
+New owning draft docs: `docs/2026_show_pc_migration/2026_sequence_conversion_engineering.md` (design proposal 0.1) and `docs/2026_show_pc_migration/2026_conversion_operator_workflow_DRAFT.md` (separate, unaccepted operator procedure). Three work paths are distinct: 2025 Final musical sequence -> independent 2026 Scratch working revision -> validated 2026 Final; newly purchased RGB Plus intake; and reusable/changed background animations (including new Open/Close full matrix). Catalog programmer attribution, exact source/version/media, prior/new preview/map/grid IDs and exceptions. No production preview rewrite or promotion approved.
+
+**Unchanged immediate priority:** first review the 24-name, no-overwrite exact 2025-source audio transfer preview and approve/select local audio path; no bulk copying and no music copied yet. Once the Show PC has the specific verified audio and the precise new master preview + mapping IDs are known, perform one supervised non-destructive conversion pilot on a 2026 working copy. The older document remains historical evidence only.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
