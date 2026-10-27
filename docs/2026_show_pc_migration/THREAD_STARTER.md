@@ -34,6 +34,8 @@ A prior inventory was reported in a December 8, 2025 message at `G:\Shared drive
 
 **Next read-only action:** Inspect `LOR_Source_Files`, locate previous audio/song inventories, then enumerate `.mp3` occurrences (paths, names, sizes, timestamps, candidate normalized labels) across known yearly LOR locations and local `C:\LOR\Audio`, without copying, moving, deleting, renaming, normalizing, or hashing cloud placeholders. Only after mapping sequence references and reviewing proposed canonical/duplicate/variant decisions should any cleanup or FreeFileSync configuration proceed.
 
+**Source reconciliation checkpoint (2026-10-27):** `Audio Library.xlsx` has 51 rows/50 distinct filenames; `MSB_Music_Normalized_v2.xlsx` has a 36-row AudioLibrary and additional historical worksheets; `normalized_mp3s_2025.csv` lists 37 named MP3 file occurrences (139,418,055 recorded bytes), all under the 2025 archive `LOR\Audio`. Of the 37 CSV filenames, 30 match Audio Library and 24 match Normalized_v2 by case-insensitive basename with optional `.mp3` suffix removed. A doubled-space `2025  Light Of Christmas ...` filename and the single-space version both have equal recorded byte lengths, but duplication is not verified without hashes. The different `MSB_Music_Normalized_History_v2.xlsx` was not uploaded. Next: read-only per-root counts and metadata for physical audio across source collections, annual archive Audio folders, and the Show PC. No canonical sync folder approved.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
