@@ -36,6 +36,14 @@ C:\LOR
 
 If a migration or catalog decision depends on a filesystem path, that path must be documented in the owning runbook before later work depends on it.
 
+## Independent database ownership
+
+If the Music/Sequence Catalog uses a database, it is owned and operated independently from the MSB Production Database system.
+
+Do not place catalog tables, schema, functions, migrations, or runtime dependencies in the MSB Production Database PostgreSQL environment. The catalog must maintain its own database design, migration procedure, backup/recovery procedure, and runtime authority once a backend is selected.
+
+Older scaffold references to a particular database engine or host are not authority for the future design unless deliberately reconfirmed in current engineering documentation.
+
 ## Historical sources versus runtime
 
 The annual Google Shared Drive folders under:
