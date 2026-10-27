@@ -392,6 +392,16 @@ The 24 2025-archive MP3 occurrences have a recorded aggregate length of 84,827,5
 
 **Revised next gate:** turn the existing 2025 Final 24-name match report into a no-write, exact-source/exact-destination copy preview (one record per MP3 with bytes, source, destination, no overwrite, and current destination existence). Review it for missing source files or name collisions. Only then request explicit approval for the narrowly scoped transfer, confirm files locally, and reopen the 2025 sequences after their previews have been prepared. There is no need to hash 2020 archive copies or ask the operator to identify the correct Canon revision before the baseline audio becomes available.
 
+### Historical 2023→2024 sequence conversion procedure reviewed — new 2026 design
+
+The operator supplied `Converting 2023 Sequences to 2024.md` as **historical** evidence, not a current runbook. It covers (1) purchased RGB Plus intake, (2) previous-season Final-to-Scratch-to-Final edits via new preview/match settings/grid, and (3) legacy background animation/show scheduling. The old instructions embedded fixed 2023 master preview and Aux B/C breaking changes, named historical stages, annual G: paths, year-prefixed MP3s, Audacity -1 dB cropping/128-kbps CBR export, "ignore warnings," and deleting archived props. **None of those 2023-specific steps should be copied into a 2026 production procedure without testing against the entirely new 2026 Master Musical Preview.**
+
+The accepted process principles are preservation of source files; conversion via a new approved preview/mapping/grid; song-by-song visual/effect review; and promotion to the season's Final set after verification. The user is replacing the manual annual conversion procedure with repeatable, evidence-driven operation. Do not implement automatic preview remapping based on assumptions.
+
+Two **new documents** separate engineering choices from operator action: [2026 sequence conversion engineering proposal](2026_sequence_conversion_engineering.md) and [2026 conversion operator workflow — DRAFT](2026_conversion_operator_workflow_DRAFT.md). They are design/procedure proposals, **not yet accepted or tested**; precise 2026 master preview identity, matching map/grid versions, new season file anchors and pilot outcome remain unverified.
+
+**Order:** first obtain explicit acceptance of a limited, exact-name 2025 audio transfer manifest, then obtain the installed 2026 master-preview/mapping identifiers and perform a **single non-destructive pilot** on a working copy; refine the operator procedure based on observed results. Preserve historical Final files and the 2025 original MP3 names. Broader audio cleanup and database architecture remain deferred.
+
 ## Immediate next step
 
 Do **not** write a copier first.
