@@ -30,6 +30,8 @@ Make 2026 musical conversion repeatable and auditable without bulk copying audio
 The current cross-repository authority is **`Gregovate/MSB-Production-Database-Project`**, specifically:
 
 - `Docs/00_Project_Overview/00_LOR_System_Overview.md` — Office PC is the designated authoritative LOR master preview source; V7 parser/ingest/reconciliation is a controlled operation, not a musical conversion side effect.
+- `Docs/01_LOR_System/01_Preview_Authoring/Preview_Import_Workflow.md` — find the current approved preview through the latest completed LOR2DB reconciliation report; do not assume the Show PC local copy is authoritative.
+- `Docs/01_LOR_System/01_Preview_Authoring/B_Building_Preview_Howto.md` — controlled full Preview-building procedure; not owned by music conversion.
 - `Docs/01_LOR_System/01_Preview_Authoring/A_Naming_Conventions.md` — operator naming/authoring; old historical `C_LOR_Naming_Data_Contract.md` is not current operator authority.
 - `Docs/01_LOR_System/01_Preview_Authoring/E_Master_Musical_Preview_Howto.md` — current annual Master Musical Preview, Scene naming (Stage / Sub-stage / Scene / Display or LOR group), and managed preview staging.
 - `Docs/01_LOR_System/02_Data_Extraction/LOR_XML_to_MSB_Terminology_Contract.md` — exact translation between `.lorprev` XML and MSB operator/database terms.
