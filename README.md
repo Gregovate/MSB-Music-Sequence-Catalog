@@ -4,12 +4,16 @@ Centralize all information about MSB music and sequences into a single, queryabl
 ## Overview
 The MSB Music & Sequence Catalog is the centralized system for managing all musical and sequencing assets used in the Making Spirits Bright show. This repository contains:
 
-- The data model (MariaDB schema, migrations)
+- The catalog data model and migrations, if a database backend is adopted
 - Documentation for file conventions, audio handling, sequence types
 - Tools for importing and analyzing music, audio files, sequences, and show history
 - A backend API and future UI for browsing, planning, and theme-night design
 
 This project replaces fragmented spreadsheets and scattered folders with one unified, version-controlled, long-term source of truth.
+
+## Database Boundary
+
+If this project uses a database, it is **independent of the MSB Production Database system**. Its schema, migrations, runtime, backup, and recovery remain owned by this repository. The database engine and hosting location are not currently fixed by this README.
 
 ---
 
