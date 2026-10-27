@@ -297,7 +297,25 @@ The operator inspected immediate year-root directory names for years whose defau
 - `2022\LOR`
 - `2026\LOR`
 
-No conventional `LOR` folder was listed at the root of 2016, 2017 or 2019. Those years may have audio in later archive copies or nonstandard named locations, **not proven missing**. None of the alternate folders has yet been recursively checked for MP3s, and totals must not be added to the previous 2,073 until actual enumeration is complete. Next action: metadata-only counts within the five candidate alternate roots, then expand the local CSV occurrence manifest if matches are found. Ask for the earlier generated `MSB_Audio_Metadata_*.csv` to perform filename-level matching; do not assume it has been uploaded.
+No conventional `LOR` folder was listed at the root of 2016, 2017 or 2019. Those years may have audio in later archive copies or nonstandard named locations, **not proven missing**. The five alternate folder trees were subsequently scanned read-only: 2021 `LOR S5 2021\\Audio` contains 177 MP3s / 488.1 MiB, and the other four checked alternate roots contain none. The generated `MSB_Audio_Metadata_20261027_142222.csv` was uploaded and analyzed separately; its 2,073 rows do not include those 177 files. See the newer year-prefix checkpoint below.
+
+### Legacy year-prefixed filenames: recording identity versus show history
+
+**Operator-confirmed history:** Before a database was available, MSB prefixed every sequence filename and many audio filenames with a year to indicate when music played. These leading YYYY values are historical tracking labels, **not part of the song title or evidence of a new recording**. Retain the original filename/path exactly for existing Light-O-Rama references and archive traceability; extract a separate `legacy_year_prefix` field and a *candidate* match key for catalog reconciliation. A filename prefix alone is not sufficient evidence that the song actually played in that year; use playlist/show history to establish confirmed year-of-use.
+
+Keep these distinct catalog dimensions:
+
+- **Song/work identity:** logical title/artist classification, irrespective of a leading historical YYYY filename label.
+- **Audio recording/file variant:** actual recording plus original/ripped versus `normalized-1db` derivative, separate cropped/edited mixes where demonstrated. Filenames alone do not prove byte equality or recording identity.
+- **Audio file occurrence and aliases:** each original exact filename, recorded full path, size and eventually verified content hash; a year-prefixed variant remains traceable even when mapped to a shared recording.
+- **Sequence source version:** actual `.loredit` files remain season/preview specific and must not be collapsed across years simply because song/audio identity matches.
+- **Documented show-year usage:** historical year references/playlist evidence, separate from archive snapshot year and filename year label.
+
+**Findings from operator-uploaded metadata-only CSV `MSB_Audio_Metadata_20261027_142222.csv`:** 2,073 MP3 occurrences, 517 distinct filenames (case-insensitive), 334 duplicate-candidate filename+size groups, and 40 filenames spanning multiple sizes. **535 file occurrences** (130 distinct names) start with a recognizable four-digit year label. Removing *only* that leading label produces **16 candidate multi-filename match families** in this CSV, including `2012 It's Beginning to Look a Lot Like Christmas.mp3`, `2014 It's Beginning to Look a Lot Like Christmas.mp3`, and the unprefixed name; this family includes three distinct recorded byte lengths. These are review candidates only; no renames, merged identities, confirmed identical MP3s, or deletion authorization follow from textual matching. Preserve exact audio names referenced in sequence XML until an approved remap is validated.
+
+**Additional archive discovery:** `2021\\LOR S5 2021\\Audio` contained **177 MP3s, 488.1 MiB**, not represented in the CSV. Alternate `2015\\LOR`, `2018\\LOR`, `2022\\LOR`, and `2026\\LOR` contained zero MP3s. The known surveyed occurrence total is now **2,250 files / approximately 7.90 GiB**, but the 2021 file-level records still need to be collected before joining duplicate groups. An existing read-only local reconciliation workbook now has a **Year Prefix Candidates** tab; it is a report, not a migration manifest or source of truth.
+
+**Next read-only evidence:** incorporate the 177 alternate-2021 MP3 occurrences into the metadata report and inspect modern `.loredit` audio path references; use historical song/playlist sheets to support year-of-use rather than treating the filename prefix as an identity. Content-hash verification can be narrowly scoped to reviewed candidates later, with attention to Google Drive streaming downloads. No approved canonical sync folder and no copying to the new Show PC.
 
 ## Immediate next step
 
