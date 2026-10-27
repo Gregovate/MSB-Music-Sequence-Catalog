@@ -17,7 +17,13 @@ The live Show PC runtime root is fixed at `C:\LOR`. The running show must not de
 
 The annual archive is `G:\Shared drives\Seasonal Files\<YEAR>\LOR`, with yearly LOR folders beginning in 2014.
 
-The immediate task is not to bulk-copy historical files. Resume the unfinished catalog work by discovering annual folder layouts and sequence formats, then build a read-only sequence-to-audio dependency inventory. Produce a reviewable migration manifest before any selective audio copy to `C:\LOR\Audio`.
+The immediate task is not to bulk-copy historical files. Resume the unfinished catalog work by discovering annual folder layouts and sequence formats, then build a read-only sequence-to-audio dependency inventory.
+
+The operating requirement is an ongoing **Google Drive ↔ Show PC synchronization workflow**: Google Drive protects/maintains the source files, while Light-O-Rama must run entirely from local `C:\LOR` files with no Internet dependency.
+
+Audio must use a **single canonical library**, separate from annual year folders. The same audio file should be referenced by every sequence that uses it; create separate audio assets only when the underlying file is truly different. The local canonical runtime location is `C:\LOR\Audio`. The corresponding canonical Google Drive audio-library path still needs to be identified rather than invented.
+
+Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
 
