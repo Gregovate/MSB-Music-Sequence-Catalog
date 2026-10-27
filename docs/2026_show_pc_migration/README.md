@@ -380,11 +380,23 @@ Uploaded scan report: MSB_2025_Final_Audio_20261027_152125.csv, produced from th
 
 Next: confirm the Christmas Canon source/version and the 2025 show-audio source choice; perform only targeted read-only content hashes after considering Google Drive streaming; decide the common local audio path; accept a limited 2026 transfer manifest BEFORE copying music. Do not copy the whole 2025 Audio collection or change LOR XML/media references now.
 
+### 2025 proven-playback source selection supersedes premature exception gate (2026-10-27)
+
+**Operator-confirmed decision for current work:** The 2025 show ran successfully using the media references embedded in the existing 2025 Final sequences/previews. The user cannot resolve or even inspect disputed sequence names/preview associations until the new Show PC's preview configurations are updated enough to open the sequences. **Do not make manual resolution of these exceptions a prerequisite to getting the 2025 baseline MP3s locally available.**
+
+For *initial 2026 conversion*, preserve each copied 2025 Final sequence's **exact existing `musicFilename`** and take the **same-named file from `G:\Shared drives\Seasonal Files\2025\LOR\Audio`**, which has all 24 required basenames in the physical inventory. This is a defensible **source-selection rule grounded in last year's functional setup**, not proof that older same-named files have equal contents or that a filename describes the correct song. An explicit copy plan, destination approval, preflight, and post-copy checks are still required before any transfer; nothing is authorized to move as part of this documentation update.
+
+**Defer**, but do not erase: two path-distinct Christmas Canon sequence files referring to different MP3s; four MP3 basename families with changed sizes in older archives; raw/normalized alternative selection; and historical deduplication. Both Canon audio basenames are already among the 24 required names, so the anomaly does not obstruct the initial exact-reference 2025-source media subset. Do **not** rewrite the `.loredit` files, substitute a `normalized-1db` variant, rename source files, or update their previews automatically. Revisit disputes in the LOR editor when the PC preview environment works.
+
+The 24 2025-archive MP3 occurrences have a recorded aggregate length of 84,827,578 bytes (80.90 MiB). This number is a **read-only source manifest candidate**, not yet copy completion or player verification. The Show PC `C:\LOR\Audio` is the existing standard destination *candidate*, but any move to `C:\LOR-Audio` or other path remains undecided; for immediate compatibility, favor the existing standard path and validate the installed LOR's basename resolution before relying on it. Keep the permanent cloud-library design and broad deduplication independent of this urgent conversion need.
+
+**Revised next gate:** turn the existing 2025 Final 24-name match report into a no-write, exact-source/exact-destination copy preview (one record per MP3 with bytes, source, destination, no overwrite, and current destination existence). Review it for missing source files or name collisions. Only then request explicit approval for the narrowly scoped transfer, confirm files locally, and reopen the 2025 sequences after their previews have been prepared. There is no need to hash 2020 archive copies or ask the operator to identify the correct Canon revision before the baseline audio becomes available.
+
 ## Immediate next step
 
 Do **not** write a copier first.
 
-Annual LOR folder layout discovery and the initial 2,073-file audio occurrence inventory are completed. The first-pass root-level XML inventory of all 114 files and the 24-name audio reconciliation are complete. Next: resolve conflicting Christmas Canon source files, verify four MP3 same-name/different-size families, review the 2025-archive 80.90 MiB candidate subset, and approve the local audio path and selective manifest before any file transfer. This does not yet validate complete external-media dependencies. Do not copy any music onto the Show PC until the resulting 2026 media manifest is reviewed.
+The 114-file 2025 Final primary audio-reference scan is complete: 24 unique referenced MP3 names all exist in last year's `2025\LOR\Audio`. **Next:** generate and review an exact-name/no-overwrite local transfer preview for those 24 **2025-source** files, using the already copied sequences' existing media references without any substitution. Only perform copying after explicit operator acceptance and proper runbook gate. Deferring the conflicting Christmas Canon file interpretation and older-archive byte-size conflicts is deliberate; they cannot be reliably resolved until the 2026 previews permit editor inspection. The initial root-attribute scan does not establish all other external-media dependencies.
 
 The first engineering deliverable should be a read-only inventory/report that can answer:
 
