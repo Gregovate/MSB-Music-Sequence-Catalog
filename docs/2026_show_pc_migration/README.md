@@ -266,6 +266,27 @@ The operator supplied copies of `Audio Library.xlsx`, `MSB_Music_Normalized_v2.x
 
 **Next read-only action:** Produce a per-root metadata-only MP3 count and size report for `LOR_Source_Files` audio collections, the annual `LOR\Audio` directories, and local `C:\LOR\Audio`; use this inventory to scope subsequent physical file/path reconciliation. Do not recursively hash cloud files yet. Do not choose a sync tool workflow, move files, consolidate, or create a canonical folder before operator-reviewed reconciliation.
 
+### Actual MP3 location survey (operator PowerShell metadata, 2026-10-27)
+
+The directory-metadata-only survey covered nine populated G: roots and one local C: root, yielding **2,073 MP3 file occurrences and 7,604.5 MiB (~7.43 GiB) recorded bytes**. This is NOT a unique-audio count or duplicate-storage estimate. The local machine running the survey had only **one MP3 / 2.6 MiB** at `C:\LOR\Audio`; do not assume other programmer workstations match.
+
+| Source root | Count | MiB |
+|---|---:|---:|
+| `LOR_Source_Files\Audio` | 622 | 2552.9 |
+| `LOR_Source_Files\Normalized Audio Albums` | 36 | 138.2 |
+| `LOR_Source_Files\PurchasedMusic` | 13 | 80.7 |
+| `LOR_Source_Files\Purchased LOR RGB Plus` | 90 | 230.5 |
+| `2014\LOR\Audio` | 106 | 290.2 |
+| `2020\LOR\Audio` | 162 | 452.7 |
+| `2023\LOR\Audio` | 234 | 732.2 |
+| `2024\LOR\Audio` | 363 | 1388.8 |
+| `2025\LOR\Audio` | 446 | 1735.7 |
+| local `C:\LOR\Audio` | 1 | 2.6 |
+
+Default `YEAR\LOR\Audio` was NOT FOUND for 2015–2019, 2021, 2022, and 2026. **These are path misses only**; they do not prove the relevant years lack audio. The previously uploaded `MSB_Music_Normalized_History_v2.xlsx` was confirmed available and has six sheets: `AudioLibrary` (range A1:L52), `Sequences_SongsMaster`, `SongYearMatrix`, `Raw_Original_2023Sheet`, `PlaylistByYear_2019_25`, and `SequenceInventory_2019_25`. A sequence-history row references the alternate historical path `G:/Shared drives/Seasonal Files/2021/LOR S5 2021/Sequences/2019 Final/Musical`, demonstrating that default `YEAR\LOR` patterns may miss actual historical paths; current on-disk existence remains unverified.
+
+**Next read-only evidence:** export a path-preserving filename/length/modified-date CSV of MP3s in these known roots, plus inventory the immediate subdirectory names under years with missing default `LOR\Audio` paths. The export should be on a local temporary path outside G: and `C:\LOR`, without opening MP3 contents or changing files. Use metadata to identify candidate same-name/same-size groups; hash only targeted candidates in a separately reviewed read-only stage.
+
 ## Immediate next step
 
 Do **not** write a copier first.
