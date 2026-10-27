@@ -341,6 +341,12 @@ These labels are the conceptual folder contract, not a command to create/move fi
 
 **Next step remains read-only** physical audio inventory and `.loredit` reference inspection. No file copying, catalog database provisioning, normalization rewrite, media path remapping, or sync job configuration yet.
 
+### Representative 2025 LOR XML inspection completed
+
+The operator uploaded `2025 Greg Frosty The Snowman.loredit`. It parsed successfully as a 20,182,738-byte XML file. Root `<sequence>` contains `musicFilename="Frosty The Snowman-Jimmy Durante-SN.mp3"`, a **basename without a drive/path**, and song/artist metadata. The embedded preview is `2025 Master Musical Preview RGB Plus 25-11-14` (revision `54`) and the separate preview background image points inside `C:\LOR\Sequences\Images`. Other shape preview imagery points at G: and `C:\Users\greg\Downloads`; this raises programmer-PC preview portability concerns, not evidence that music/audio depends on G:.
+
+The exact MP3 basename exists at five G: occurrence locations in the earlier metadata CSV, each recorded at 2,513,143 bytes (not hash verified); a similarly named `-1 db` derivative exists at 2,513,059 bytes and is **not** the song file referenced in this XML. The source XML root's `author` is `Light-O-Rama`, while `Greg` appears only in the supplied sequence filename; capture programmer attribution separately. Detailed engineering evidence and first-pass parser contract: [`loredit_audio_reference_investigation.md`](loredit_audio_reference_investigation.md).
+
 ### 2026 migration priority and accepted production facts (operator checkpoint, 2026-10-27)
 
 **Work on the new Show PC has already advanced:** the operator has copied the previous year's **Final musical editable sequences and background sequences** onto the new Show PC. **No music/audio library has intentionally been transferred yet.** Earlier metadata found one existing MP3 under `C:\LOR\Audio`; that does not override the operator's confirmation that the show's music has not been migrated. Do not run another bulk sequence copy, select a synchronization destination, or pre-populate `C:\LOR\Audio` without a reviewed dependency/copy manifest.
@@ -363,7 +369,7 @@ These labels are the conceptual folder contract, not a command to create/move fi
 
 Do **not** write a copier first.
 
-Annual LOR folder layout discovery and the initial 2,073-file audio occurrence inventory are completed. The immediate next step is **read-only inspection of a copied 2025 Final `.loredit` source** to locate its embedded audio reference fields, followed by a targeted 2025 Final sequence-to-audio dependency inventory and duplicate candidate review. Do not copy any music onto the Show PC until the resulting 2026 media manifest is reviewed.
+Annual LOR folder layout discovery and the initial 2,073-file audio occurrence inventory are completed. A representative already copied 2025 `.loredit` source was parsed read-only and its root-level `musicFilename` / preview reference fields documented in [`loredit_audio_reference_investigation.md`](loredit_audio_reference_investigation.md). **Next:** run a first-pass read-only audio-header scan of the already copied 2025 Final `.loredit` files, match the exact requested MP3 names against the physical occurrence inventory, and review duplicates/exceptions before any music copy. Do not copy any music onto the Show PC until the resulting 2026 media manifest is reviewed.
 
 The first engineering deliverable should be a read-only inventory/report that can answer:
 
