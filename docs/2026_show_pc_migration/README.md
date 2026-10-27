@@ -287,6 +287,18 @@ Default `YEAR\LOR\Audio` was NOT FOUND for 2015–2019, 2021, 2022, and 2026. **
 
 **Next read-only evidence:** export a path-preserving filename/length/modified-date CSV of MP3s in these known roots, plus inventory the immediate subdirectory names under years with missing default `LOR\Audio` paths. The export should be on a local temporary path outside G: and `C:\LOR`, without opening MP3 contents or changing files. Use metadata to identify candidate same-name/same-size groups; hash only targeted candidates in a separately reviewed read-only stage.
 
+### Nonstandard annual LOR layouts (operator directory listing, 2026-10-27)
+
+The operator inspected immediate year-root directory names for years whose default `YEAR\LOR\Audio` path was not found. Alternative likely source roots exist at:
+
+- `2015\LOR`
+- `2018\LOR`
+- `2021\LOR S5 2021` (consistent with a legacy catalog sequence path); `2021\LOR Setup` and `2021\Archive` also exist but are not yet evidenced as MP3 roots
+- `2022\LOR`
+- `2026\LOR`
+
+No conventional `LOR` folder was listed at the root of 2016, 2017 or 2019. Those years may have audio in later archive copies or nonstandard named locations, **not proven missing**. None of the alternate folders has yet been recursively checked for MP3s, and totals must not be added to the previous 2,073 until actual enumeration is complete. Next action: metadata-only counts within the five candidate alternate roots, then expand the local CSV occurrence manifest if matches are found. Ask for the earlier generated `MSB_Audio_Metadata_*.csv` to perform filename-level matching; do not assume it has been uploaded.
+
 ## Immediate next step
 
 Do **not** write a copier first.
