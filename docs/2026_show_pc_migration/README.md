@@ -317,6 +317,30 @@ Keep these distinct catalog dimensions:
 
 **Next read-only evidence:** incorporate the 177 alternate-2021 MP3 occurrences into the metadata report and inspect modern `.loredit` audio path references; use historical song/playlist sheets to support year-of-use rather than treating the filename prefix as an identity. Content-hash verification can be narrowly scoped to reviewed candidates later, with attention to Google Drive streaming downloads. No approved canonical sync folder and no copying to the new Show PC.
 
+### Season planning, musical workflow, and reusable animations — 2026 operator requirements
+
+The catalog must replace past song/sequence year-prefix tracking with explicit catalog show-use history. Record the difference between historical file occurrence, planned selection, `Final` status, and actual played season. The conceptual database-neutral model is in [`docs/data_model.md`](../data_model.md) (proposed, not a schema approval).
+
+**Original music** may stay in purchased/ripped artist/album collections; do not flatten or discard original files. The default audio family is one preserved original and one approved show-use normalized rendition **per distinct audio edit**. Shortened/cropped songs such as *Christmas Canon* are intentional alternate edits; they may need distinct normalized audio and sequence timing. There is no absolute two-file limit for songs with genuine alternate recordings/edits. The existing `normalized-1db` filename convention is evidence of an intended processing variant, not a proven loudness specification.
+
+**Audio normalization proposal — no production change:** Do not normalize everything to 0 dBFS. A common sample-peak target is not an equal perceived-volume target for the local FM broadcast. Before selecting a recipe, compare original versus current normalized files, measured integrated LUFS and true peak, and the actual broadcast audio chain. Verify that the perceived-volume solution preserves desired music dynamics and acceptable modulation. A separate acceptance decision is required before any batch re-encoding or renaming.
+
+**Seasonal musical edit workflow (operator confirmed):** Start each year's musical show by copying the preceding year's `Final` editable musical sequences into the new year's `Musical/Scratch`. Edited/tested sequences are promoted to that year's `Musical/Final`. For 2026 the intended relative folder workflow is:
+
+```text
+2025/Musical/Final (baseline)
+    -> 2026/Musical/Scratch (working revisions)
+    -> 2026/Musical/Final (accepted show-year revisions)
+```
+
+These labels are the conceptual folder contract, not a command to create/move files. Before any copy, confirm the actual root relative to `C:\LOR\Sequences` and embedded media/preview compatibility. Preserve distinct season-specific editable `.loredit` versions even when their shared audio is unchanged.
+
+**Background animation workflow (operator confirmed):** Background animation content is often reused without modification across years; the catalog should track the reusable *animation identity* and the specific compatible file/revision selected for each season. At least four backgrounds will be refreshed for 2026. The old Open/Close sign has been replaced by a full matrix, which represents a new animation/layout revision; preserve older variants and do not overwrite the historical one or assume incompatible previews work unchanged. Distinguish the animation's identity from hardware/matrix/preview configuration and the year's actual use.
+
+**Synchronization is downstream:** The intended library avoids annual audio copying entirely; a common maintained audio set is synchronized to the same local path on programmer PCs and Show PC once, with later changed files transferred incrementally. The original/ripped album archive does not necessarily need to be on every runtime PC. FreeFileSync Business is licensed for a trial only, not configured/authorized. Preserve the offline `C:\LOR` production contract.
+
+**Next step remains read-only** physical audio inventory and `.loredit` reference inspection. No file copying, catalog database provisioning, normalization rewrite, media path remapping, or sync job configuration yet.
+
 ## Immediate next step
 
 Do **not** write a copier first.
