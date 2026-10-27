@@ -21,7 +21,9 @@ The immediate task is not to bulk-copy historical files. Resume the unfinished c
 
 The operating requirement is an ongoing **Google Drive ↔ Show PC synchronization workflow**: Google Drive protects/maintains the source files, while Light-O-Rama must run entirely from local `C:\LOR` files with no Internet dependency.
 
-Audio must use a **single canonical library**, separate from annual year folders. The same audio file should be referenced by every sequence that uses it; create separate audio assets only when the underlying file is truly different. The local canonical runtime location is `C:\LOR\Audio`. The corresponding canonical Google Drive audio-library path still needs to be identified rather than invented.
+Audio must use a **single canonical library**, separate from annual year folders. The known MSB audio variants are original/raw MP3s and their normalized show-use MP3 derivatives. Treat those as related variants of one recording, not two unrelated songs or redundant byte-identical copies. Reuse the same normalized audio across yearly sequences when the actual content is unchanged. The local show runtime audio location is `C:\LOR\Audio`. The canonical Google Drive library path and disposition/sync scope of raw masters still need to be confirmed, not invented.
+
+Modern `.loredit` files are the **editable source sequences** and must remain **year-specific**: annual preview configurations change and are incompatible. Do not deduplicate or substitute 2024/2025/2026 editable sequences simply because they use the same audio. Legacy `.lms`/`.las` need separate historical parsing. Generated/non-editable `.lss` files are excluded from the initial editable-sequence and audio-dependency inventory (verify exact format separately if future playlist/playback history requires it). Archive snapshot year and represented show year are different catalog dimensions.
 
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
