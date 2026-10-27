@@ -20,3 +20,5 @@ The annual archive is `G:\Shared drives\Seasonal Files\<YEAR>\LOR`, with yearly 
 The immediate task is not to bulk-copy historical files. Resume the unfinished catalog work by discovering annual folder layouts and sequence formats, then build a read-only sequence-to-audio dependency inventory. Produce a reviewable migration manifest before any selective audio copy to `C:\LOR\Audio`.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
+
+If the catalog requires a database, it is an **independent catalog database owned by this repository**. Do not place its schema or migrations in the MSB Production Database/PostgreSQL system. Backend technology/hosting remains undecided until this project designs it.
