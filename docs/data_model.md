@@ -3,7 +3,7 @@
 | Document control | Value |
 |---|---|
 | Filename | `docs/data_model.md` |
-| Revision | 0.2 — Proposed / investigation (2026-10-27) |
+| Revision | 0.3 — Proposed / investigation (2026-10-28) |
 | Source workstream | `docs/2026_show_pc_migration/README.md` |
 | Storage implementation | **Undecided. No tables or database migrations approved.** |
 
@@ -41,8 +41,24 @@ The same song can have several recordings, and the same recording can have sever
 
 - **Confirmed played-year evidence:** MSB's operating rule is that *every editable sequence in the correct season's `Final` folder actually played in that show*. Once a file is verified as belonging to that season's Final set, catalog its actual show use without requiring an unrelated playlist confirmation. Keep precise Final path/year and source evidence. Scratch or generic carried-forward folders do not establish use.
 - **Contributor/programmer:** `Adam`, `Greg`, and other names inside sequence filenames identify programmer assignment or attribution and must be stored separately from song, recording, and year. Rare parallel Adam/Greg sequence versions for the same song remain **separate valid sequence assets or revisions**, not aliases to delete.
-- **Show PC checkpoint:** previous year's Final musical `.loredit` sequences and backgrounds have been copied to the new Show PC already. No music/audio library has been intentionally copied. The earlier metadata listing of one MP3 at `C:\LOR\Audio` is not evidence of a completed music migration.
+- **Show PC checkpoint (updated 2026-10-28):** previous year's Final musical `.loredit` sequences and backgrounds were already copied. Operator has now run the governed **V0.1.0 initial 24-MP3 selective transfer** to `C:\LOR\Audio` and supplied 24 individual `VERIFIED:` lines, `VERIFIED FILES: 24/24`, and report location `C:\Users\LIGHT-~1\AppData\Local\Temp\MSB_2025_Audio_Transfer_V0.1.0_20261028_114621.csv`. Final terminal `PASS:` footer and receipt contents were not pasted/independently inspected, so document **24 file-level hashes verified; terminal closeout unconfirmed**, not entire audio library migrated. FreeFileSync is installed but not configured.
 - **Editing urgency:** prioritize read-only dependency extraction from the **already copied 2025 Final musical sequences** and match against verified audio source occurrences. Produce a tightly scoped 2026 playback-audio selection/exception manifest before any file copy. Full historical audio cleanup and database implementation are downstream of this immediate unblock.
+
+## Separate song identity, show usage and audio filename — operator pain point confirmed 2026-10-28
+
+The successful first 24-file transfer exposed why the historical practice of prefixing MP3s with their **year introduced into MSB** must not continue. All of the following exact filenames were referenced by the 2025 Final scan: `2015 Trans-Siberian Orchestra - Wizards in Winter.mp3`, `2021 Sia - Candy Cane Lane 128 CBR Normalized -1db Cropped 3-23.mp3`, and `2025 Let it Go 192 CBR Normalized -1db.mp3`. Their filename prefixes cannot represent the 2025 year of performance. Other files have no year prefix, and some MP3s are show-operational cues, not songs.
+
+**Proposed normalized catalog fields, not filesystem rename instructions:**
+
+- **Composition/song + recording:** Stable performer/recording identification independent of filenames and show years.
+- **First introduced into MSB:** A historical attribute supported by actual introduction evidence; a leading legacy filename year is a *hint*, never the sole proof of introduction or historical use.
+- **Show-use seasons:** Derived from confirmed annual Final sequence membership; a sequence-specific year is not an audio identity.
+- **Audio edit/rendition:** Exact recording/edit, shortened/cropped duration and original vs approved normalized show-use rendition. Bitrate/loudness are metadata or processing attributes, not song identity. Different audio edits must remain distinct, even with similar titles.
+- **Physical audio occurrence:** Existing exact filename, original absolute path, source archive year and SHA-256/size where verified. One audio rendition can have multiple historical filenames/paths.
+- **Sequence media dependency:** Preserve the *exact stored* `musicFilename` per `.loredit` version and resolve it via an explicit compatibility alias/binding to the correct audio edit/rendition; never rewrite old sequences because the catalog has a cleaner display name.
+- **Operational show cues:** Classification distinct from musical compositions (for example `2022 Park Closed Take 2 Pitch Shift.mp3` and `2023 No Walking Version 3.mp3`), with their playback dependencies preserved.
+
+**Migration discipline:** Existing 2025 source and the initial 2026 local set retain their exact byte-identical old names. Later canonical audio naming or file consolidation must be designed around verified audio identities and a tested LOR path/legacy alias strategy, ensuring current and archived `.loredit` files do not silently break. Permanent canonical location and backend remain undecided. Do not use broad renaming or FreeFileSync synchronization as the de-duplication mechanism.
 
 ## Database / authentication decision — explicitly pending
 
