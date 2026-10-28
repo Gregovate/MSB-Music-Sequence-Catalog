@@ -88,6 +88,10 @@ READ authoritative current procedures in `Gregovate/MSB-Production-Database-Proj
 
 **Docs corrected:** `2026_sequence_conversion_engineering.md` (design 0.2), `2026_conversion_operator_workflow_DRAFT.md` (procedure draft 0.2), and migration README. They explicitly defer Preview building, Preview Merger, LOR V7 parser, LOR2DB and Production change to the Production Database repo; do not duplicate its procedures. Music Catalog owns sequence/audio metadata and year/programmer/revision provenance only. The urgent next step is still a no-write preview of the 24 MP3 filenames from 2025 archive for the Show PC, with destination review and separate approval. No preview, audio, or Production mutation has occurred.
 
+**LATEST SHOW PC AUDIO PREFLIGHT (2026-10-28):** Operator executed the exact-name, read-only 24-MP3 verification against `G:\Shared drives\Seasonal Files\2025\LOR\Audio` with proposed destination `C:\LOR\Audio`. **PASS: 24/24 sources present; 0/24 target-name conflicts; source total 80.90 MiB; NO FILES COPIED.** Existing `MSB_2025_Final_Audio_20261027_152125.csv` supplied the names. This verifies file paths/metadata only, NOT hash equivalence, MP3 decoding, sequence playback, or a canonical-library decision. FreeFileSync has been installed but NOT configured.
+
+**Exact next gate:** obtain explicit operator authorization for a **one-time, no-overwrite transfer of only those 24 filenames from the 2025 archive to the Show PC's `C:\LOR\Audio`**, after confirming the governing copy procedure. On approval, fail closed on missing/changed sources or existing targets and verify completed local bytes/hashes. Do not transfer the 446-MP3 archive, move source files, change sequence references, overwrite anything, or start recurring FreeFileSync synchronization. 2026 preview conversion remains governed by MSB Production Database LOR operator procedures.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
