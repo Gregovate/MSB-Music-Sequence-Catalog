@@ -3,10 +3,10 @@
 | Control | Value |
 |---|---|
 | Filename | `docs/2026_show_pc_migration/Original_Audio_Catalog_Engineering.md` |
-| Revision | Design proposal 0.1 — 2026-10-28 |
+| Revision | Design proposal 0.2 — 2026-10-28 |
 | Status | Initial scan approved by operator request; physical master population awaits reviewed manifest |
 | Owner | MSB Music & Sequence Catalog |
-| Current tool | [Seasonal Audio Catalog Scan V0.1.0](../../tools/scan_seasonal_original_audio_v0_1_0.ps1) |
+| Current tool | [Seasonal Audio Catalog Scan V0.2.0](../../tools/scan_seasonal_original_audio_v0_2_0.ps1) |
 
 ## Direction confirmed by operator
 
@@ -24,6 +24,12 @@ G:\Shared drives\Seasonal Files\LOR-Audio\
 ```
 
 The master directory is a catalog/distribution source, **not** the operating LOR audio path. Live show and programmer PCs retain `C:\LOR\Audio` for approved playback assets, offline. No original album collection is required on all programmer PCs.
+
+## Hard classification rule — originals are NOT normalized show copies
+
+The operator clarified that **normalization is performed for Show-Audio copies, never for the raw/original recording collection.** The canonical Originals collection must consist of source recordings, untouched, with ripped album structures preserved. Audacity-normalized files (including cropped/edited show use variants) belong in **Show-Audio**, not Originals. Neither collection is proved solely by filename. A normalized file located in a purchased album folder **must not** be selected as a raw Original.
+
+Scan V0.2.0 reserves paths with explicit normalized or edited indicators for `NORMALIZED_SHOW_COPY_REVIEW` or `EDITED_SHOW_COPY_REVIEW`, and excludes them from the original-destination proposal. This is conservative triage; files lacking those indicators still require evidence of original source before any master copy. An extra `MSB_Processed_Show_Candidates_*.csv` separately records show-copy candidates for the later phase. No content or metadata is modified by scanning.
 
 ## Source scope and actual known evidence
 
@@ -51,7 +57,7 @@ An additional **177 MP3s** in `2021\LOR S5 2021\Audio` were discovered but not f
 
 **Do not rename or change file content** to fit the planned canonical organization. For original albums, preserve actual existing names including track numbers, punctuation and album directories. Artist/album metadata is subject to later source/tag/manual review. Where a source has only an album folder without artist information (e.g. `Frozen (Deluxe Edition)`), do not invent an artist to construct a folder path.
 
-## V0.1.0 scanner scope and safeguards
+## V0.2.0 scanner scope and safeguards
 
 The scanner is **read-only on G:**, processes `.mp3`, `.wav`, `.flac`, `.m4a`, `.aac`, `.wma`, `.aif`, `.aiff`, `.ogg`, `.opus`, and creates report files only under the Windows user's TEMP root by default. It excludes entries in `LOR-Audio` so an existing or future master is not mistaken for another source of originals.
 
@@ -60,9 +66,10 @@ Outputs:
 1. `MSB_All_Seasonal_Audio_*.csv` — complete discovered source occurrences and conservative classifications;
 2. `MSB_Original_Candidates_*.csv` — proposed `Originals\Albums` and `Originals\Singles` destination paths, every line requiring review, plus destination-collision counts;
 3. `MSB_Album_Folders_*.csv` — discovered source album/collection folders and item counts; the word *collection* avoids wrongly declaring stock/show folders to be albums;
-4. `MSB_Scan_Summary_*.txt` — operator receipt and exact report paths.
+4. `MSB_Processed_Show_Candidates_*.csv` — normalized or edited files reserved for future Show-Audio review, **excluded from Original** placement (created when any are found);
+5. `MSB_Scan_Summary_*.txt` — operator receipt and exact report paths.
 
-Classification is a **triage suggestion**, not verification of originality or normalization. `LOR_Source_Files\PurchasedMusic` produces original candidates with its purchased artist/album hierarchy retained; nested `LOR_Source_Files\Audio` folders produce possible-album review candidates; annual archive, supplied RGB Plus audio and processed-looking audio remain separate review groups. All proposals have `REVIEW_REQUIRED`, no SHA-256, and no license or original-content certification.
+**Hard boundary:** do not copy or approve normalized/edited candidates as Originals. Classification is a **triage suggestion**, not verification of originality or normalization. `LOR_Source_Files\PurchasedMusic` produces original candidates with its purchased artist/album hierarchy retained; nested `LOR_Source_Files\Audio` folders produce possible-album review candidates; annual archive, supplied RGB Plus audio and processed-looking audio remain separate review groups. All proposals have `REVIEW_REQUIRED`, no SHA-256, and no license or original-content certification.
 
 ## Folder/duplicate policy for eventual population
 
@@ -70,7 +77,7 @@ Classification is a **triage suggestion**, not verification of originality or no
 2. Identify original album sets and individual source recordings. Preserve the original release folders and track names; assign album/recording identities in catalog metadata.
 3. Compare exact duplicate candidates (read-only SHA-256 where approved); **do not** collapse different remasters, edits, channels, tracks or audio encodings because name/size happens to match.
 4. Approve **one selected source occurrence per exact canonical original**, with a proposed destination under `Originals\Albums` or `Originals\Singles`. Preserve alternate album editions and actual edit variants.
-5. Produce a **separate immutable, explicit no-overwrite copy manifest** with source, destination, expected byte length and SHA-256, target collision review, preflight and verification/receipt. Do not create destination folders or run copy/sync during V0.1.0 scanning.
+5. Produce a **separate immutable, explicit no-overwrite copy manifest** with source, destination, expected byte length and SHA-256, target collision review, preflight and verification/receipt. Do not create destination folders or run copy/sync during V0.2.0 scanning.
 6. Copy selected sources only under a separate accepted operator procedure; compare post-copy SHA-256. Never move or delete the original archive. Only after originals are accepted begin `Show-Audio` with normalized/edited sources and controlled sequence reference migration.
 7. Design FreeFileSync independently, using explicit authority/conflict/overwrite/delete policies; do not mirror the historical archives into the master.
 
