@@ -451,6 +451,14 @@ The operator emphasized the fundamental weakness of historical *year-prefixed MP
 
 **Do not rename any existing audio file or rewrite an LOR `.loredit` reference to implement the future naming convention.** The finished first-stage transfer intentionally preserves the old filenames so last year's sequences can open. Full catalog deduplication, canonical library naming/location, FreeFileSync, and database design are downstream of LOR local playback and 2026 preview compatibility checks.
 
+### Show PC updated-preview readiness; controlled LOR open-only pilot (2026-10-28)
+
+**Operator reports all required previews are updated on the new Show PC.** This establishes local installation readiness only; approved Master Musical Preview identity/revision and provenance from latest completed LOR2DB reconciliation remain to be verified before any master Preview changes. The first 24 source-referenced 2025 MP3s were copied locally and individually SHA-256 checked, but the final transfer script PASS footer was not provided. Do not repeat Copy.
+
+**NEXT OPERATOR ACTION — no file mutation:** Open `C:\LOR\Sequences\2025 Final\Musical Sequences\2025 Greg Frosty The Snowman.loredit` in the Show PC LOR Sequencer, confirm it resolves `Frosty The Snowman-Jimmy Durante-SN.mp3` locally in `C:\LOR\Audio`, starts/plays audio and displays its original 2025 preview/effects without media/preview prompt. Capture any warning/dialog/Preview name and revision; do not assign the 2026 preview or save the 2025 Final source in this first pass. Close without saving. See [2026 conversion operator draft 0.3](2026_conversion_operator_workflow_DRAFT.md).
+
+**Only after a clean open-only result:** choose a separate, verified 2026 Scratch working-copy path, identify the exact approved 2026 Master Musical Preview and test one reversible conversion with the authoritative Production Database LOR preview procedure. Broader catalog-wide canonical naming/audio remapping is still design work and remains unapproved for mass file changes. FreeFileSync remains installed but unconfigured.
+
 ## Immediate next step
 
 Do **not** write a copier first.
