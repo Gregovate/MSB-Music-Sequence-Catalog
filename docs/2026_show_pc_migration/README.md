@@ -475,6 +475,14 @@ Current artifacts: [Original Audio Catalog Engineering](Original_Audio_Catalog_E
 
 **NEXT ACTION:** Run the V0.2.0 pinned read-only scanner on the Show PC using the operator scan procedure. Bring back summary, full inventory, Originals proposal, album folders and separately normalized Show-Audio candidate files. Review actual source identities, duplicate candidate groups, and proposed album hierarchy; produce/approve a strict no-overwrite, source-hash-verified copy manifest before creating or populating any `LOR-Audio` master folder. Do not begin FreeFileSync or automated sequence rewrites. The already completed initial 24 local show MP3 copies remain unchanged.
 
+### Seasonal Files scan V0.2.0 interrupted; V0.3.0 resumable replacement (2026-10-28)
+
+Operator stopped first full-tree V0.2.0 scan with Ctrl+C; no G: files changed. Root cause: V0.2.0 used an eager recursive full-tree directory enumeration with no useful staged progress, no checkpoint/resume and a stale V0.1.0 printed identity. **Do not rerun V0.2.0 or treat incomplete output as a complete library.**
+
+Improved **[V0.3.0 resumable PowerShell scanner](../../tools/scan_seasonal_original_audio_v0_3_0.ps1)** released on existing migration branch, pinned immutable source commit `1011c34c1bac2f68441896be82dc8f6f75621b51`. It streams one directory, checkpoints completed folders atomically to local `%LOCALAPPDATA%\MSB\SeasonalAudioCatalogScanV0_3_0`, shows directory progress, supports `-MaxNewDirectories 100` for a bounded live test, automatic `-Mode Scan` resume and `-Mode Report` offline partial CSV generation. No file bytes are read or hashed, and no source audio, original album structure, master folder or Show PC sequence is changed. It excludes the proposed LOR-Audio master. Normalized/edited items remain Show-Audio review only and purchased-sequence bundled music retains provenance-review status.
+
+**NEXT OPERATOR ACTION:** follow the updated [Original Audio Catalog Operator Scan](Original_Audio_Catalog_Operator_Scan.md) revision 0.4. Fetch pinned V0.3.0 to local TEMP; run a bounded first 100-directory scan, inspect for errors/progress, then use the identical script in `-Mode Scan` for overnight resume. If interrupted, rerun Scan later or run Report for CSVs from completed checkpoints only. Report PARTIAL/coverage explicitly. Do not enable FreeFileSync or copy/rename Originals until manifest review.
+
 ## Immediate next step
 
 Do **not** write a copier first.
