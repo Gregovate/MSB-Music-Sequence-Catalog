@@ -92,6 +92,12 @@ READ authoritative current procedures in `Gregovate/MSB-Production-Database-Proj
 
 **Exact next gate:** obtain explicit operator authorization for a **one-time, no-overwrite transfer of only those 24 filenames from the 2025 archive to the Show PC's `C:\LOR\Audio`**, after confirming the governing copy procedure. On approval, fail closed on missing/changed sources or existing targets and verify completed local bytes/hashes. Do not transfer the 446-MP3 archive, move source files, change sequence references, overwrite anything, or start recurring FreeFileSync synchronization. 2026 preview conversion remains governed by MSB Production Database LOR operator procedures.
 
+**2026-10-28 APPROVAL — EXACT 24-MP3 INITIAL SHOW PC COPY:** Operator explicitly approved only the 24 referenced 2025 Final audio basenames (84,827,578 bytes / 80.90 MiB) from G:\Shared drives\Seasonal Files\2025\LOR\Audio to C:\LOR\Audio, with NO OVERWRITE, after a 24/24 metadata preflight. This is ONLY THE START of the larger audio project, not canonical audio cleanup or recurring synchronization. The transfer has **not yet been executed**.
+
+**Controlled mutation authority:** `docs/2026_show_pc_migration/2025_Final_Audio_Copy_Operator_Procedure.md`, newly installed on this existing migration branch to close the previously missing operator copy/recovery runbook; pinned V0.1.0 transfer tool `tools/transfer_2025_final_audio_v0_1_0.ps1` at SHA `549aef6f9c5e38db1374decfc34593fdabeb8b78`. This distinct copy-capable tool validates the exact unchanged CSV selection, source/destination absence, recorded 84,827,578 bytes and no overwrites; it copies into temporary files, compares SHA-256 and retains a per-file receipt. It stops on partial failure, leaving verified files in place; DO NOT rerun Copy blindly.
+
+**NEXT OPERATOR ACTION:** download pinned script to Windows local TEMP, run `Preview`, inspect PASS, then run `Copy` exactly once under the approved SOP. Bring back final PASS/HOLD and report receipt path. Preserve archive, 2025 sequences, and existing Show PC state. Do not configure FreeFileSync or perform broader deduplication or preview master changes in this step.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
