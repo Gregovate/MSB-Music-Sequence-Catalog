@@ -121,6 +121,10 @@ New governing artifacts: `docs/2026_show_pc_migration/Original_Audio_Catalog_Eng
 
 **NEXT:** On Show PC fetch pinned scanner and run metadata-only entire Seasonal Files scan. Upload summary, all occurrence CSV, original candidate CSV, album folder CSV, and processed show-copy CSV. Use real results to approve original source candidates, duplicate byte verification and album hierarchy **before** a new governed hash-verified no-overwrite copy procedure creates/populates the master. The 24 2025 show-use MP3s already transferred to local C:\LOR\Audio are separate, unchanged.
 
+**2026-10-28 ADDITIONAL PROVENANCE RULE:** The operator confirms some paid Light-O-Rama sequences came with supplier music and that the audio spans over **15 years** with many source folders not necessarily named LOR. Search the entire `G:\Shared drives\Seasonal Files` tree (V0.2.0 scanner already does), retain each original pathname, and classify bundled music as separate `PURCHASED_SEQUENCE_AUDIO_REVIEW` until proven source-original or processed. A purchased LOR sequence's supplier audio must stay linked to its sequence package; do not flatten/de-duplicate the package by folder name. **Normalized = Show-Audio, never Originals.** Any locations *outside* Seasonal Files need a later separately authorized scan; don't claim the first run covers every possible legacy source.
+
+Engineering `Original_Audio_Catalog_Engineering.md` updated to design 0.3 and `Original_Audio_Catalog_Operator_Scan.md` updated to SOP 0.3 (scanner remains pinned V0.2.0, unchanged). Next run the pinned entire-tree read-only scan; review source-folder coverage, album candidates, supplier sequence music, normalized show copies, and unresolved unknowns before approving any master copying or FreeFileSync.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
