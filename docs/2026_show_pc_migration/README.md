@@ -467,6 +467,14 @@ Sequence lifecycle contract: preserve 2025 Final exactly as historical show-use 
 
 **Next evidence only if needed for the 2026 dependency manifest:** read the audio reference from the actual saved **2026 Scratch** file, not the 2025 Final archives. Both of the historically referenced MP3 names were already in the first 24-file copied-and-verified set; do not repeat the selective transfer. The 2026 conversion must continue to use the existing MSB Production Database repository's approved Preview, Display Name/Comment and network authority.
 
+### Original-recording master catalog — inventory-first workstream (2026-10-28)
+
+**New operator priority:** Scan the **whole** `G:\Shared drives\Seasonal Files` tree and build a true non-year-specific catalog with **Originals first**. Ripped and purchased album tracks should preserve their existing artist/album/track directories under one proposed master `G:\Shared drives\Seasonal Files\LOR-Audio\Originals\Albums`, with reviewed single files under `Originals\Singles`. A separate `LOR-Audio\Show-Audio` will later hold the Audacity-normalized show-use copies (and explicitly distinct timed/edited versions). The operator explicitly confirmed: **normalized files are for SHOW copies, never raw/originals**. Do not classify files without a 'normalized' marker automatically as originals.
+
+Current artifacts: [Original Audio Catalog Engineering](Original_Audio_Catalog_Engineering.md) (design 0.2), [Original Audio Catalog Operator Scan](Original_Audio_Catalog_Operator_Scan.md) (procedure 0.2), and **read-only** [`tools/scan_seasonal_original_audio_v0_2_0.ps1`](../../tools/scan_seasonal_original_audio_v0_2_0.ps1). V0.2.0 supersedes V0.1.0 before first operator run and separates normalized/edited Show-Audio review candidates from Originals. Source scan is recursive across all of Seasonal Files, including 2021 alternate audio and album folders. It creates local TEMP reports, **does not create/populate master**, does not hash file bytes and never edits source G: or Show PC audio/sequence files.
+
+**NEXT ACTION:** Run the V0.2.0 pinned read-only scanner on the Show PC using the operator scan procedure. Bring back summary, full inventory, Originals proposal, album folders and separately normalized Show-Audio candidate files. Review actual source identities, duplicate candidate groups, and proposed album hierarchy; produce/approve a strict no-overwrite, source-hash-verified copy manifest before creating or populating any `LOR-Audio` master folder. Do not begin FreeFileSync or automated sequence rewrites. The already completed initial 24 local show MP3 copies remain unchanged.
+
 ## Immediate next step
 
 Do **not** write a copier first.
