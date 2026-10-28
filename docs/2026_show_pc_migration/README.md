@@ -421,11 +421,25 @@ Note: the Production Preview Authoring procedure separately governs a moved Disp
 
 The [2026 conversion engineering proposal](2026_sequence_conversion_engineering.md) and [operator workflow DRAFT](2026_conversion_operator_workflow_DRAFT.md) now defer to those living source documents. They must not become an independent Preview operations runbook; any completed pilot must use the approved Preview and must not update Production or the LOR master as a side effect.
 
+### 2025 to Show PC selective audio preflight PASS — 2026-10-28
+
+Operator ran the exact-name read-only PowerShell preflight on the **new Show PC** using `MSB_2025_Final_Audio_20261027_152125.csv` and these paths:
+
+- Source: `G:\Shared drives\Seasonal Files\2025\LOR\Audio`.
+- Target: `C:\LOR\Audio`.
+- All 24 referenced distinct MP3 basenames are present as accessible source filesystem entries; 24/24 report `READY FOR REVIEW`.
+- Zero `SOURCE MISSING`; zero `TARGET EXISTS - REVIEW` for these 24. Pre-existing unrelated files in the destination were not checked by this status.
+- Recorded source sum = **80.90 MiB** (84,827,578 bytes from earlier manifest). **NO FILES COPIED** confirmed by the operator's transcript.
+
+This is a **metadata/path-only PASS**, not a content hash/decoder/offline playback PASS or operator approval to copy. Do not claim FreeFileSync was configured or that the final canonical audio library was created. Existing 2025 `.loredit` references must remain exact, with no basename renaming, raw-versus-normalized substitution, or archive delete. Distinct 2025 Final sequence versions and Preview/Production Database authority remain unchanged.
+
+**Controlled next gate:** operator to explicitly accept or reject the precise one-time *no-overwrite* selection of these 24 exact 2025 source filenames into `C:\LOR\Audio` on the Show PC; any resulting transfer instruction must follow a reviewed owner runbook and stop on an unexpected source/target conflict. Verify all copied file sizes and hashes from source to destination and local LOR music resolution afterwards. This one-time migration is **not** approval for ongoing FreeFileSync synchronization or source-archive cleanup. Until explicit approval, no transfer commands are authorized.
+
 ## Immediate next step
 
 Do **not** write a copier first.
 
-The 114-file 2025 Final primary audio-reference scan is complete: 24 unique referenced MP3 names all exist in last year's `2025\LOR\Audio`. **Next:** generate and review an exact-name/no-overwrite local transfer preview for those 24 **2025-source** files, using the already copied sequences' existing media references without any substitution. Only perform copying after explicit operator acceptance and proper runbook gate. Deferring the conflicting Christmas Canon file interpretation and older-archive byte-size conflicts is deliberate; they cannot be reliably resolved until the 2026 previews permit editor inspection. The initial root-attribute scan does not establish all other external-media dependencies.
+The 114-file 2025 Final primary audio-reference scan is complete: 24 unique referenced MP3 names all exist in last year's `2025\LOR\Audio`. **The exact-name read-only source/destination preflight PASS is now complete:** all 24 source files exist, none of the 24 destination names exist, and the total is 80.90 MiB. **Next:** operator authorization for a narrowly-scoped one-time no-overwrite copy, followed by source/destination verification. No audio transfer or ongoing synchronization has yet occurred. Only perform copying after explicit operator acceptance and proper runbook gate. Deferring the conflicting Christmas Canon file interpretation and older-archive byte-size conflicts is deliberate; they cannot be reliably resolved until the 2026 previews permit editor inspection. The initial root-attribute scan does not establish all other external-media dependencies.
 
 The first engineering deliverable should be a read-only inventory/report that can answer:
 
