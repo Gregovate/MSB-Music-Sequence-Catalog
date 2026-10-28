@@ -3,7 +3,7 @@
 | Control | Value |
 |---|---|
 | Filename | docs/2026_show_pc_migration/Original_Audio_Catalog_Operator_Scan.md |
-| Revision | Operator scan 0.2 (2026-10-28) |
+| Revision | Operator scan 0.3 (2026-10-28) |
 | Status | Read-only discovery approved; ORIGINALS source copy/creation NOT yet authorized |
 | Runtime | Show PC PowerShell, current logged-in Windows LOR user |
 | Master candidate | G:\Shared drives\Seasonal Files\LOR-Audio |
@@ -56,6 +56,14 @@ An actual count will only be known after execution, not before. Report directory
 - MSB_Scan_Summary_*.txt — version, scope, count, and report filenames.
 
 The existing root G:\Shared drives\Seasonal Files\LOR-Audio, if it exists, is deliberately excluded from source occurrences.
+
+## Source coverage and bundled audio classification
+
+The user confirms 15 years of potential non-LOR-folder source locations and that some purchased Light-O-Rama sequences arrived bundled with their own MP3s. V0.2.0 searches **all regular audio files recursively under Seasonal Files**; do not restrict interpretation of the report to yearly `LOR\Audio` folders. Existing `Purchased LOR RGB Plus` entries receive a dedicated **PURCHASED_SEQUENCE_AUDIO_REVIEW** status, never automatic Original classification. Do not lose the associated purchased sequence package or infer the vendor's track was unprocessed.
+
+After the scan, look at audio entries grouped by `SourceFolder` and `SeasonalRelativePath`. Flag entire sources from unknown directory families as provenance-review items. Record which source roots/folders are represented and which additional locations (outside Seasonal Files, other local disks, backups or shared drives) may need a **separately scoped discovery pass**. A successful scan of Seasonal Files means only that the specified tree was enumerated, not that fifteen years of all possible audio locations have been exhausted.
+
+**Explicit normalized boundary:** even if a normalized file came from an album or purchased sequence bundle, it cannot enter the Originals library. All source occurrences retain their original path and name. Never re-run Audacity, move a purchased package, or copy a speculative Original based on this scanner.
 
 ## Step 3 — Stop and review
 
