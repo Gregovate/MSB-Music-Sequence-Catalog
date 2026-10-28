@@ -3,7 +3,7 @@
 | Control | Value |
 |---|---|
 | Filename | `docs/2026_show_pc_migration/Original_Audio_Catalog_Engineering.md` |
-| Revision | Design proposal 0.2 — 2026-10-28 |
+| Revision | Design proposal 0.3 — 2026-10-28 |
 | Status | Initial scan approved by operator request; physical master population awaits reviewed manifest |
 | Owner | MSB Music & Sequence Catalog |
 | Current tool | [Seasonal Audio Catalog Scan V0.2.0](../../tools/scan_seasonal_original_audio_v0_2_0.ps1) |
@@ -70,6 +70,22 @@ Outputs:
 5. `MSB_Scan_Summary_*.txt` — operator receipt and exact report paths.
 
 **Hard boundary:** do not copy or approve normalized/edited candidates as Originals. Classification is a **triage suggestion**, not verification of originality or normalization. `LOR_Source_Files\PurchasedMusic` produces original candidates with its purchased artist/album hierarchy retained; nested `LOR_Source_Files\Audio` folders produce possible-album review candidates; annual archive, supplied RGB Plus audio and processed-looking audio remain separate review groups. All proposals have `REVIEW_REQUIRED`, no SHA-256, and no license or original-content certification.
+
+## Fifteen-year source provenance and discovery coverage (operator clarification)
+
+The operator confirms **some purchased Light-O-Rama sequences came bundled with music** and that 15 years of accumulated sources extend beyond annual LOR Audio folders. Do not assume the audio's directory identifies its provenance, whether it is a raw original, or whether it was already processed. The source scan must cover the **entire Seasonal Files tree**, not only `*/LOR/Audio`, `LOR_Source_Files/Audio`, or the historical ten known roots. Any suspected source location **outside** Seasonal Files must be recorded and added as a separate authorized discovery root; a clean Seasonal Files scan cannot be called a complete 15-year library inventory.
+
+Retain the source's complete path and distribution context in the physical-occurrence evidence. In particular, treat **audio bundled with a paid LOR sequence** as `BUNDLED_WITH_PURCHASED_SEQUENCE / PROVENANCE_REVIEW` pending inspection: it might be a source original, a supplier-edited show version, or one of several licensed alternatives. Do not automatically import it into Originals, normalize it again, flatten the purchase bundle, or remove its relationship to the accompanying `.loredit` / `.lms` / purchased package. If later selected, a catalog relationship may distinguish purchased sequence package, vendor, supplied audio and the approved MSB show rendition.
+
+Classification and identity should be separate dimensions:
+
+- `Source family` — CD rip / acquired single / ripped album / purchased LOR sequence bundle / annual backup / unknown; support multiple occurrences.
+- `Rendition` — verified original / Audacity-normalized Show Audio / supplier processed / other edit / unknown.
+- `Grouping` — album, purchase/package, themed collection, loose single, unclassified.
+- `Identity/evidence` — recording, audio edit, filename/path/size, optional file hash; same recording is not automatically the same show-ready edit.
+- `Coverage` — source root actually scanned, inaccessible/failed directories, and evidence of other roots still pending.
+
+V0.2.0 is a **discovery pass**, not final provenance classification: it records exact source paths for bundled purchased music in `PURCHASED_SEQUENCE_AUDIO_REVIEW` and continues to categorize all other audio encountered across Seasonal Files. Decisions about Originals happen only after examining the resulting reports and source evidence. Preserve history and original packages; do not pretend a broader location search has already run.
 
 ## Folder/duplicate policy for eventual population
 
