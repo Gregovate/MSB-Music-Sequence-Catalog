@@ -110,6 +110,10 @@ READ authoritative current procedures in `Gregovate/MSB-Production-Database-Proj
 
 **THEN:** a single reversible conversion pilot only on a separately prepared 2026 Scratch copy against the approved 2026 master preview from the MSB Production Database repository, not the newly installed preview just by assumption. Separately design a library-wide canonical-name/media-reference migration: year introduced and normalized/cropped edit data become catalog metadata; originals/legitimate alternate edits must remain, historical sources unchanged, batch rewriting and FreeFileSync unsanctioned pending validation.
 
+**LATEST OPERATOR CORRECTION — 2026-10-28:** On the Show PC, with previews updated, the operator identified that the **2025 Christmas Canon sequence had the wrong song attached**, and **corrected it in LOR**. This resolves operator ambiguity about the intended song, but the actual saved sequence path and current `musicFilename` have not yet been extracted. Original 2025 Final scan identified two distinct `2025 Greg Christmas Canon-TransSiberian Orchestra.loredit` paths: root Final -> Christmas Canon MP3; Final/Musical Sequences -> `2015 Trans-Siberian Orchestra - Wizards in Winter.mp3`. Preserve this old evidence for history; do NOT assume which file changed, that both are now correct, or that the old CSV reflects the corrected sequence. Both candidate MP3 basenames were part of the first 24 copied-and-SHA-verified audio files; DO NOT rerun initial Copy.
+
+**Immediate read-only next step:** inspect the root XML musicFilename and actual saved path/timestamp for both Christmas Canon .loredit paths or saved working copy, check that any referenced MP3 exists locally, and verify LOR playback. No automatic edit, bulk rename, archive copy, FreeFileSync sync, Preview/Display/Comment/network change. Rebuild the dependency manifest from current source when starting comprehensive canonical audio remapping.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
