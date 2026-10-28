@@ -66,6 +66,19 @@ If a copy fails partway, preceding verified destination files remain, unprocesse
 
 A receipt verifies file identity but does not prove sequence compatibility or local LOR editor sound/playback. Follow a separately accepted LOR preview-conversion procedure from the MSB Production Database repository after the copy.
 
+## Execution evidence — 2026-10-28
+
+The operator executed tool V0.1.0 on the Show PC. The pasted PowerShell transcript contains:
+
+- `PREFLIGHT PASS: 24 sources, 84827578 bytes, zero destination conflicts.`
+- **24 distinct `VERIFIED:` records** with the exact expected audio basenames; each `VERIFIED` line is emitted by this version only after staged SHA-256 comparison, non-overwriting final move, and destination SHA-256 recheck.
+- `VERIFICATION REPORT: C:\Users\LIGHT-~1\AppData\Local\Temp\MSB_2025_Audio_Transfer_V0.1.0_20261028_114621.csv`
+- `VERIFIED FILES: 24/24`
+
+**Interpretation:** initial 24-MP3 copy and per-file SHA-256 verification are demonstrated by operator output. The final script `PASS:` footer was **not included in the pasted transcript**, and the receipt CSV is on the operator's Show PC, not independently inspected. Do not claim final full operator closeout until terminal status or receipt is verified; do not rerun Copy to recover a missing line. No preview, sequence editing, Google Drive cleanup, FreeFileSync synchronization, or canonical-library migration is proved by this receipt.
+
+**Operator finding:** the transferred MP3s exhibit inconsistent historical filename conventions. Leading years such as 2015, 2021, 2022 and 2025 encode historical introduction/editing practice rather than actual performance year or file identity. Keep exact legacy names for compatibility; the conceptual catalog model records introduction year, played years, recording/edit/rendition, processing metadata, audio occurrences and legacy references separately.
+
 ## Acceptance evidence
 
 Only mark selective AUDIO TRANSFER PASS when the operator's exact tool shows 24 VERIFIED files and final PASS, source and target SHA-256 match for all 24, and the local TEMP receipt path is recorded. Record HOLD if any condition fails.
