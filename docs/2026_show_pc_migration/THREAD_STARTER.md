@@ -104,6 +104,12 @@ READ authoritative current procedures in `Gregovate/MSB-Production-Database-Proj
 
 **NEXT WITHOUT REPEATING COPY:** verify a representative sequence's MP3 resolves entirely locally in LOR when the correctly governed 2026 preview is available; keep the Production Database repository authoritative for all Preview/Display/Comment/network matters. Then work on historical deduplication and canonical audio delivery separately, including FreeFileSync design (still installed but NOT configured). Existing copied source set only provides a first-stage 24-MP3 baseline, not the full audio catalog.
 
+**2026-10-28 USER UPDATE — SHOW PC PREVIEWS NOW UPDATED:** Operator confirms that all intended previews have been updated on new Show PC. Updated-preview installation is a reported fact, but exact master name/revision and approval lineage are not yet inspected. First 24 source-reference MP3s have already been copied into local `C:\LOR\Audio`, 24/24 per-file SHA-256 verification reported; full terminal PASS footer not supplied, and Copy must NOT be rerun.
+
+**NEXT IMMEDIATE ACTION, NO FILE WRITES:** Open the exact existing source `C:\LOR\Sequences\2025 Final\Musical Sequences\2025 Greg Frosty The Snowman.loredit` in Show PC LOR Sequencer. The scanned root references `Frosty The Snowman-Jimmy Durante-SN.mp3`, and this file was in verified transfer set. Check whether local audio loads and plays, which original embedded Preview is displayed, and any audio/Preview/wiring warnings. **Do not save the source, assign another Preview, rename an MP3, or modify controlled Comment/Display/network fields.** Capture result and warnings. Draft operator procedure updated to 0.3, linked from migration README.
+
+**THEN:** a single reversible conversion pilot only on a separately prepared 2026 Scratch copy against the approved 2026 master preview from the MSB Production Database repository, not the newly installed preview just by assumption. Separately design a library-wide canonical-name/media-reference migration: year introduced and normalized/cropped edit data become catalog metadata; originals/legitimate alternate edits must remain, historical sources unchanged, batch rewriting and FreeFileSync unsanctioned pending validation.
+
 Produce a reviewable dependency/migration manifest before any selective audio copy or sync configuration.
 
 Do not invent a new catalog or parallel source of truth; continue `Gregovate/MSB-Music-Sequence-Catalog`.
