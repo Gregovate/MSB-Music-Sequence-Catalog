@@ -3,10 +3,10 @@
 | Control | Value |
 |---|---|
 | Filename | `docs/2026_show_pc_migration/Original_Audio_Catalog_Engineering.md` |
-| Revision | Design proposal 0.3 — 2026-10-28 |
+| Revision | Design proposal 0.4 — 2026-10-28 (resumable scan) |
 | Status | Initial scan approved by operator request; physical master population awaits reviewed manifest |
 | Owner | MSB Music & Sequence Catalog |
-| Current tool | [Seasonal Audio Catalog Scan V0.2.0](../../tools/scan_seasonal_original_audio_v0_2_0.ps1) |
+| Current tool | [Seasonal Audio Catalog Scan V0.3.0](../../tools/scan_seasonal_original_audio_v0_3_0.ps1) |
 
 ## Direction confirmed by operator
 
@@ -29,7 +29,7 @@ The master directory is a catalog/distribution source, **not** the operating LOR
 
 The operator clarified that **normalization is performed for Show-Audio copies, never for the raw/original recording collection.** The canonical Originals collection must consist of source recordings, untouched, with ripped album structures preserved. Audacity-normalized files (including cropped/edited show use variants) belong in **Show-Audio**, not Originals. Neither collection is proved solely by filename. A normalized file located in a purchased album folder **must not** be selected as a raw Original.
 
-Scan V0.2.0 reserves paths with explicit normalized or edited indicators for `NORMALIZED_SHOW_COPY_REVIEW` or `EDITED_SHOW_COPY_REVIEW`, and excludes them from the original-destination proposal. This is conservative triage; files lacking those indicators still require evidence of original source before any master copy. An extra `MSB_Processed_Show_Candidates_*.csv` separately records show-copy candidates for the later phase. No content or metadata is modified by scanning.
+Scan V0.3.0 reserves paths with explicit normalized or edited indicators for `NORMALIZED_SHOW_COPY_REVIEW` or `EDITED_SHOW_COPY_REVIEW`, and excludes them from the original-destination proposal. This is conservative triage; files lacking those indicators still require evidence of original source before any master copy. An extra `MSB_Processed_Show_Candidates_*.csv` separately records show-copy candidates for the later phase. No content or metadata is modified by scanning.
 
 ## Source scope and actual known evidence
 
@@ -57,7 +57,7 @@ An additional **177 MP3s** in `2021\LOR S5 2021\Audio` were discovered but not f
 
 **Do not rename or change file content** to fit the planned canonical organization. For original albums, preserve actual existing names including track numbers, punctuation and album directories. Artist/album metadata is subject to later source/tag/manual review. Where a source has only an album folder without artist information (e.g. `Frozen (Deluxe Edition)`), do not invent an artist to construct a folder path.
 
-## V0.2.0 scanner scope and safeguards
+## V0.3.0 scanner scope and safeguards
 
 The scanner is **read-only on G:**, processes `.mp3`, `.wav`, `.flac`, `.m4a`, `.aac`, `.wma`, `.aif`, `.aiff`, `.ogg`, `.opus`, and creates report files only under the Windows user's TEMP root by default. It excludes entries in `LOR-Audio` so an existing or future master is not mistaken for another source of originals.
 
@@ -85,7 +85,25 @@ Classification and identity should be separate dimensions:
 - `Identity/evidence` — recording, audio edit, filename/path/size, optional file hash; same recording is not automatically the same show-ready edit.
 - `Coverage` — source root actually scanned, inaccessible/failed directories, and evidence of other roots still pending.
 
-V0.2.0 is a **discovery pass**, not final provenance classification: it records exact source paths for bundled purchased music in `PURCHASED_SEQUENCE_AUDIO_REVIEW` and continues to categorize all other audio encountered across Seasonal Files. Decisions about Originals happen only after examining the resulting reports and source evidence. Preserve history and original packages; do not pretend a broader location search has already run.
+V0.3.0 is a **discovery pass**, not final provenance classification: it records exact source paths for bundled purchased music in `PURCHASED_SEQUENCE_AUDIO_REVIEW` and continues to categorize all other audio encountered across Seasonal Files. Decisions about Originals happen only after examining the resulting reports and source evidence. Preserve history and original packages; do not pretend a broader location search has already run.
+
+## Interrupted V0.2.0 scan and V0.3.0 performance/resume correction
+
+The operator cancelled the earlier full-tree V0.2.0 PowerShell scan using Ctrl+C. That tool's `Get-ChildItem -Recurse -File -Force` eagerly enumerated the complete, non-audio-heavy Seasonal Files tree before producing useful audio findings or directory-level progress. It also printed the wrong V0.1.0 tool name from a stale string. **Retire V0.2.0 for operational scanning; it cannot be resumed.** Neither an interrupted count nor the past 2,073-MP3 narrow-roots survey constitutes full Seasonal Files coverage.
+
+V0.3.0 changes the scan architecture and is a **materially new version** under `Release_Identity_and_Versioning_Rule.md`:
+
+- Stream **one immediate directory** at a time with `.NET DirectoryInfo.EnumerateFileSystemInfos()`, never buffering the entire tree.
+- Persist each completed directory atomically to a SHA-256-keyed **local JSON checkpoint** with discovered child directories and file metadata. If interrupted mid-directory, resume retries only that incomplete directory; committed directories remain.
+- Store version/root identity in a local session marker so a different source root is not mixed into prior checkpoints. Default session: `%LOCALAPPDATA%\MSB\SeasonalAudioCatalogScanV0_3_0`.
+- Give periodic `CHECKPOINT` console messages and `Write-Progress`; print within large directories after each 5,000 entries.
+- Support `-Mode Scan` (resume automatically), `-Mode Report` (reconstruct reports from local checkpoints without touching unvisited G: folders), and `-MaxNewDirectories N` (deliberately bounded test/resume).
+- Aggregate the file-level inventory and candidate/album/show review CSVs from checkpoint files, with a summary that distinguishes completed and currently discovered pending directories; a partial report is **not full coverage**.
+- Exclude the proposed `LOR-Audio` master tree from source discovery and avoid following directory reparse points; count skipped links as exceptions.
+- **Fail closed** on inaccessible directory errors instead of calling incomplete coverage a successful scan; keep previous checkpoint evidence.
+- Preserve conservative separation of purchased/LOR bundled audio, unverified originals, and normalized/edited **show-audio candidates**, with all placement decisions pending review.
+
+The source-only scan does not hash MP3 content, create a master folder, modify Google Drive files, deduplicate physical files, run FreeFileSync, or update LOR sequence references. The new scanner's authoring is **not** proof of a successful execution on the operator's Windows/Google Drive environment; the operator still must run it and return report evidence.
 
 ## Folder/duplicate policy for eventual population
 
@@ -93,7 +111,7 @@ V0.2.0 is a **discovery pass**, not final provenance classification: it records 
 2. Identify original album sets and individual source recordings. Preserve the original release folders and track names; assign album/recording identities in catalog metadata.
 3. Compare exact duplicate candidates (read-only SHA-256 where approved); **do not** collapse different remasters, edits, channels, tracks or audio encodings because name/size happens to match.
 4. Approve **one selected source occurrence per exact canonical original**, with a proposed destination under `Originals\Albums` or `Originals\Singles`. Preserve alternate album editions and actual edit variants.
-5. Produce a **separate immutable, explicit no-overwrite copy manifest** with source, destination, expected byte length and SHA-256, target collision review, preflight and verification/receipt. Do not create destination folders or run copy/sync during V0.2.0 scanning.
+5. Produce a **separate immutable, explicit no-overwrite copy manifest** with source, destination, expected byte length and SHA-256, target collision review, preflight and verification/receipt. Do not create destination folders or run copy/sync during V0.3.0 scanning.
 6. Copy selected sources only under a separate accepted operator procedure; compare post-copy SHA-256. Never move or delete the original archive. Only after originals are accepted begin `Show-Audio` with normalized/edited sources and controlled sequence reference migration.
 7. Design FreeFileSync independently, using explicit authority/conflict/overwrite/delete policies; do not mirror the historical archives into the master.
 
