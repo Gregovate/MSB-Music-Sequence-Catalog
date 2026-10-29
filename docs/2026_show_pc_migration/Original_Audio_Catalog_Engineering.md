@@ -3,7 +3,7 @@
 | Control | Value |
 |---|---|
 | Filename | `docs/2026_show_pc_migration/Original_Audio_Catalog_Engineering.md` |
-| Revision | Design proposal 0.4 — 2026-10-28 (resumable scan) |
+| Revision | Design proposal 0.5 — 2026-10-28 (coordinated with PostgreSQL and 2026 workflow designs) |
 | Status | Initial scan approved by operator request; physical master population awaits reviewed manifest |
 | Owner | MSB Music & Sequence Catalog |
 | Current tool | [Seasonal Audio Catalog Scan V0.3.0](../../tools/scan_seasonal_original_audio_v0_3_0.ps1) |
@@ -29,7 +29,7 @@ The master directory is a catalog/distribution source, **not** the operating LOR
 
 The operator clarified that **normalization is performed for Show-Audio copies, never for the raw/original recording collection.** The canonical Originals collection must consist of source recordings, untouched, with ripped album structures preserved. Audacity-normalized files (including cropped/edited show use variants) belong in **Show-Audio**, not Originals. Neither collection is proved solely by filename. A normalized file located in a purchased album folder **must not** be selected as a raw Original.
 
-Scan V0.3.0 reserves paths with explicit normalized or edited indicators for `NORMALIZED_SHOW_COPY_REVIEW` or `EDITED_SHOW_COPY_REVIEW`, and excludes them from the original-destination proposal. This is conservative triage; files lacking those indicators still require evidence of original source before any master copy. An extra `MSB_Processed_Show_Candidates_*.csv` separately records show-copy candidates for the later phase. No content or metadata is modified by scanning.
+Scan V0.3.0 reserves paths with explicit normalized or edited indicators for `NORMALIZED_SHOW_COPY_REVIEW` or `EDITED_SHOW_COPY_REVIEW`, and excludes them from the original-destination proposal. This is conservative triage; files lacking those indicators still require evidence of original source before any master copy. An extra `MSB_Show_Candidates_*.csv` separately records show-copy candidates for the later phase (the actual V0.3.0 report name). No content or metadata is modified by scanning.
 
 ## Source scope and actual known evidence
 
@@ -66,7 +66,7 @@ Outputs:
 1. `MSB_All_Seasonal_Audio_*.csv` — complete discovered source occurrences and conservative classifications;
 2. `MSB_Original_Candidates_*.csv` — proposed `Originals\Albums` and `Originals\Singles` destination paths, every line requiring review, plus destination-collision counts;
 3. `MSB_Album_Folders_*.csv` — discovered source album/collection folders and item counts; the word *collection* avoids wrongly declaring stock/show folders to be albums;
-4. `MSB_Processed_Show_Candidates_*.csv` — normalized or edited files reserved for future Show-Audio review, **excluded from Original** placement (created when any are found);
+4. `MSB_Show_Candidates_*.csv` — normalized or edited files reserved for future Show-Audio review, **excluded from Original** placement (created when any are found);
 5. `MSB_Scan_Summary_*.txt` — operator receipt and exact report paths.
 
 **Hard boundary:** do not copy or approve normalized/edited candidates as Originals. Classification is a **triage suggestion**, not verification of originality or normalization. `LOR_Source_Files\PurchasedMusic` produces original candidates with its purchased artist/album hierarchy retained; nested `LOR_Source_Files\Audio` folders produce possible-album review candidates; annual archive, supplied RGB Plus audio and processed-looking audio remain separate review groups. All proposals have `REVIEW_REQUIRED`, no SHA-256, and no license or original-content certification.
@@ -104,6 +104,18 @@ V0.3.0 changes the scan architecture and is a **materially new version** under `
 - Preserve conservative separation of purchased/LOR bundled audio, unverified originals, and normalized/edited **show-audio candidates**, with all placement decisions pending review.
 
 The source-only scan does not hash MP3 content, create a master folder, modify Google Drive files, deduplicate physical files, run FreeFileSync, or update LOR sequence references. The new scanner's authoring is **not** proof of a successful execution on the operator's Windows/Google Drive environment; the operator still must run it and return report evidence.
+
+## Coordination with the PostgreSQL migration and 2026 sequencing design
+
+The [cross-workstream coordination authority](Music_Library_Cross_Workstream_Coordination.md) and [V0.3.0 scanner/interface specification](Music_Library_Scanner_Specification.md) are part of this owning inventory design. They explicitly reference (without merging or rewriting) the parallel `docs/music-catalog-recon-20261028` branch's proposed MariaDB→PostgreSQL migration and 2026 music workflow. **That branch is a separate design proposal, not currently approved for implementation.**
+
+The parallel historical MariaDB source contains four show-history/sequence relationship tables (reported source counts 409 / 14 / 408 / 408). Their preservation-oriented raw migration does not import the physical MP3 occurrence inventory and does not authorize new audio-domain tables. Later canonical domain identity and ingestion need a separate reviewed design including album, source package, recording, timing edit, rendition, normalized Show-Audio, file occurrence/hash, explicit sequence reference, and yearly use.
+
+**BLOCKING PLACEMENT DECISION:** The parallel proposal targets a `music` schema within existing production PostgreSQL, while this branch's current Project Rules, `db/README.md` and catalog model prohibit catalog objects in that production database. The discrepancy is recorded as an open cross-workstream governance decision, **not silently resolved in this design**. No creation of a production schema, migration, app integration or catalog DB connection is authorized.
+
+For 2026 sequencing, each selected season/revision must keep exact current audio references and prior-year Final history immutable. The approved LOR Preview/Display/Comment/network governance lives in the Production Database repository. The workflow proposal uses LSS evidence for show-use verification, while this workstream recognizes operator-confirmed **Final membership** as historical played-year evidence; resolve evidence precedence in approved engineering design rather than deleting historical uses or retroactively creating test approvals.
+
+**Current inventory progress:** Resumable V0.3.0 metadata scan has a bounded Show PC proof of 100 completed directories, 53 audio occurrences, and 175 *currently discovered* pending. Report remains PARTIAL. No complete 15-year inventory, hash/dedup proof, canonical master folder, or imported audio database exists. The operator's next action is continuing this SAME V0.3.0 session; do not restart a competing scan branch, and do not classify `POSSIBLE_ORIGINAL_*` as approved originals.
 
 ## Folder/duplicate policy for eventual population
 
