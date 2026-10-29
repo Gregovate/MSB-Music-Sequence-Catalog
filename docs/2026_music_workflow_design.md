@@ -1,5 +1,5 @@
 # 2026 Music Production Workflow and Work Management Integration
-Revision: 0.4 — 2026-10-28
+Revision: 0.5 — 2026-10-28
 Status: PROPOSED ENGINEERING DESIGN — REVIEW REQUIRED
 Owner: MSB-Music-Sequence-Catalog
 Related authorities: MSB-Production-Database-Project #419 (Work Management), #122 (Setup integration), existing People and server mail governance.
@@ -77,3 +77,10 @@ Historical show year is a strong practical indicator of the likely LOR generatio
 For each historical revision retain (1) inferred_lor_major_version, (2) inference_basis='show_year' and source show ID/year plus mapping revision, (3) verified/authored LOR version when extracted from reliable file evidence, and (4) confidence/review status. Do not overwrite verified metadata with an inference. A sequence reused across years may have been converted between shows; show usage and sequence revision identities remain separate.
 
 Use inference for candidate grouping and conversion effort planning, never to bypass mandatory conversion, testing, or current-season release approval. No physical schema or production change is authorized by this note.
+
+## Vendor release chronology and provisional MSB version mapping — 2026-10-29
+Official Light-O-Rama announcements establish: S4 beta March 30, 2015 and S4 production available by June 30, 2015; S5 first production August 1, 2018; S6 licensing from August 22, 2022, with production S6.1.8 announced December 24, 2022. Sources: https://forums.lightorama.com/forum/15-important-announcements/page/6/ ; https://forums.lightorama.com/forum/15-important-announcements/page/5/ ; https://store.lightorama.com/pages/faqs ; https://forums.lightorama.com/forum/15-important-announcements/page/3/ .
+
+Provisional show-year inference (NOT verified MSB usage): 2011–2014 S3 or earlier; 2015–2017 S4; 2018 S4/S5 transition; 2019–2021 S5; 2022 S5/S6 transition; 2023–2025 S6. Operator reports MSB generally stayed current. Store transition years as ambiguous rather than assigning a false exact version. Import parser should record inference source and preserve UNKNOWN when evidence conflicts.
+
+Vendor says S5 .loredit sequences can open in S6 without a formal upgrade (https://forums.lightorama.com/topic/58472-light-o-rama-version-644-released/). This does NOT waive MSB's mandatory current-season adaptation, preview/audio validation, testing, and release requirements. Separate vendor file compatibility from MSB production readiness. Exact sequence-file metadata supersedes year inference.
