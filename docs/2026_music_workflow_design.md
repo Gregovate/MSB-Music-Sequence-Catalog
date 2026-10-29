@@ -1,5 +1,5 @@
 # 2026 Music Production Workflow and Work Management Integration
-Revision: 0.5 — 2026-10-28
+Revision: 0.6 — 2026-10-28
 Status: PROPOSED ENGINEERING DESIGN — REVIEW REQUIRED
 Owner: MSB-Music-Sequence-Catalog
 Related authorities: MSB-Production-Database-Project #419 (Work Management), #122 (Setup integration), existing People and server mail governance.
@@ -84,3 +84,18 @@ Official Light-O-Rama announcements establish: S4 beta March 30, 2015 and S4 pro
 Provisional show-year inference (NOT verified MSB usage): 2011–2014 S3 or earlier; 2015–2017 S4; 2018 S4/S5 transition; 2019–2021 S5; 2022 S5/S6 transition; 2023–2025 S6. Operator reports MSB generally stayed current. Store transition years as ambiguous rather than assigning a false exact version. Import parser should record inference source and preserve UNKNOWN when evidence conflicts.
 
 Vendor says S5 .loredit sequences can open in S6 without a formal upgrade (https://forums.lightorama.com/topic/58472-light-o-rama-version-644-released/). This does NOT waive MSB's mandatory current-season adaptation, preview/audio validation, testing, and release requirements. Separate vendor file compatibility from MSB production readiness. Exact sequence-file metadata supersedes year inference.
+
+## Annual Master Musical Preview compatibility — governing operator clarification 2026-10-29
+**Compatibility is two-dimensional.** LOR software generation and MSB Master Musical Preview identity/revision are independent. A sequence written in S6 for a prior year's preview is NOT assumed compatible with the current year's S6 show. Displays and layout may be added, moved, changed, or removed each season, requiring conversion/adaptation even without a software upgrade.
+
+Design requirements:
+- Represent the approved Master Musical Preview for each show season, with stable music-side preview identifier, source filename/path and a reliable revision/fingerprint when available.
+- Every sequence revision must retain the specific source preview identity/revision recorded by its LOREDIT metadata where available; unknown must remain unknown until verified.
+- Every conversion records source sequence revision and source preview, target season and approved target preview revision, target LOR version, actor and date.
+- Test evidence binds to the exact converted sequence revision, exact target preview revision, verified audio asset, and LOR runtime version.
+- A preview change after testing invalidates or requires reassessment of affected test/release approvals; the design must define how to determine affected sequences without assuming all changes are harmless.
+- Final release requires compatibility with the currently approved Master Musical Preview and target software, not merely a matching S6 major version or a prior Final-folder entry.
+- The catalog stores music-side preview references and source evidence ONLY. Stage/background/component/wiring detail remains in its separate authoritative database and must not be duplicated or mutated.
+- Inspect real LOREDIT preview metadata and annual preview publication practices before choosing the physical preview identity and fingerprint contract. Do not invent source field names.
+
+The provisional show-year -> LOR version inference is for planning only. It never proves annual preview compatibility.
