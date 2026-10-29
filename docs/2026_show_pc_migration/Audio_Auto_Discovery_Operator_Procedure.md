@@ -2,8 +2,8 @@
 
 | Control | Value |
 |---|---|
-| Revision | Candidate SOP 0.2 — 2026-10-29, pilot accepted for investigative continuation |
-| Status | **25-file Show PC pilot PASS; read-only full investigation permitted against identical SHA-locked candidate. Production-grade source publication still pending.** |
+| Revision | Candidate SOP 0.3 — 2026-10-29, complete run recorded |
+| Status | **COMPLETE 2,838/2,838 read-only file hashes, 0 file errors. Source code publication remains pending for formal tool release.** |
 | Owner | MSB Music & Sequence Catalog |
 | Source inventory | 20261028_174014 V0.3.0 completed Seasonal Files scan |
 | Candidate source | MSB_Audio_Auto_Discovery_V0_1_0.py, supplied in this project conversation |
@@ -82,3 +82,10 @@ A 25-file pilot must report most planned files as NOT_SCANNED; this is expected.
 The complete focused archive represents approximately **15.69 GiB** of file content to be read from Google Drive, and may be slow/hydrate cloud files. Inspect can be interrupted and resumed with the same command, with results preserved. Once complete, rerun --mode report and return summary and all reports as a ZIP.
 
 **Gate passed for investigative scan:** 25 of 25 HASH_OK, zero source-read/hash errors, 4 scanned MP3s with missing artist/title metadata, and 2,813 NOT_SCANNED rows. `TagOrReadExceptions=2817` is a combined report count (**2,813 not yet read + 4 tag gaps, not 2,817 errors**). Confirm script SHA again before the full read. Keep the existing checkpoint session and execute exactly `py -3 $tool --mode inspect`; no `--mode plan`, no reset or retry on a changed source. Return `--mode report` results after completion. Full hash results remain investigation evidence, not approval to copy, delete or claim source original identity. Source publication and formal release closeout remain pending.
+
+## 6. Completion checkpoint — do not repeat the full run
+
+**Operator completed inspection and uploaded the seven reports stamped `20261029_174327`.** Verified via the full result CSV: 2,838 `HASH_OK`/2,838 planned, 0 pending, 817 SHA256 identities, 405 exact duplicate hash groups, 2,426 occurrences in those groups (2,021 redundant occurrences), 1,139 same-size/different-hash review rows, 139 artist/album tag groups, 81 same-artist/title different-byte groups, and 599 MP3 tag gaps **not read errors**. See [Full Auto-Discovery Results](Audio_Auto_Discovery_Full_Results_20261029.md).
+
+**Do not rerun `--mode inspect` simply because this runbook describes it.** The completed local checkpoint and uploaded reports are authoritative investigation evidence for this scan scope. Any subsequent targeted technical audio-analysis phase requires a new governed tool/version and bounded test. Source code remains an exact-hash conversation candidate, not yet a formally published repo-pinned tool. This run authorized no filesystem or production DB mutation.
+
