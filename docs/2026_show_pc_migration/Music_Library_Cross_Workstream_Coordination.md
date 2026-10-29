@@ -78,6 +78,16 @@ The legacy history migration may load its **four original tables unchanged** in 
 8. Safe format-specific `.loredit`/`.lms` reference rewrite, previous seasons immutable vs corrected 2026 Scratch working revisions, LOR offline test, timing/normalization policy.
 9. FreeFileSync direction, authoritative source, conflict/no-delete policy and release/rollback procedure; **not configured**.
 
+## 2026-10-29 — selected master catalog authority and database field contract
+
+The operator explicitly requires the other database/2026 sequencing thread to share the catalog plan now, and requires an official master location rather than another standalone spreadsheet. See governing [Master Music Catalog Authority and Data Contract](Master_Music_Catalog_Authority_and_Data_Contract_20261029.md) and [Issue #1](https://github.com/Gregovate/MSB-Music-Sequence-Catalog/issues/1).
+
+- **One maintained music master file target:** `G:\Shared drives\Seasonal Files\LOR-Audio\Originals` (Albums/Singles) and `LOR-Audio\Show-Audio` (normalized/cropped show versions). This is a selected design location, NOT created or approved for copying yet. Annual Seasonal Files remain historical archives.
+- **One logical metadata database:** selected target name `msb_music_catalog` as an independent PostgreSQL database owned by this repo, presenting Original Music and Show Audio collections as linked views/records rather than competing databases. Physical PostgreSQL host, instance and server runbook still require approval; catalog cannot be deployed as the parallel proposed schema inside current production DB without an explicit governance change.
+- **Critical schema fields:** artist(s), song/title, album artist/title/track, genre/theme, SHA-256/content identity, original and show edit duration_ms, exact playback version and legacy LOR filename, processing history/normalized flag, crop start/end, source path/provenance, ownership, actual show-use years. Display duration `m:ss.fff` (example 3:15.500). Missing metadata remains NULL/UNRESOLVED.
+- **2026 priority:** no broad audio reprocessing, renaming, sync cutover or historical cleanup should delay this year's Scratch→Final conversion and offline show readiness. First-stage domain structure can store unknown metadata; a later bounded read-only technical scan can fill durations/codecs.
+- **DB-thread action:** reconcile the separate `docs/music-catalog-recon-20261028/docs/postgresql_migration_design.md` target (production `music` schema) with the selected independent database authority before DDL; preserve four historical MariaDB tables without treating their raw paths as canonical music identity.
+
 ## Next read-only actions and handoff
 
 **Inventory:** Resume the current pinned V0.3.0 scan session, do **not** restart or create a new scanner branch; generate/export full local report, review real archive folder inventory and album groups, then propose original selection for approval. No file mutations authorized.
