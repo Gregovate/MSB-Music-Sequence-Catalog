@@ -3,7 +3,7 @@
 | Control | Value |
 |---|---|
 | Filename | docs/2026_show_pc_migration/Original_Audio_Catalog_Operator_Scan.md |
-| Revision | Operator scan 0.4 (2026-10-28) — progress/resume scanner |
+| Revision | Operator scan 0.5 (2026-10-28) — clarified V0.3.0 release and coordination |
 | Status | Read-only discovery approved; ORIGINALS source copy/creation NOT yet authorized |
 | Runtime | Show PC PowerShell, current logged-in Windows LOR user |
 | Master candidate | G:\Shared drives\Seasonal Files\LOR-Audio |
@@ -20,7 +20,7 @@ All audio classifications are tentative until source/processing provenance is ve
 ## Authority and mutation boundary
 
 Authority: Gregovate/MSB-Music-Sequence-Catalog — System_Documentation/Project_Rules/Repository_Change_Workflow.md and this operator scan procedure.
-Procedure: scanner V0.2.0 read-only seasonal inventory and review.
+Procedure: pinned scanner V0.3.0 read-only, resumable seasonal inventory and review.
 This step: list filenames/metadata under G:, write reports ONLY to Windows TEMP. Do not create LOR-Audio yet.
 
 This tool has no copy, delete, hashing, normalization or synchronization mode. It does not rewrite sequence XML or LOR physical Display/Preview metadata.
@@ -86,18 +86,24 @@ Generated files, when the relevant rows are present:
 
 Completion prints SCAN COMPLETE or SCAN COMPLETE WITH REVIEW (e.g., directory links excluded to prevent recursion cycles). If a folder enumeration fails, the tool stops with HOLD, retains prior completed checkpoints, and must be investigated before a subsequent resume. Completed directories are not silently marked as successfully enumerated after an error.
 
-## Step 3 — Stop and review
+## Step 4 — Stop and review
 
 Send or upload **the summary TXT and the complete CSV inventory/candidate/album/show reports**. Large CSV files can be compressed into a ZIP first if convenient. Do not upload private account credentials, personal files or media bytes; reports are just file paths and metadata, but still review what will be shared.
 
 Expected classifications:
 
-- NORMALIZED_SHOW_COPY_REVIEW / EDITED_SHOW_COPY_REVIEW: **for Show-Audio later**; never placed into Originals automatically.
-- ORIGINAL_ALBUM_CANDIDATE and ORIGINAL_SINGLE_CANDIDATE: purchased-source evidence, still review actual original status.
-- POSSIBLE_ALBUM_REVIEW and POSSIBLE_ORIGINAL_SINGLE_REVIEW: may be raw/album, stock effects, or misleading folders. REVIEW_REQUIRED.
-- PURCHASED_SEQUENCE_AUDIO_REVIEW, ANNUAL_AUDIO_REVIEW, REVIEW_UNCLASSIFIED: unresolved and not approved for either master collection.
+- NORMALIZED_SHOW_REVIEW / EDITED_SHOW_REVIEW: **for Show-Audio later**; never placed into Originals automatically.
+- POSSIBLE_ORIGINAL_ALBUM_REVIEW and POSSIBLE_ORIGINAL_SINGLE_REVIEW: purchased-source evidence, still review actual original status.
+- POSSIBLE_ORIGINAL_ALBUM_REVIEW and POSSIBLE_ORIGINAL_SINGLE_REVIEW: may be raw/album, stock effects, or misleading folders. REVIEW_REQUIRED.
+- BUNDLED_AUDIO_REVIEW, ANNUAL_AUDIO_REVIEW, UNCLASSIFIED_REVIEW: unresolved and not approved for either master collection.
 
 Review folder semantics, genuine originals, album artist/album/track paths, duplicate bytes (later separate hash pass), and destination-name conflicts. A candidate line is NOT permission to copy.
+
+## Coordination and approved design boundary
+
+This scan remains a **metadata-only inventory**, even while a separate branch proposes migration of four historical MariaDB show/sequence tables into PostgreSQL and a new 2026 sequencing workflow. Refer to [cross-workstream coordination](Music_Library_Cross_Workstream_Coordination.md) and [scanner specification](Music_Library_Scanner_Specification.md) for the exact data contract, scanner release and outstanding database-placement decision. Do not create production `music` schema, import scanner CSVs, or infer approval from the fact that scanner output looks valid.
+
+**Progress checkpoint:** The initial bounded run on the Show PC completed 100 directories and found 53 audio occurrences with 175 currently discovered pending directories. Its result was PARTIAL, not a full inventory. Resume the same V0.3.0 local session rather than restarting or changing source roots. No audio copied, renamed, moved, normalized, deleted or consolidated.
 
 ## Gate before building/populating the master
 
