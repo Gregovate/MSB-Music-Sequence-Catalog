@@ -3,7 +3,7 @@
 | Document control | Value |
 |---|---|
 | Filename | `docs/data_model.md` |
-| Revision | 0.4 — Proposed / cross-workstream coordination (2026-10-28) |
+| Revision | 0.5 — Proposed / operator collection classification (2026-10-29) |
 | Source workstream | `docs/2026_show_pc_migration/README.md` |
 | Storage implementation | **Undecided. No tables or database migrations approved.** |
 
@@ -72,7 +72,24 @@ The successful first 24-file transfer exposed why the historical practice of pre
 
 **Year-of-use evidence compatibility decision:** Verified season `Final` membership is confirmed by the operator as used in that show; the proposed new 2026 workflow also envisages LSS evidence and distinct test/release approvals. Do not use the absence of an imported LSS as proof a confirmed historical Final sequence wasn't played, and do not infer a modern approval signature for historical releases. Establish precedence and exceptions in a jointly approved design.
 
-**Current inventory source gate:** V0.3.0 resumable Show PC scan is PARTIAL (100 completed directories, 53 audio occurrences, 175 currently discovered pending); its CSV candidates are `REVIEW_REQUIRED` and **not confirmed originals or imported catalog rows**. Persisting scanner output later requires exact source path, source root/version/SHA, completeness flag, album/package provenance, classification evidence and optional file hash; filenames alone cannot be join keys to malformed MariaDB paths.
+**Current inventory source gate:** V0.3.0 Seasonal Files scan COMPLETED with 11,969 audio occurrences in 3,724 directories and zero pending. Its classification candidates remain `REVIEW_REQUIRED`, **not confirmed originals or imported catalog rows**. Persisting scanner output later requires exact source path, source root/version/SHA, completeness flag, album/package provenance, classification evidence and optional file hash; filenames alone cannot be join keys to malformed MariaDB paths.
+
+## Artist/album, personal collections and actual show-use classification (operator discussion 2026-10-29)
+
+Keep **separate dimensions** rather than treating a source folder as a database class or a recording as used merely because it is available:
+
+| Dimension | Meaning / examples |
+|---|---|
+| **Music identity and membership** | Work/song, performing artist, recording, source album/release, track number, single/featured-song search. `Monster Mash` remains independently findable within the scanned 17-track Bobby Boris Pickett folder; `Grandma Got Run Over by a Reindeer` within the 10-track Dr. Elmo folder. Neither requires a duplicate standalone original file. |
+| **Provenance and acquisition** | Ripped CD, commercially purchased album/single, personal collection, purchased LOR sequence package with separate audio source, unknown. Historical `Licensed Songs` was likely the operator's purchased-album organizing attempt, **not** proof of a particular legal license. |
+| **Ownership/permissions** | Distinguish operator personal collections (e.g., Bob Rivers) from confirmed MSB-owned assets, unknown provenance, and separately verified permission to share to programmer PCs. This is a catalog information field, not a legal determination. |
+| **Functional asset category** | Music recordings; Audacity-normalized show renditions; separately timed edits; special recorded show opening/closing announcements; historical singing-face/`Vocals for Superstar` isolated vocals and stems; nonmusic SFX; generated LOR cache. Categories may share the same song relationship but should not be flattened to original albums. |
+| **Use and production status** | Source recording available for possible future custom sequence, sequence under development, verified historical Final/show use by year, or no use yet confirmed. A track in the library is not necessarily a show track. |
+| **Physical occurrence** | Every exact path/file remains traceable, including historical copies from different PCs and yearly folders. Hash before declaring exact byte duplication. |
+
+**User-provided operating context:** The Light-O-Rama purchases were primarily sequences; music rights/sources must be tracked separately, even when an audio file accompanied a package. The operator has extensive personal Christmas albums (including some Bob Rivers), old singing-face mouth-sync stem experiments in `Voiceovers`/`Vocals for Superstar`, special recorded show-start/end tracks and many songs never used in a sequence but retained as future programming choices. Those **must not** automatically become MSB-owned music, normalized Show-Audio, a historical performed song or a licensed recording based on folder placement alone.
+
+The 2026-10-28 V0.3.0 scoped Seasonal Files scan is now **COMPLETE**: 11,969 occurrences across 3,724 directories, zero pending. Its 588 Originals proposals, album grouping and 90 LOR bundle source occurrences are still review candidates; no content hash or master copy has been approved. See [completed original-source findings](2026_show_pc_migration/Original_Audio_Scan_Findings_20261029.md). This supersedes any earlier model paragraph describing the bounded 100-directory pilot as the current inventory.
 
 ## Database / authentication decision — explicitly pending
 
