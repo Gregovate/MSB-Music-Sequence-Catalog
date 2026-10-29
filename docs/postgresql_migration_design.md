@@ -1,6 +1,6 @@
 # PostgreSQL Migration Engineering Design — Synology MariaDB to MSB Production
-Revision: 0.1 — 2026-10-28
-Status: PROPOSED DESIGN / REVIEW REQUIRED / NOT AUTHORIZED FOR DEPLOYMENT
+Revision: 0.2 — 2026-10-28
+Status: ENGINEERING DESIGN IN PROGRESS / REVIEW REQUIRED / NOT AUTHORIZED FOR DEPLOYMENT
 Owner: MSB-Music-Sequence-Catalog
 Cross-repository authority required: MSB-Server-Management and MSB-Production-Database-Project.
 
@@ -54,3 +54,19 @@ After design approval, create an issue-linked implementation PR that consumes th
 
 ## 8. Governance
 Engineering docs are authoritative. PRs implement approved design. This proposal does not grant permission to change either database or production services. Production runbook-first rule applies in full.
+
+## 9. Existing PostgreSQL actor/person contract — verified from owning repository
+The production database already has durable human identities in `ref.person(person_id)`, Directus linkage via `directus_user_id`, and shared `ref.resolve_actor()` with `person_id` and `actor_name`. See MSB-Production-Database-Project `People/README.md`, `People/Database/005_reconcile_directus_person_identity.sql`, and `Database/Acceptance/database_shared_audit_actor_disposable_validation.sql`.
+
+**Decision for proposed design:** Do not create a separate music user/person/actor master. Future music assignments, testing, release approval and audit events must reference existing `ref.person.person_id` as appropriate. Historical free-text CSV `owner` and file-name author strings remain raw provenance; never auto-join them to a person by name. Mapping requires explicit, reviewed reconciliation with ambiguity/unmatched status. Purchased sequence creator/vendor attribution is not equivalent to an MSB human actor.
+
+**Actor security:** use the accepted Directus UUID -> `ref.person` resolver and governed capability/authorization pattern. Never infer privileges from Person flags, Cloudflare authentication, or a filename. Existing shared audit fields are `created_at`, `created_by`, `created_by_person_id`, `updated_at`, `updated_by`, `updated_by_person_id`. Determine whether these should apply to new mutable music-domain tables through the owning audit policy before implementing; do not retroactively invent actor values for 2025 historical imports. Import provenance must distinguish system migration from original human action.
+
+**Stage 1 historical tables:** keep imported source columns and original timestamps intact. New migration metadata (source dump fingerprint, import run, imported_at, migrator) should live in separate governed metadata rather than changing imported values. No automatic person FKs are added to legacy raw rows in Stage 1.
+
+**Stage 2 workflow:** use Person FKs for `assigned_to_person_id`, `assigned_by_person_id`, `tested_by_person_id`, `approved_by_person_id`, and actor/event attribution; names are display projections, not keys. Do not duplicate Work Management task ownership. Cross-schema references to `ref.person` require reviewed grants and disposable validation.
+
+## 10. Migration implementation boundary and unresolved gates
+Stage 1 is a strict preservation migration of four tables only, with explicit source export evidence and verified counts. Stage 2 is a separate approved domain-model migration consuming music library inventory and the shared actor contract. This prevents an incomplete audio inventory from blocking preservation of history, without prematurely creating bad song identity tables.
+
+Before Stage 1 SQL can be approved: confirm exact source export is available to disposable validation, timestamp timezone, path uniqueness/collation behavior, current music schema name availability, owner/migrator roles, and authorized server-managed disposable runner. Do not claim these checks have passed merely because code exists.
