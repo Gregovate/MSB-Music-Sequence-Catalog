@@ -2,8 +2,8 @@
 
 | Control | Value |
 |---|---|
-| Revision | Candidate SOP 0.1 — 2026-10-29 |
-| Status | Pilot procedure; operator may perform read-only check; production-grade source publication still pending |
+| Revision | Candidate SOP 0.2 — 2026-10-29, pilot accepted for investigative continuation |
+| Status | **25-file Show PC pilot PASS; read-only full investigation permitted against identical SHA-locked candidate. Production-grade source publication still pending.** |
 | Owner | MSB Music & Sequence Catalog |
 | Source inventory | 20261028_174014 V0.3.0 completed Seasonal Files scan |
 | Candidate source | MSB_Audio_Auto_Discovery_V0_1_0.py, supplied in this project conversation |
@@ -13,10 +13,10 @@
 ## Authority, environment, and boundaries
 
 Authority: MSB-Music-Sequence-Catalog, Repository Change Workflow and this operator procedure.
-Procedure: bounded hash/tag inventory check from an already completed metadata inventory; no source or Production mutation.
-This step: read only the first 25 previously scanned, candidate music-related files and write results to LOCALAPPDATA. Do **not** rename/copy/delete/normalize any G: file, create LOR-Audio, edit C:\LOR, configure FreeFileSync, or write database tables.
+Procedure: checkpointed read-only hash/tag investigation against the completed pinned inventory; no source or Production mutation.
+This step: continue the validated 25-file read-only pilot over the remaining fixed 2,813 records; write results to LOCALAPPDATA. Do **not** rename/copy/delete/normalize any G: file, create LOR-Audio, edit C:\LOR, configure FreeFileSync, or write database tables.
 
-**This candidate implementation is delivered as a conversation attachment but not yet committed to the repository.** Its verified SHA above must match the downloaded bytes. Repository source publication and full acceptance remain a release gate; do not treat the pilot as a final production tool release.
+**This candidate implementation is delivered as a conversation attachment but not yet committed to the repository.** Its verified SHA above must match the downloaded bytes. **Pilot acceptance exception:** The operator authorized read-only automated discovery and supplied the 25-file reports; the results have now been reviewed in [Pilot Review 20261029](Audio_Auto_Discovery_Pilot_Review_20261029.md). Further **investigative** hashing on the existing exact-SHA candidate may continue without restarting or changing the script; repository source publication still gates designation as a supported production tool and any downstream physical master-copy workflow. Never silently swap candidate code in the existing session.
 
 The data source is the Show PC local reports folder:
 
@@ -81,4 +81,4 @@ A 25-file pilot must report most planned files as NOT_SCANNED; this is expected.
 
 The complete focused archive represents approximately **15.69 GiB** of file content to be read from Google Drive, and may be slow/hydrate cloud files. Inspect can be interrupted and resumed with the same command, with results preserved. Once complete, rerun --mode report and return summary and all reports as a ZIP.
 
-**Gate:** Review 25-file pilot exceptions, performance and SHA confirmation before the full pass. The next phase is a reviewed exact-duplicate/source classification, *not* a media copy.
+**Gate passed for investigative scan:** 25 of 25 HASH_OK, zero source-read/hash errors, 4 scanned MP3s with missing artist/title metadata, and 2,813 NOT_SCANNED rows. `TagOrReadExceptions=2817` is a combined report count (**2,813 not yet read + 4 tag gaps, not 2,817 errors**). Confirm script SHA again before the full read. Keep the existing checkpoint session and execute exactly `py -3 $tool --mode inspect`; no `--mode plan`, no reset or retry on a changed source. Return `--mode report` results after completion. Full hash results remain investigation evidence, not approval to copy, delete or claim source original identity. Source publication and formal release closeout remain pending.
