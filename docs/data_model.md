@@ -1,5 +1,5 @@
 # MSB Music & Sequence Catalog — Data Model
-Document revision: 0.5 — 2026-10-28
+Document revision: 0.6 — 2026-10-28
 Status: RECONNAISSANCE / NOT APPROVED FOR IMPLEMENTATION
 Owner: MSB-Music-Sequence-Catalog
 
@@ -94,3 +94,10 @@ The MSB show audio is a derivative of the original artist recording, not a new s
 Logical model: canonical song -> artist recording -> original audio asset -> zero or more show-ready derived audio assets. Each derived asset retains source asset ID, checksum, duration, source and output paths, crop start/end when known, fade treatment, optional normalization/gain/loudness details and processing provenance. The exact edited audio asset referenced by each LOREDIT/LMS sequence revision must be captured; annual sequence versions can reuse a single show-ready audio derivative without duplicating it. A changed crop/fade/normalization creates a new derivative revision, not a new song, recording, or destructive overwrite.
 
 Before file consolidation, confirm actual LOREDIT/LMS media references and file hashes; preserve original filenames as provenance. Do not automatically rename, move, delete or reprocess audio during the historical database migration.
+
+## Approved show-audio timing version and processing variants — governing decision 2026-10-29
+The timing/length of a prepared MSB show-audio edit is the controlling, durable identity for sequencing. Model a show_audio_timing_version under the original recording, with an explicit approved duration in milliseconds, crop start/end, fade/timeline treatment, timing status, and provenance. A new crop, trim or other timing change creates a new timing version.
+
+One timing version may have multiple physical audio variants (e.g., normalized and non-normalized) with different bytes/checksums but the **same approved timeline and duration**. Normalization is optional and must not imply a new timing version. Each audio file variant retains its own path, checksum, processing metadata and measured duration. Validate actual duration and timing alignment before declaring variants interchangeable; equal duration alone does not prove sample alignment or matching edit boundaries.
+
+Each LOR sequence revision references the approved timing version and the exact audio variant/file used for programming or testing. A normalization-only change that preserves timeline can be evaluated without mandatory resequencing; a timing change requires review and potential retiming/retest. Preserve the original master unchanged. This is a logical design requirement; no SQL or production changes authorized.
