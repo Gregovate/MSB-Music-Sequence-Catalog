@@ -3,9 +3,19 @@
 | Document control | Value |
 |---|---|
 | Filename | `docs/data_model.md` |
-| Revision | 0.5 — Proposed / operator collection classification (2026-10-29) |
+| Revision | 0.6 — Master catalog authority coordination (2026-10-29) |
 | Source workstream | `docs/2026_show_pc_migration/README.md` |
-| Storage implementation | **Undecided. No tables or database migrations approved.** |
+| Storage implementation | **One dedicated music catalog PostgreSQL database named msb_music_catalog is the selected logical target; physical host/instance, DDL and migration remain UNAPPROVED.** |
+
+## Current controlling catalog decisions — 2026-10-29
+
+The authoritative physical-audio-master target, shared Original Music/Show Audio domain contract and target metadata database naming are defined in [Master Music Catalog Authority and Data Contract](2026_show_pc_migration/Master_Music_Catalog_Authority_and_Data_Contract_20261029.md), coordinated under [Issue #1](https://github.com/Gregovate/MSB-Music-Sequence-Catalog/issues/1). This decision supersedes *earlier statements in this document* that the Google master path and catalog database name have not been selected **for design**. It does **not** authorize physical creation, production deployment, or import.
+
+- **Physical file master selected target:** `G:\Shared drives\Seasonal Files\LOR-Audio\Originals\{Albums,Singles}` and `G:\Shared drives\Seasonal Files\LOR-Audio\Show-Audio`. Folder not yet created/populated.
+- **One metadata catalog:** logical dedicated PostgreSQL database `msb_music_catalog`, with Original Music and Show Audio as linked collections; **server/instance and operational migration remain HOLD**.
+- **Minimum database fields:** song title, performing artist, album/album artist, genre, track, edit/rendition, original and edited `duration_ms` displayed `m:ss.fff`, normalization/crop evidence, SHA-256, source provenance and exact legacy LOR media reference. Genre/duration unknown until measured/verified; no invented values.
+- **Production ownership boundary:** no music schema inside current production PostgreSQL database without separate rule change; the other branch's proposed production music schema is pending conflict resolution.
+- **2026 first:** preserve the runtime `C:\LOR\Audio` and existing sequence/preview bindings; do not wait for full 15-year metadata/performance analysis to create the logical catalog model.
 
 ## Scope and boundaries
 
