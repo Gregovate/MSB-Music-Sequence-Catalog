@@ -1,5 +1,5 @@
 # 2026 Music Production Workflow and Work Management Integration
-Revision: 0.2 — 2026-10-28
+Revision: 0.3 — 2026-10-28
 Status: PROPOSED ENGINEERING DESIGN — REVIEW REQUIRED
 Owner: MSB-Music-Sequence-Catalog
 Related authorities: MSB-Production-Database-Project #419 (Work Management), #122 (Setup integration), existing People and server mail governance.
@@ -63,3 +63,10 @@ No database changes or production deployment authorized. Approved engineering de
 Historical sequence status must be independent of production readiness. A historical LSS usage record proves past use, not current compatibility, test approval, or release. Selecting a historical sequence for reuse creates a new season conversion candidate and work item; it does not update or overwrite the historical file/revision. The converted current-season revision requires its own source lineage, author/actor, audio and preview checks, testing and release approval before it is eligible for the current Final show.
 
 UI and reports must label historical items `Historical — conversion required`, never `Ready` merely because they were previously in a Final folder. No automated compatibility inference from S6 version alone can bypass this gate.
+
+## LOR major-version compatibility — operator requirement 2026-10-29
+The LOR software major version under which each sequence revision was developed is a required explicit attribute. Track S4/V4, S5/V5 and S6/V6 as distinct, incompatible sequence-generation families; do not infer cross-version playback compatibility. The actual authoring version may be unknown for imported historical files; store UNKNOWN with source/evidence, not a fabricated value based on file extension or show year.
+
+Required design distinction: `authored_lor_major_version` (source revision), `target_lor_major_version` (season conversion), and `validated_lor_version` (actual test environment, preferably full major/minor/build when available). A converted revision is a new file/revision linked to its source, never an in-place rewrite of history. Even source and target both being S6 does not bypass the current-season conversion and test gates. The catalog must support conversion effort planning by source/target version and preserve who converted, when, tested result and approved release.
+
+Before implementation, determine reliable LOREDIT/LMS fields that identify authoring software version. Do not equate file format extension with exact authoring version. Current-season target version is configuration/approved release policy, not hard-coded permanently as V6.
