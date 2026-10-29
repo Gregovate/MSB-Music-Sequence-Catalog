@@ -1,5 +1,5 @@
 # MSB Music & Sequence Catalog — Data Model
-Document revision: 0.4 — 2026-10-28
+Document revision: 0.5 — 2026-10-28
 Status: RECONNAISSANCE / NOT APPROVED FOR IMPLEMENTATION
 Owner: MSB-Music-Sequence-Catalog
 
@@ -87,3 +87,10 @@ A song/composition has one durable canonical identity and is NOT versioned by ye
 The show-to-sequence link is still necessary because it records actual .lss membership, show variant, order and section. A sequence revision is not the same thing as its show appearance. Existing MariaDB `sequences` rows are file references, not proven canonical song identities; migration preserves them first and later reconciles them to canonical songs/recordings and annual revisions.
 
 Suggested future relationships (logical only): song 1:N recording; recording 1:N sequence revision; sequence revision N:M show via show entry (with per-show order/role). Do not add a year/version field to song itself. Show year belongs to show usage and annual sequence revision, not to canonical song identity. Song's earliest known use may be derived or recorded as provenance, not treated as a new song version.
+
+## Original recording and MSB show audio derivative — operator decision 2026-10-29
+The MSB show audio is a derivative of the original artist recording, not a new song or recording identity. Preserve original audio untouched. MSB may crop to shorten a long track (e.g., Christmas Canon), trim or adjust fade-outs to avoid long silence between songs, and optionally normalize playback volume. Normalization is a reversible policy choice and must not be a required field or mandatory processing gate. The operator's operational objective is no more than approximately one second of dead air between songs, not a claim that all source files contain that silence.
+
+Logical model: canonical song -> artist recording -> original audio asset -> zero or more show-ready derived audio assets. Each derived asset retains source asset ID, checksum, duration, source and output paths, crop start/end when known, fade treatment, optional normalization/gain/loudness details and processing provenance. The exact edited audio asset referenced by each LOREDIT/LMS sequence revision must be captured; annual sequence versions can reuse a single show-ready audio derivative without duplicating it. A changed crop/fade/normalization creates a new derivative revision, not a new song, recording, or destructive overwrite.
+
+Before file consolidation, confirm actual LOREDIT/LMS media references and file hashes; preserve original filenames as provenance. Do not automatically rename, move, delete or reprocess audio during the historical database migration.
