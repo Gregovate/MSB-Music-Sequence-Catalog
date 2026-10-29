@@ -1,5 +1,5 @@
 # MSB Music & Sequence Catalog — Data Model
-Document revision: 0.2 — 2026-10-28
+Document revision: 0.3 — 2026-10-28
 Status: RECONNAISSANCE / NOT APPROVED FOR IMPLEMENTATION
 Owner: MSB-Music-Sequence-Catalog
 
@@ -65,3 +65,18 @@ Source: operator-provided msb_sequence_catalog.sql, phpMyAdmin 5.2.2, MariaDB 10
 
 ## Provenance and approval
 This section records observed export evidence, not approved schema evolution. The existing four tables remain unchanged. The design-first rule requires review before any DDL, data cleanup or PostgreSQL migration.
+
+## Filename metadata retirement and canonical naming — requirement 2026-10-29
+The catalog must own metadata historically encoded in audio/sequence filename prefixes and suffixes: introduction year, show-use year, programmer, artist/recording, purchased source, revision and processing state. Canonical display titles must not embed those fields.
+
+Keep distinct facts:
+- composition's canonical title and alternate title spellings;
+- recording's artist/arrangement and first MSB use year;
+- sequence's original creation/introduction year, original author and revision lineage;
+- each show season's actual usage, with its own year and show variant;
+- audio asset's original/normalized/edited derivation and exact checksum;
+- each physical file occurrence's observed path and original filename.
+
+Do not infer introduction year from a filename or assume the first known historical show is the actual introduction date: incomplete 2011 data and pre-2013 history can make that uncertain. Store verified dates with evidence and distinguish earliest observed use from verified introduction.
+
+No mass rename, file move, or duplicate deletion is part of the historical migration. Preserve original filenames and paths as source evidence and establish a proposed canonical naming policy only after inventory matching, LOREDIT/LMS media reference verification, and safe sequence relinking design. Byte-identical duplicates can be candidates for consolidation, but a normalized derivative or different recording is not a duplicate merely because the song title matches.
