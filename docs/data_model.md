@@ -1,5 +1,5 @@
 # MSB Music & Sequence Catalog — Data Model
-Document revision: 0.6 — 2026-10-28
+Document revision: 0.7 — 2026-10-28
 Status: RECONNAISSANCE / NOT APPROVED FOR IMPLEMENTATION
 Owner: MSB-Music-Sequence-Catalog
 
@@ -101,3 +101,6 @@ The timing/length of a prepared MSB show-audio edit is the controlling, durable 
 One timing version may have multiple physical audio variants (e.g., normalized and non-normalized) with different bytes/checksums but the **same approved timeline and duration**. Normalization is optional and must not imply a new timing version. Each audio file variant retains its own path, checksum, processing metadata and measured duration. Validate actual duration and timing alignment before declaring variants interchangeable; equal duration alone does not prove sample alignment or matching edit boundaries.
 
 Each LOR sequence revision references the approved timing version and the exact audio variant/file used for programming or testing. A normalization-only change that preserves timeline can be evaluated without mandatory resequencing; a timing change requires review and potential retiming/retest. Preserve the original master unchanged. This is a logical design requirement; no SQL or production changes authorized.
+
+## LOR-facing duration format — operator requirement 2026-10-29
+Audio duration must be displayed and accepted in the LOR-style `M:SS.mmm` format (example `3:15.500`). This is minutes, seconds, and three-digit milliseconds; the operator also describes LOR timing as centiseconds, so do not silently reduce the requested precision to two decimals. The canonical timing-version duration is stored as an integer millisecond count (e.g., 195500) and formatted as `3:15.500` for display and data entry. Validate seconds 00–59, fractional precision exactly three digits, and nonnegative durations. If LOR sequence metadata exposes centisecond quantization, record that source resolution separately and avoid claiming millisecond measurement precision beyond the source. Audio-file measured durations and timing equivalence must be validated independently.
