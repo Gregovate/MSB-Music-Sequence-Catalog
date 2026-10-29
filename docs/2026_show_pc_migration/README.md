@@ -503,6 +503,14 @@ The operator provided the ZIP `MSB_Audio_Catalog_20261028_174014.zip` containing
 
 **NEXT:** Review album and original-source candidates, select which existing artist/album hierarchy to preserve for the master, separate stock/voiceovers/vendor-bundled files, and authorize narrowly targeted read-only hashing before a no-overwrite Originals copy manifest. Do not copy 588 candidates automatically, create G:\Seasonal Files\LOR-Audio prematurely, configure FreeFileSync, deduplicate by name, rewrite LOR sequence references or mutate archives. The first 24 local 2025 Show PC playback MP3s remain independently verified.
 
+### Automated original-audio discovery candidate — 2026-10-29
+
+The operator explicitly chose automated discovery rather than manual album/original selection. Using the completed V0.3.0 scan inventory (11,969 files), the offline plan selected **2,838 music-focused media occurrences** (2,479 MP3, 351 WAV, 8 WMA), with about **15.69 GiB** of total source bytes. **2,573** have same-extension/size counterparts, but no exact duplicate hashes have yet been computed on G:. Vegas/Studio Box effects, AcousticMirror impulses, and LORInternal CanonicalAudio generated caches remain in the complete source inventory, excluded only from this first music hash pass.
+
+A tested Python standard-library read-only **candidate** was generated as conversation attachment `MSB_Audio_Auto_Discovery_V0_1_0.py` (SHA-256 `53adbcd35e3530837b40e18796c6e6b1fc78f6a77ee9c05a1b188690d300a822`). It consumes the existing completed CSV, produces a local 2,838-file plan without reading G:, then uses per-file checkpointed streaming SHA-256 + best-effort ID3 metadata for MP3, and generates local evidence/review reports. Synthetic identical/changed-file hashes, ID3 tags, and output reports **passed locally**. **This code is not yet checked into GitHub; release acceptance requires checking in the exact source, pinned commit, and the operator's live 25-file pilot.** This is not permission to copy/mutate files.
+
+The [engineering candidate specification](Audio_Auto_Discovery_Engineering.md) and [read-only operator pilot](Audio_Auto_Discovery_Operator_Procedure.md) govern the workflow. **NEXT:** user downloads the candidate script, checks its exact SHA, verifies Python 3.9+, runs `--mode plan`, then `--mode inspect --max-files 25` and `--mode report`. Review returned exceptions/performance before full 15.7 GiB read. Original source selection, FreeFileSync and any PostgreSQL or LOR sequence operations are separate later decisions.
+
 ## Immediate next step
 
 Do **not** write a copier first.
