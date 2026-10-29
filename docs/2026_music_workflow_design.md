@@ -1,5 +1,5 @@
 # 2026 Music Production Workflow and Work Management Integration
-Revision: 0.1 — 2026-10-28
+Revision: 0.2 — 2026-10-28
 Status: PROPOSED ENGINEERING DESIGN — REVIEW REQUIRED
 Owner: MSB-Music-Sequence-Catalog
 Related authorities: MSB-Production-Database-Project #419 (Work Management), #122 (Setup integration), existing People and server mail governance.
@@ -56,3 +56,10 @@ Review governing Work Order System Design, current schema and #419 acceptance st
 
 ## Implementation governance
 No database changes or production deployment authorized. Approved engineering design must precede any implementation PR. The PostgreSQL migration design is a separate infrastructure step and must not silently expand into this workflow schema.
+
+## Historical sequence compatibility — operator clarification 2026-10-29
+**Authoritative requirement:** No historical sequence file may be treated as playable in the current show in its existing form. All historical sequences are preserved as historical evidence and require conversion to a new current-season revision before current-show use. This applies even to older S6 material; conversion effort varies but conversion is mandatory.
+
+Historical sequence status must be independent of production readiness. A historical LSS usage record proves past use, not current compatibility, test approval, or release. Selecting a historical sequence for reuse creates a new season conversion candidate and work item; it does not update or overwrite the historical file/revision. The converted current-season revision requires its own source lineage, author/actor, audio and preview checks, testing and release approval before it is eligible for the current Final show.
+
+UI and reports must label historical items `Historical — conversion required`, never `Ready` merely because they were previously in a Final folder. No automated compatibility inference from S6 version alone can bypass this gate.
