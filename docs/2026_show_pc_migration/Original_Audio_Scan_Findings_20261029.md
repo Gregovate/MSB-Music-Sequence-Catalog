@@ -3,7 +3,7 @@
 | Document control | Value |
 |---|---|
 | Filename | `docs/2026_show_pc_migration/Original_Audio_Scan_Findings_20261029.md` |
-| Revision | Evidence review 0.1 — 2026-10-29 |
+| Revision | Evidence review 0.2 — 2026-10-29, operator provenance corrections |
 | Operator scan | MSB Seasonal Audio Catalog Scanner V0.3.0 |
 | Completed report stamp | `20261028_174014` |
 | Source root | `G:\Shared drives\Seasonal Files` |
@@ -66,6 +66,25 @@ Vegas sound-effects and AcousticMirror impulse collections are significant disti
 `MSB_Original_Audio_Master_Review_20261029.xlsx` is a generated **external review artifact**, not committed into GitHub and not a physically populated G: master. It has eleven tabs: Overview, Source Groups, Classifications, Album Folder Review, Original Candidates, Destination Collisions, LOR Bundled Audio, Show Audio Review, Focused Audio Inventory, Name Size Repeat Groups, Sources and Rules. It carries exact scanned paths and conservative proposed destinations; no row authorizes copying.
 
 The original uploaded ZIP retains **all 11,969 file paths**. The workbook's focused sheet uses **2,838** records after separating the two source effect libraries and `LORInternal\CanonicalAudio`. Nothing was removed from the source ZIP.
+
+## Operator source/ownership/usage clarifications — 2026-10-29
+
+These are operator-supplied contextual facts following review of the `Album Folder Review` sheet, including selected cell **A18**. They do not prove audio bytes, file ownership documents, or individual track use by year. **Preserve scanner evidence and retain `REVIEW_REQUIRED` until verified.**
+
+| Folder or asset type | Operator clarification | Catalog treatment |
+|---|---|---|
+| `Bobby Boris Pickett & The Crypt-Kickers\The Original Monster Mash` (A18) | Specific song(s) such as *Monster Mash* are useful as singles | 17 track occurrences in this scanned album-like folder; preserve release/track membership and permit independently searchable/selectable recording, not a second physical Singles copy merely because one song is used |
+| `Dr. Elmo\Grandma Got Run Over By A Reindeer` (A19) | The individual title is relevant as a single | 10 track occurrences in the existing source folder; retain all tracks as album/collection evidence and separately index the title song |
+| `Licensed Songs` | Historically where the operator likely tried collecting **purchased music albums** | **Provenance/collection wrapper**, not a record label, album artist, automatic licensing proof, or a separate album identity. Duplicate paths may reflect copying between PCs; compare bytes |
+| Purchased Light-O-Rama sequences | MSB purchased LOR *sequence programming*, with occasional accompanying music | Sequence purchase and audio provenance/rights are distinct. Do not assume LOR sold/licensed the commercial song; link incidental supplied audio to its purchase package and verify source/processing independently |
+| Bob Rivers Christmas collection | Some Bob Rivers material is from the operator's **personal collection** | Track personal-source/ownership context independently of inclusion in the MSB master and any proposed wider distribution. No automatic rights conclusion from possession or folder location |
+| `Vocals for Superstar` and portions of `2020 Voiceovers` | Historical experiments using isolated vocals and voice tracks to synchronize singing-face mouth movement | **Sequencing production assets / vocal stems**, tied to a song/effect workflow; not standard song originals or normalized Show-Audio just because they have `.wav`/`.mp3` extensions |
+| Special recorded introductions and endings | Operator recorded show start/end material | **Operational announcements/show cues**, separate from published songs; preserve raw takes and approved edited variants and link to their correct show/sequence usage |
+| Other Christmas albums/music | Some source tracks have never been sequenced or performed | **Available recording inventory** even without show-use evidence; distinguish `AVAILABLE/NOT_YET_MATCHED` from `USED_IN_FINAL`, and never assert played-year from filename prefix or mere folder presence |
+
+**Cross-cutting design:** A music track can be a track on an album, a standalone selection for a future sequence, and eventually an approved show-use normalized rendition, without requiring three physical original copies. Record *source ownership/provenance*, *album membership*, *recording/edit identity*, *show-use status*, and *functional asset category* separately. The historical `Final` evidence rule continues to establish actual use; absence from the current scanned Final index alone does not conclusively prove the recording was never used.
+
+**Review workbook revised:** `MSB_Original_Audio_Master_Review_Operator_Context_20261029.xlsx` preserves the original eleven sheets, adds `Operator Context`, and adds a dedicated notes column on `Album Folder Review` (including A18). These comments are not approvals to copy or change source files.
 
 ## Required next acceptance gates
 
