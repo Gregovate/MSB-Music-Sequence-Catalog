@@ -1,5 +1,5 @@
 # 2026 Music Production Workflow and Work Management Integration
-Revision: 0.3 — 2026-10-28
+Revision: 0.4 — 2026-10-28
 Status: PROPOSED ENGINEERING DESIGN — REVIEW REQUIRED
 Owner: MSB-Music-Sequence-Catalog
 Related authorities: MSB-Production-Database-Project #419 (Work Management), #122 (Setup integration), existing People and server mail governance.
@@ -70,3 +70,10 @@ The LOR software major version under which each sequence revision was developed 
 Required design distinction: `authored_lor_major_version` (source revision), `target_lor_major_version` (season conversion), and `validated_lor_version` (actual test environment, preferably full major/minor/build when available). A converted revision is a new file/revision linked to its source, never an in-place rewrite of history. Even source and target both being S6 does not bypass the current-season conversion and test gates. The catalog must support conversion effort planning by source/target version and preserve who converted, when, tested result and approved release.
 
 Before implementation, determine reliable LOREDIT/LMS fields that identify authoring software version. Do not equate file format extension with exact authoring version. Current-season target version is configuration/approved release policy, not hard-coded permanently as V6.
+
+## LOR version inference from show year — 2026-10-29
+Historical show year is a strong practical indicator of the likely LOR generation used to prepare that year's show, but is not definitive proof of the original authoring version of an individual sequence. Use an explicit, reviewable MSB year-to-LOR-version mapping, populated from operator-confirmed upgrade history; do not invent fixed calendar cutoffs from general LOR release dates.
+
+For each historical revision retain (1) inferred_lor_major_version, (2) inference_basis='show_year' and source show ID/year plus mapping revision, (3) verified/authored LOR version when extracted from reliable file evidence, and (4) confidence/review status. Do not overwrite verified metadata with an inference. A sequence reused across years may have been converted between shows; show usage and sequence revision identities remain separate.
+
+Use inference for candidate grouping and conversion effort planning, never to bypass mandatory conversion, testing, or current-season release approval. No physical schema or production change is authorized by this note.
