@@ -3,7 +3,7 @@
 | Document control | Value |
 |---|---|
 | Filename | `docs/data_model.md` |
-| Revision | 0.3 — Proposed / investigation (2026-10-28) |
+| Revision | 0.4 — Proposed / cross-workstream coordination (2026-10-28) |
 | Source workstream | `docs/2026_show_pc_migration/README.md` |
 | Storage implementation | **Undecided. No tables or database migrations approved.** |
 
@@ -59,6 +59,20 @@ The successful first 24-file transfer exposed why the historical practice of pre
 - **Operational show cues:** Classification distinct from musical compositions (for example `2022 Park Closed Take 2 Pitch Shift.mp3` and `2023 No Walking Version 3.mp3`), with their playback dependencies preserved.
 
 **Migration discipline:** Existing 2025 source and the initial 2026 local set retain their exact byte-identical old names. Later canonical audio naming or file consolidation must be designed around verified audio identities and a tested LOR path/legacy alias strategy, ensuring current and archived `.loredit` files do not silently break. Permanent canonical location and backend remain undecided. Do not use broad renaming or FreeFileSync synchronization as the de-duplication mechanism.
+
+## Model coordination with historical MariaDB and 2026 music workflow (2026-10-28)
+
+**Same repository, distinct engineering workstreams:** This document's conceptual audio/music identity model belongs to `docs/2026-show-pc-migration`. The separate `docs/music-catalog-recon-20261028` branch contains [historical MariaDB schema evidence](https://github.com/Gregovate/MSB-Music-Sequence-Catalog/blob/docs/music-catalog-recon-20261028/docs/data_model.md) (revision 0.2), [PostgreSQL Migration Engineering Design](https://github.com/Gregovate/MSB-Music-Sequence-Catalog/blob/docs/music-catalog-recon-20261028/docs/postgresql_migration_design.md) (proposal 0.1), and [2026 Music Production Workflow](https://github.com/Gregovate/MSB-Music-Sequence-Catalog/blob/docs/music-catalog-recon-20261028/docs/2026_music_workflow_design.md) (proposal 0.1). These are not merged, implemented, approved physical data models. See [cross-workstream coordination](2026_show_pc_migration/Music_Library_Cross_Workstream_Coordination.md).
+
+**Legacy historical tables — observed only:** Synology MariaDB `msb_sequence_catalog` has `raw_show_sequences` (409 rows), `shows` (14), `sequences` (408), `show_sequences` (408) in the operator-provided 2026-10-28 export. Those store historical sequence/playlists and imported path/title fields. They **do not constitute a canonical recording/original/normalized audio library**. Known imported-header rows, malformed Windows paths, mismatched filename years and role errors must remain provenance exceptions pending authorized correction. An independently reviewed raw migration may preserve those four existing tables without implying future file identity tables are ready.
+
+**Future domain relationships (conceptual, not SQL):** `song/composition -> recording/master/artist -> audio edit (timing) -> rendition (original or normalized/edited Show-Audio) -> file occurrence`; Album/release and purchased LOR package source provenance relate to original recordings and media occurrences, not to historical filename prefixes. `sequence revision` points to the exact audio rendition it was authored/tested against; retain original `musicFilename` and exact file content evidence. `show season/entry`, selection, programming assignment, testing and release are distinct from the source media catalog and require separate approval rules.
+
+**Source-of-truth conflict still open:** This inventory branch's controlled rules require an **independent database** and forbid music catalog objects in the production PostgreSQL database; the parallel proposed migration would load a `music` schema into the **existing** production PostgreSQL instance. There is no approval to change those rules or create either target yet. Decide database placement/isolation, identities/roles, retention, backups, source migration and read-only/disposable tests with the relevant owners **before any physical schema or ingestion code**.
+
+**Year-of-use evidence compatibility decision:** Verified season `Final` membership is confirmed by the operator as used in that show; the proposed new 2026 workflow also envisages LSS evidence and distinct test/release approvals. Do not use the absence of an imported LSS as proof a confirmed historical Final sequence wasn't played, and do not infer a modern approval signature for historical releases. Establish precedence and exceptions in a jointly approved design.
+
+**Current inventory source gate:** V0.3.0 resumable Show PC scan is PARTIAL (100 completed directories, 53 audio occurrences, 175 currently discovered pending); its CSV candidates are `REVIEW_REQUIRED` and **not confirmed originals or imported catalog rows**. Persisting scanner output later requires exact source path, source root/version/SHA, completeness flag, album/package provenance, classification evidence and optional file hash; filenames alone cannot be join keys to malformed MariaDB paths.
 
 ## Database / authentication decision — explicitly pending
 
