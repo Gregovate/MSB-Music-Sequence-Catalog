@@ -13,3 +13,6 @@ When Greg says **read the project instructions**, read this README and every lin
 ## Rule Ownership
 
 Repository-specific engineering and operating rules belong in this folder. Current implementation details and runtime facts belong in the responsible engineering/runbook documentation rather than being duplicated here.
+## Mandatory Engineering Design Gate
+
+- [Engineering Design Governance](Engineering_Design_Governance.md) — design documentation is authoritative; implementation PRs consume approved designs, validate against them, and update engineering and operator documentation before closeout.
