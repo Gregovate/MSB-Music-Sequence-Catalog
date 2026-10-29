@@ -1,5 +1,5 @@
 # PostgreSQL Migration Engineering Design — Synology MariaDB to MSB Production
-Revision: 0.2 — 2026-10-28
+Revision: 0.3 — 2026-10-28
 Status: ENGINEERING DESIGN IN PROGRESS / REVIEW REQUIRED / NOT AUTHORIZED FOR DEPLOYMENT
 Owner: MSB-Music-Sequence-Catalog
 Cross-repository authority required: MSB-Server-Management and MSB-Production-Database-Project.
@@ -70,3 +70,14 @@ The production database already has durable human identities in `ref.person(pers
 Stage 1 is a strict preservation migration of four tables only, with explicit source export evidence and verified counts. Stage 2 is a separate approved domain-model migration consuming music library inventory and the shared actor contract. This prevents an incomplete audio inventory from blocking preservation of history, without prematurely creating bad song identity tables.
 
 Before Stage 1 SQL can be approved: confirm exact source export is available to disposable validation, timestamp timezone, path uniqueness/collation behavior, current music schema name availability, owner/migrator roles, and authorized server-managed disposable runner. Do not claim these checks have passed merely because code exists.
+
+## 11. Verified historical programmer mappings — 2026-10-29
+Operator executed a read-only query against production PostgreSQL `ref.person` and confirmed the following active, unique identities:
+
+| Historical author token | person_id | Existing Person |
+|---|---:|---|
+| Adam | 1 | Adam Biebel |
+| Andrew | 3 | Andrew Bubb |
+| Greg | 17 | Greg Liebig |
+
+These are approved candidate mappings for the three known historical programmer tokens, grounded in current Person records. Retain the raw author text and use a separate reviewed mapping/relationship rather than replacing it. Apply only to exact, normalized whole-token matches after inventorying distinct source owner values; do not infer ownership for blank/other names, purchased RGB+ vendors, or names embedded incidentally in song titles. Stage 1 migration remains lossless and can be accepted independently; normalized actor relationships require disposable FK and attribution validation. Do not create Person rows or change `ref.person`.
