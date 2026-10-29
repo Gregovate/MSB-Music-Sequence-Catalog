@@ -8,6 +8,15 @@
 | Production runtime root | `C:\LOR` |
 | Historical archive root | `G:\Shared drives\Seasonal Files\<YEAR>\LOR` |
 
+## Master music catalog authority — shared with Database workstream (2026-10-29)
+
+**CURRENT DESIGN DECISION:** [Master Music Catalog Authority and Data Contract](Master_Music_Catalog_Authority_and_Data_Contract_20261029.md), coordinated by [GitHub issue #1](https://github.com/Gregovate/MSB-Music-Sequence-Catalog/issues/1). This supersedes earlier provisional location/naming statements for *design*. No physical change is authorized.
+
+- **One nonannual audio master target** `G:\Shared drives\Seasonal Files\LOR-Audio` with `Originals\Albums`, `Originals\Singles`, and `Show-Audio` (normalized/cropped edits). Not created or populated. Annual archives untouched; runtime `C:\LOR\Audio` remains unchanged and offline.
+- **One metadata catalog**: separate dedicated PostgreSQL database target named `msb_music_catalog`; Original Music and Show Audio are related collections, not two databases. **Server/instance/roles/backups/DDL deployment remain gated** under MSB Server Management. Existing production-DB `music` schema proposal on the parallel branch is HOLD due to conflict with current Catalog ownership rules.
+- **Required database model**: song/title, artist(s), album, genre, album/disc/track, duration_ms displayed `m:ss.fff` (e.g. 3:15.500), edit/crop/normalization, file SHA256/source occurrence, exact LOR media filename, and verified year use. Missing genre/duration remain nullable for now; audio hash reports did not measure lengths.
+- **2026 priority**: allow database design and provisional library cataloging without 15-year forensic cleanup; do not silently rename/edit show audio or interrupt current show conversion.
+
 ## Purpose
 
 Migrate the useful Light-O-Rama sequence and media set to the new Show PC without carrying forward the entire historical accumulation of sequence/audio files.
