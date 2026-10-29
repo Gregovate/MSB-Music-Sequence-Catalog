@@ -1,5 +1,5 @@
 # MSB Music & Sequence Catalog — Data Model
-Document revision: 0.3 — 2026-10-28
+Document revision: 0.4 — 2026-10-28
 Status: RECONNAISSANCE / NOT APPROVED FOR IMPLEMENTATION
 Owner: MSB-Music-Sequence-Catalog
 
@@ -80,3 +80,10 @@ Keep distinct facts:
 Do not infer introduction year from a filename or assume the first known historical show is the actual introduction date: incomplete 2011 data and pre-2013 history can make that uncertain. Store verified dates with evidence and distinguish earliest observed use from verified introduction.
 
 No mass rename, file move, or duplicate deletion is part of the historical migration. Preserve original filenames and paths as source evidence and establish a proposed canonical naming policy only after inventory matching, LOREDIT/LMS media reference verification, and safe sequence relinking design. Byte-identical duplicates can be candidates for consolidation, but a normalized derivative or different recording is not a duplicate merely because the song title matches.
+
+## Canonical song versus annual sequence versions — operator decision 2026-10-29
+A song/composition has one durable canonical identity and is NOT versioned by year. Distinct artist recordings/arrangements are separate recording identities under that song. Sequences are annual production artifacts: every show year requires its own sequence revision/version because the Master Musical Preview, LOR generation and physical show configuration can change. One recording may have many annual sequence versions, and multiple alternate programmer revisions may exist within one year. Preserve lineage from prior year's sequence without overwriting it.
+
+The show-to-sequence link is still necessary because it records actual .lss membership, show variant, order and section. A sequence revision is not the same thing as its show appearance. Existing MariaDB `sequences` rows are file references, not proven canonical song identities; migration preserves them first and later reconciles them to canonical songs/recordings and annual revisions.
+
+Suggested future relationships (logical only): song 1:N recording; recording 1:N sequence revision; sequence revision N:M show via show entry (with per-show order/role). Do not add a year/version field to song itself. Show year belongs to show usage and annual sequence revision, not to canonical song identity. Song's earliest known use may be derived or recorded as provenance, not treated as a new song version.
