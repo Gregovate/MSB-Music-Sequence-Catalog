@@ -77,6 +77,19 @@ Existing V0.1.0 full-file SHA+ID3 inspection **did not measure playback duration
 - A SHA256 establishes byte identity only. Same artist/title can have different recordings, crops, encodings and normalization. Do NOT collapse different hashes or assign one duration to all.
 - Draft files named MSB_Original_Music_Catalog_DRAFT.csv, MSB_Show_Audio_Catalog_DRAFT.csv and MSB_Music_Catalog_Deferred.csv are **candidate planning exports**; they have not been accepted as canonical originals or physically copied. They do not yet have measured duration/genre and may contain same-destination conflicts.
 
+## Provisional starter catalog handoff — 2026-10-29
+
+The review/staging workbook `MSB_Master_Music_Catalog_Database_Handoff_20261029.xlsx` was generated from the completed 817-hash evidence and candidate classification, not manually curated titles. It contains:
+
+| Draft view | File-byte identities | Meaning |
+|---|---:|---|
+| Original Music candidate | **293** | Possible source originals; raw/unaltered status **not proved** and no files approved for copying |
+| Show Audio candidate | **222** | Possible normalized/cropped renditions; some filename/destination conflicts remain |
+| Deferred Review | **302** | Unknown source role or special cue/stem/production assets; preserved and not discarded |
+| **Total** | **817** | One provisional row for each distinct focused SHA-256 content identity, not 817 songs |
+
+The workbook includes Start Here, Field Contract, Original Music, Show Audio and Deferred Review tabs. Genre, Duration_ms and Duration_LOR are **blank** until verified; a database ingest must not fabricate values or assume candidate collection roles are approved. The workbook is an exported staging artifact from the conversation, not the authoritative database and not currently hosted on GitHub. The database workstream should consume **this contract** first and request/import the staging workbook only through a reviewed catalog-ingestion process.
+
 ## Minimum near-term delivery for the database workstream
 
 1. Implement the **shared domain contract** above as one model with Original Music and Show Audio collections; preserve source identities and historical show use. Stage candidate imports with review status, not falsely approved original/audio source paths.
