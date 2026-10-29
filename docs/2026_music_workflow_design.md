@@ -1,5 +1,5 @@
 # 2026 Music Production Workflow and Work Management Integration
-Revision: 0.6 — 2026-10-28
+Revision: 0.7 — 2026-10-28
 Status: PROPOSED ENGINEERING DESIGN — REVIEW REQUIRED
 Owner: MSB-Music-Sequence-Catalog
 Related authorities: MSB-Production-Database-Project #419 (Work Management), #122 (Setup integration), existing People and server mail governance.
@@ -99,3 +99,8 @@ Design requirements:
 - Inspect real LOREDIT preview metadata and annual preview publication practices before choosing the physical preview identity and fingerprint contract. Do not invent source field names.
 
 The provisional show-year -> LOR version inference is for planning only. It never proves annual preview compatibility.
+
+## Historical show source authority — 2026-10-29
+The original annual `.lss` show files are the authoritative source for what was programmed into each historical show: membership, order, and section. The existing MariaDB `shows` and `show_sequences` records preserve parsed show-file evidence. Treat this as historical scheduled playback/playlist evidence, not proof that every entry actually executed during each live event. The YYYY Final-folder convention is supporting evidence for production sequence status.
+
+Do not infer song/recording identity solely from `.lss` sequence filenames. Inspect `.loredit`/`.lms` for audio references and preview identity, then reconcile to canonical recordings. Preserve source `.lss` file identity, source row/section/order, and imported provenance. Multiple show variants within a year must remain distinguishable, including future video and themed shows. Historical years remain locked except the operator-designated incomplete 2011 review; current-year imports require versioned reconciliation.
