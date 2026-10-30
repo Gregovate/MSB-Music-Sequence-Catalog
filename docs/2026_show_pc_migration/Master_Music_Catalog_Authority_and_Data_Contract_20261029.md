@@ -3,7 +3,7 @@
 | Document | Decision |
 |---|---|
 | Authority record | MUSIC-CATALOG-AUTHORITY-2026-10-29 |
-| Revision | 0.2 — 2026-10-30 (scan path stability and migration lineage) |
+| Revision | 0.3 — 2026-10-30 (2026 Scratch active-authoring year-free filenames) |
 | Owner | Gregovate/MSB-Music-Sequence-Catalog |
 | Coordination | https://github.com/Gregovate/MSB-Music-Sequence-Catalog/issues/1 |
 | Status | **SELECTED DESIGN TARGET / DATABASE INTERFACE; NO PHYSICAL DIRECTORY, DATABASE, OR FILE MUTATION AUTHORIZED** |
@@ -35,7 +35,7 @@ The annual directories in Seasonal Files remain historical read-only source evid
 
 **This selected path is a design decision, not evidence that the folder exists.** No directory creation, bulk copy, rename, deletion, FreeFileSync job, normalization, or sequence rewrite is authorized without an approved operator runbook and hash-verified no-overwrite source/destination manifest.
 
-**Local Show PC and programmer runtime remains C:\LOR\Audio.** The show must run offline; existing accepted LOR media filenames, 2025 Final history, 2026 Scratch working revisions and preview authority are unchanged. Do not recopy the initial 24 already hash-verified 2025 playback MP3s.
+**Local Show PC and programmer runtime remains C:\LOR\Audio.** The show must run offline. **2025 Final historical source and approved preview authority remain unchanged**; **2026 Scratch is under active construction** and the operator is intentionally removing introduced-year prefixes from local C:\LOR\Audio files before assigning those files to the 2026 sequence revisions. Do not recopy the initial 24 already hash-verified 2025 playback MP3s as a migration operation. Reuse their audio bytes locally while applying the 2026 filename standard.
 
 ## Decision 2A — Existing scan remains authoritative; historical source paths are IMMUTABLE
 
@@ -50,9 +50,17 @@ The completed inventory is a fixed **historical snapshot**. It remains correct e
 3. **Copy** only approved content into a separate empty master destination; never move the original, and never delete historical duplicate paths. Fail closed on any destination collision, mismatched hash, changed source or missing file.
 4. Validate destination SHA-256 against the recorded source SHA-256. Register the destination as a **new physical file occurrence** linked to the same immutable content identity; preserve the original occurrence and every old filename alias. A different hash means a distinct rendition/edit, not a successful duplicate copy.
 5. Maintain a master-only inventory or manifest reconciliation that verifies destination names, hashes, paths and collection membership independently. **V0.3.0 intentionally excludes the `LOR-Audio` master subtree**; do not mistake a subsequent V0.3.0 whole-tree rescan for complete master validation or silently mix the canonical copies into the historic source baseline.
-6. Use the local `C:\LOR\Audio` files and their **existing** LOR audio references during the 2026 show preparation. Year-free canonical naming is a **future derived/master file naming decision**, not permission to rename current referenced MP3s. An approved alias/reference-conversion procedure with playback verification must precede retirement of any legacy filename.
+6. **2026 Scratch ACTIVE AUTHORING EXCEPTION:** local `C:\LOR\Audio` is the operator's editable 2026 working copy. Year-free local filenames are being established **now**, before/as each new 2026 Scratch sequence is converted and pointed at the correct music. Record old→new local filename mapping and update/verify actual `musicFilename` per 2026 working revision; no blanket assumption that 2025-derived paths remain valid. Historical G: source paths and untouched 2025 Final archives remain immutable. Do not mandate retaining a second year-prefixed local MP3 solely to keep an obsolete 2025 reference resolvable on the new 2026 working PC. When an old local filename is still referenced by an **active** sequence, change that sequence's media selection and verify playback before relying on the renamed file. Never change audio content/duration as part of a filename-only operation.
 
 **Order of operations:** source snapshot → provisional catalog/content identity → reviewed copy manifest → no-overwrite copy → hash verification → append new destination occurrence → master reconciliation → later intentional show-runtime switchover. No broad re-scan or re-hash of the 15-year source is necessary if it remains unchanged; source delta checks are separate and bounded. Database schema/hosting and physical-copy approvals still remain separate gates.
+
+## Decision 2B — 2026 Scratch is being BUILT NOW; local year-free filenames are intentional
+
+The operator confirmed on 2026-10-30 that the current Show PC's `C:\LOR\Audio` contains 2025-derived and other show-ready MP3s and that the **2026 show is being authored now**, with intentional local removal of historical year-introduced prefixes. This is **not** an in-place rename of Google Shared Drive source archives, nor a rename of finalized 2026 show files after a release. Previous advice to stop all local renaming, restore legacy local prefixes, or retain duplicate year-prefixed local files for compatibility was inappropriate for the current active-build workflow and is superseded.
+
+**Effective 2026 operator rule:** establish year-free, collision-free filenames for the **current local 2026 Show Audio working set**, assign those exact names when opening/converting each 2026 Scratch sequence, and verify the selected music and sequence timing as part of normal 2026 conversion. The source/rendition content SHA256 remains unchanged by a filename-only rename, but local path/alias changes need recording in the catalog. Preserve distinctions for alternate artists, edits, normalized/cropped tracks and operational announcements. Do **not** assume current `C:\LOR\Audio` filenames continue to match an older 2025 `musicFilename` without an active 2026 Scratch check.
+
+**Isolation boundaries:** Original Music and completed G: historical scan/source paths are unchanged; the 2025 Final annual archives remain historical evidence. The intended permanent G: master target still needs no-overwrite, hash-verified creation; nothing about local 2026 authoring authorizes moving/renaming the 2,838 scanned G: source files. The library's canonical Show-Audio entries should use year-free 2026 names when accepted, linked to the old G: occurrence/path/hash and LOR media binding. Future FreeFileSync must not silently overwrite the active 2026 working edits.
 
 ## Decision 3 — The master metadata catalog is a DATABASE, not a workbook
 
