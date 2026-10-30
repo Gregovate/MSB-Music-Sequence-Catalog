@@ -1,5 +1,5 @@
 # MSB Music & Sequence Catalog — Data Model
-Document revision: 0.7 — 2026-10-28
+Document revision: 0.8 — 2026-10-28
 Status: RECONNAISSANCE / NOT APPROVED FOR IMPLEMENTATION
 Owner: MSB-Music-Sequence-Catalog
 
@@ -104,3 +104,10 @@ Each LOR sequence revision references the approved timing version and the exact 
 
 ## LOR-facing duration format — operator requirement 2026-10-29
 Audio duration must be displayed and accepted in the LOR-style `M:SS.mmm` format (example `3:15.500`). This is minutes, seconds, and three-digit milliseconds; the operator also describes LOR timing as centiseconds, so do not silently reduce the requested precision to two decimals. The canonical timing-version duration is stored as an integer millisecond count (e.g., 195500) and formatted as `3:15.500` for display and data entry. Validate seconds 00–59, fractional precision exactly three digits, and nonnegative durations. If LOR sequence metadata exposes centisecond quantization, record that source resolution separately and avoid claiming millisecond measurement precision beyond the source. Audio-file measured durations and timing equivalence must be validated independently.
+
+## Year-free canonical audio filenames and alias-safe consolidation — 2026-10-30
+Canonical audio filenames must not encode show year. Historical usage belongs to show and sequence relationships. Byte-identical year-prefixed files are duplicate occurrences, not new audio versions. Do not create a third copy merely to rename an existing rendition.
+
+Maintain one canonical filename/path for each distinct approved rendition, with collision-safe naming for different recordings, crops, and normalization variants. Preserve original filename, path, SHA-256, source evidence and historical sequence references as aliases/occurrences. Different hashes require reconciliation rather than filename-based merging.
+
+Before physical rename or cleanup, inspect LOREDIT/LMS media dependencies, prepare a reviewed alias mapping and copy/relink manifest, validate offline playback and preserve rollback. Keep the established C:\\LOR\\Audio runtime path. Historical archives remain intact until separately approved retirement. No physical changes are authorized by this design update.
