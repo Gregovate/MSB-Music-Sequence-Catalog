@@ -3,7 +3,7 @@
 | Document | Decision |
 |---|---|
 | Authority record | MUSIC-CATALOG-AUTHORITY-2026-10-29 |
-| Revision | 0.1 — 2026-10-29 |
+| Revision | 0.2 — 2026-10-30 (scan path stability and migration lineage) |
 | Owner | Gregovate/MSB-Music-Sequence-Catalog |
 | Coordination | https://github.com/Gregovate/MSB-Music-Sequence-Catalog/issues/1 |
 | Status | **SELECTED DESIGN TARGET / DATABASE INTERFACE; NO PHYSICAL DIRECTORY, DATABASE, OR FILE MUTATION AUTHORIZED** |
@@ -36,6 +36,23 @@ The annual directories in Seasonal Files remain historical read-only source evid
 **This selected path is a design decision, not evidence that the folder exists.** No directory creation, bulk copy, rename, deletion, FreeFileSync job, normalization, or sequence rewrite is authorized without an approved operator runbook and hash-verified no-overwrite source/destination manifest.
 
 **Local Show PC and programmer runtime remains C:\LOR\Audio.** The show must run offline; existing accepted LOR media filenames, 2025 Final history, 2026 Scratch working revisions and preview authority are unchanged. Do not recopy the initial 24 already hash-verified 2025 playback MP3s.
+
+## Decision 2A — Existing scan remains authoritative; historical source paths are IMMUTABLE
+
+**Operator-identified failure mode (2026-10-30):** If historical files are physically moved/renamed before migration, V0.3.0 inventory `20261028_174014` and full SHA-256 scan `20261029_174327` would point at missing/outdated source paths, and LOR sequences may no longer resolve their media. **Therefore do not move, rename, consolidate-in-place, delete, or overwrite any scanned historic files.** Keep them in their original locations, including duplicate occurrences, while the 2026 show is being prepared.
+
+The completed inventory is a fixed **historical snapshot**. It remains correct evidence of the source state at scan time, and the 2,838 file-content hashes remain usable identity keys for unchanged byte content. It is **not** a continuously current locator database: any actual source movement, replacement, or outside-process changes require fresh reconciliation. The full 11,969-occurrence inventory includes many effects/caches not included in the 2,838-file hash set; those cannot be considered hash-verified originals.
+
+**Mandatory eventual copy-only population procedure (separate approved runbook required):**
+
+1. Freeze/retain each scanned **historical `SourcePath`** and original filename, scan timestamp/version, known hash and source-provenance evidence in staging before populating the master. Do not make a path unique database key or overwrite it with a new destination.
+2. Build a reviewed manifest: `source_occurrence_id`, `source_path`, `source_sha256`, `collection_role`, `target_path`, `target_filename`, `operation=COPY_NEW_NO_OVERWRITE`, `identity_status`, and `approval/receipt`. Exact canonical filename specifications and unresolved audio roles may remain pending; do not invent them to permit copying.
+3. **Copy** only approved content into a separate empty master destination; never move the original, and never delete historical duplicate paths. Fail closed on any destination collision, mismatched hash, changed source or missing file.
+4. Validate destination SHA-256 against the recorded source SHA-256. Register the destination as a **new physical file occurrence** linked to the same immutable content identity; preserve the original occurrence and every old filename alias. A different hash means a distinct rendition/edit, not a successful duplicate copy.
+5. Maintain a master-only inventory or manifest reconciliation that verifies destination names, hashes, paths and collection membership independently. **V0.3.0 intentionally excludes the `LOR-Audio` master subtree**; do not mistake a subsequent V0.3.0 whole-tree rescan for complete master validation or silently mix the canonical copies into the historic source baseline.
+6. Use the local `C:\LOR\Audio` files and their **existing** LOR audio references during the 2026 show preparation. Year-free canonical naming is a **future derived/master file naming decision**, not permission to rename current referenced MP3s. An approved alias/reference-conversion procedure with playback verification must precede retirement of any legacy filename.
+
+**Order of operations:** source snapshot → provisional catalog/content identity → reviewed copy manifest → no-overwrite copy → hash verification → append new destination occurrence → master reconciliation → later intentional show-runtime switchover. No broad re-scan or re-hash of the 15-year source is necessary if it remains unchanged; source delta checks are separate and bounded. Database schema/hosting and physical-copy approvals still remain separate gates.
 
 ## Decision 3 — The master metadata catalog is a DATABASE, not a workbook
 
