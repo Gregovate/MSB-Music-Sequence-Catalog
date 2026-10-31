@@ -3,7 +3,7 @@
 | Document | Decision |
 |---|---|
 | Authority record | MUSIC-CATALOG-AUTHORITY-2026-10-29 |
-| Revision | 0.3 — 2026-10-30 (2026 Scratch active-authoring year-free filenames) |
+| Revision | 0.4 — 2026-10-31 (2026 DR/backup and source-master locations corrected) |
 | Owner | Gregovate/MSB-Music-Sequence-Catalog |
 | Coordination | https://github.com/Gregovate/MSB-Music-Sequence-Catalog/issues/1 |
 | Status | **SELECTED DESIGN TARGET / DATABASE INTERFACE; NO PHYSICAL DIRECTORY, DATABASE, OR FILE MUTATION AUTHORIZED** |
@@ -20,22 +20,61 @@ Unknown role, unknown source rights, voiceovers, singing-face vocal stems, speci
 
 An album track is searchable independently as a song, but need not be copied again into a physical Singles directory.
 
-## Decision 2 — One nonannual physical audio master target
+## Decision 2 — Canonical source collections AND annual disaster recovery (2026-10-31)
 
-**Selected intended physical master root:**
+**Engineering correction requested by the operator:** The annual folders under G:\Shared drives\Seasonal Files\<YEAR>\LOR are not pointless duplicate song libraries. They are disaster-recovery copies of the matching Show PC C:\LOR data, and MUST retain the Audio and Sequences subfolders with identical relative paths and filenames. The earlier proposal to omit year-specific audio duplication was WRONG for disaster recovery.
 
-    G:\Shared drives\Seasonal Files\LOR-Audio\
-        Originals\
-            Albums\          (retain artist/album/disc/track source structure)
-            Singles\         (genuine standalone original recordings only)
-        Show-Audio\           (approved show-ready edits/renditions)
-        Catalog\              (optional controlled exports and copy receipts, not the database)
+**Preferred location:** Use the PRE-EXISTING G:\Shared drives\Seasonal Files\LOR_Source_Files directory as the canonical source-library root instead of the previously proposed new LOR-Audio root. Keep all old files/folders intact until separately governed migration. The operator's layout is:
 
-The annual directories in Seasonal Files remain historical read-only source evidence; they are not the maintained master. Historical wrapper folders such as Licensed Songs and Halloween are provenance, not automatically album artists or legal licensing evidence. Purchased LOR *sequences* and related supplied audio have distinct ownership/provenance records.
+    G:\Shared drives\Seasonal Files\
+        LOR_Source_Files\
+            Purchased-Audio-Files\
+                Albums\
+                    Artist\Album\Original-tracks.mp3
+                Singles\
+                    Original-recordings.mp3
+            Normalized-Show-Audio\
+                Year-free-normalized-or-cropped-show-tracks.mp3
+            [existing historical source files remain in place]
+        2025\
+            LOR\
+                Audio\             # historical 2025 playback files
+                Sequences\         # historical 2025 show
+                ...
+        2026\
+            LOR\
+                Audio\             # RESTORABLE backup of local C:\LOR\Audio
+                Sequences\         # 2026 Scratch, Final, other required sequences
+                ...
 
-**This selected path is a design decision, not evidence that the folder exists.** No directory creation, bulk copy, rename, deletion, FreeFileSync job, normalization, or sequence rewrite is authorized without an approved operator runbook and hash-verified no-overwrite source/destination manifest.
+The folder label Purchased-Audio-Files may also contain originally ripped/personal albums. It is a storage label, **not** proof of ownership or licensing. A more inclusive Original-Audio name can be reviewed later, but this design uses the operator's suggested names. There are **two permanent audio content collections in one metadata catalog**: unmodified purchased/ripped Original masters, and normalized/cropped show-ready renditions. An album track remains searchable individually without a second physical Singles copy.
 
-**Local Show PC and programmer runtime remains C:\LOR\Audio.** The show must run offline. **2025 Final historical source and approved preview authority remain unchanged**; **2026 Scratch is under active construction** and the operator is intentionally removing introduced-year prefixes from local C:\LOR\Audio files before assigning those files to the 2026 sequence revisions. Do not recopy the initial 24 already hash-verified 2025 playback MP3s as a migration operation. Reuse their audio bytes locally while applying the 2026 filename standard.
+**Three intentional roles, not three competing masters:**
+
+1. Source master: LOR_Source_Files\Purchased-Audio-Files\Albums and Singles, retaining original recording, provenance and album hierarchy.
+2. Approved show-audio master: LOR_Source_Files\Normalized-Show-Audio, holding year-free canonical show-ready renditions, including separately identified edits/durations and special operational cues where approved.
+3. Annual restore snapshot: Seasonal Files\<YEAR>\LOR\Audio is a point-in-time copy of the *actual local* C:\LOR\Audio for that year, plus Sequences and other required LOR data. This deliberate redundancy is essential to disaster recovery and is NOT a duplicate to remove.
+
+**2026 runtime and backup contract:**
+
+    Local editing/playback: C:\LOR\Audio\<exact 2026 filename>.mp3
+    Recovery backup:        G:\Shared drives\Seasonal Files\2026\LOR\Audio\<SAME filename>.mp3
+    Recovery restore:       copy the annual backup LOR tree back to C:\LOR\
+
+Any 2026 Scratch sequence that uses music must resolve its exact recorded filename under the local LOR Audio directory; NO sequence is to depend on G: at playback. The user is actively establishing year-free local filenames during 2026 Scratch conversion; continue doing so and validate that each 2026 sequence points to the new local name and correct audio length. **Do not force obsolete 2025 filename prefixes into current 2026 Scratch work.** The published library copy uses the approved year-free name; local and annual-backup names for the same active show file must match.
+
+**Two different controlled data flows:**
+
+- Working 2026 show -> disaster-recovery: a verified, non-destructive copy/snapshot of required C:\LOR data into G:\Shared drives\Seasonal Files\2026\LOR, preserving relative paths, audio bytes and exact filenames. Do not configure an unprotected two-way mirror, overwrite old snapshots without retention, or automatically propagate accidental deletions.
+- Working/approved 2026 show -> canonical library: after acceptance, copy the approved year-free normalized/cropped audio rendition into LOR_Source_Files\Normalized-Show-Audio, verifying SHA-256 and recording its source/master aliases. Future seasons can receive that approved rendition at local C:\LOR\Audio. Do not make library promotion silently modify the active 2026 Show PC.
+- Historical original acquisition -> original master: separately approved, hash-verified, no-overwrite copies into Purchased-Audio-Files. Leave scanned historical originals untouched in their old locations.
+
+**A recovery copy is NOT automatically a verified PC restore.** The disaster-recovery runbook must inventory/test not only LOR\Audio and LOR\Sequences but also previews/CommonData, any LOR settings, Show PC software/version, other required configurations, and files outside C:\LOR where applicable. Test an offline recovery to the expected C:\LOR path before calling the snapshot complete.
+
+**Scan and catalog behavior:** The completed 2026-10-28 source inventory and 2026-10-29 hashes remain a timestamped historical baseline. No old G: source file may be moved/renamed to populate this structure. The old V0.3.0 scanner excluded its former proposed LOR-Audio target, **not these new child folders under LOR_Source_Files**. Any new scanner must explicitly exclude the new canonical collections from historical-source discovery and tag yearly LOR backups as BACKUP_OCCURRENCE rather than unique source masters. Keep a separate manifest of actual master paths and hashes; after verified copies, append new physical occurrences linked to existing content identities.
+
+**Implementation gate:** This is the corrected preferred architecture, not evidence that new folders exist or backup/sync jobs are configured. Creating/populating any master folder or changing backup/synchronization behavior requires its own approved operator procedure. The older G:\Shared drives\Seasonal Files\LOR-Audio location is **superseded as a proposed new physical target**.
+
 
 ## Decision 2A — Existing scan remains authoritative; historical source paths are IMMUTABLE
 
@@ -49,7 +88,7 @@ The completed inventory is a fixed **historical snapshot**. It remains correct e
 2. Build a reviewed manifest: `source_occurrence_id`, `source_path`, `source_sha256`, `collection_role`, `target_path`, `target_filename`, `operation=COPY_NEW_NO_OVERWRITE`, `identity_status`, and `approval/receipt`. Exact canonical filename specifications and unresolved audio roles may remain pending; do not invent them to permit copying.
 3. **Copy** only approved content into a separate empty master destination; never move the original, and never delete historical duplicate paths. Fail closed on any destination collision, mismatched hash, changed source or missing file.
 4. Validate destination SHA-256 against the recorded source SHA-256. Register the destination as a **new physical file occurrence** linked to the same immutable content identity; preserve the original occurrence and every old filename alias. A different hash means a distinct rendition/edit, not a successful duplicate copy.
-5. Maintain a master-only inventory or manifest reconciliation that verifies destination names, hashes, paths and collection membership independently. **V0.3.0 intentionally excludes the `LOR-Audio` master subtree**; do not mistake a subsequent V0.3.0 whole-tree rescan for complete master validation or silently mix the canonical copies into the historic source baseline.
+5. Maintain separate library master and annual-backup inventory/manifest reconciliations with checked names/hashes/paths. The existing V0.3.0 scanner excludes only its former LOR-Audio target, **not new master subfolders within LOR_Source_Files**. Do not rerun it as if it understood the corrected source/backup/master distinctions; a new version must explicitly distinguish annual recovery occurrences and exclude master collections.
 6. **2026 Scratch ACTIVE AUTHORING EXCEPTION:** local `C:\LOR\Audio` is the operator's editable 2026 working copy. Year-free local filenames are being established **now**, before/as each new 2026 Scratch sequence is converted and pointed at the correct music. Record old→new local filename mapping and update/verify actual `musicFilename` per 2026 working revision; no blanket assumption that 2025-derived paths remain valid. Historical G: source paths and untouched 2025 Final archives remain immutable. Do not mandate retaining a second year-prefixed local MP3 solely to keep an obsolete 2025 reference resolvable on the new 2026 working PC. When an old local filename is still referenced by an **active** sequence, change that sequence's media selection and verify playback before relying on the renamed file. Never change audio content/duration as part of a filename-only operation.
 
 **Order of operations:** source snapshot → provisional catalog/content identity → reviewed copy manifest → no-overwrite copy → hash verification → append new destination occurrence → master reconciliation → later intentional show-runtime switchover. No broad re-scan or re-hash of the 15-year source is necessary if it remains unchanged; source delta checks are separate and bounded. Database schema/hosting and physical-copy approvals still remain separate gates.
